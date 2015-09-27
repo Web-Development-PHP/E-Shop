@@ -2,6 +2,7 @@
 
 namespace EShop\Controllers;
 
+use EShop\Config\RouteConfig;
 use EShop\Helpers\RouteService;
 use EShop\Models\BindModels;
 use EShop\Models\User;
@@ -10,6 +11,10 @@ use EShop\View;
 use EShop\ViewModels\ProfileViewModel;
 use EShop\ViewModels\UserViewModel;
 
+/**
+ * Class AccountController
+ * @package EShop\Controllers
+ */
 class AccountController extends Controller
 {
     /**
@@ -21,15 +26,15 @@ class AccountController extends Controller
     public function __construct() {
         parent::__construct();
         $this->_repository = new UsersRepository();
-        if(!$this->isLogged()) {
-            RouteService::redirect('home', 'index', true);
-        }
     }
 
     public function index() {
 
     }
 
+    /**
+     * @Authorize
+     */
     public function profile() {
         $currentUser = $this->_repository->findById($this->getCurrentUserId());
         if($currentUser != null) {
@@ -74,5 +79,13 @@ class AccountController extends Controller
 
         $this->setIdInSession($user->getId());
         RouteService::redirect('account', 'profile', true);
+    }
+
+    public function logout() {
+       if($this->isLogged()) {
+           session_unset();
+           session_destroy();
+           RouteService::redirect('home', 'index', true);
+       }
     }
 }

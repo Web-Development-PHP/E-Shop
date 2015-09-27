@@ -3,7 +3,6 @@
 namespace EShop\Controllers;
 
 /**
- * @Authorize
  * @Route("pesho")
  */
 class TestController extends \EShop\Controllers\Controller
@@ -13,9 +12,17 @@ class TestController extends \EShop\Controllers\Controller
     }
 
     /**
+     * @Authorize
      * @Route("test")
      */
     public function index() {
         echo 'Index()';
+    }
+
+    /**
+     * @Route("test2")
+     */
+    public function index2() {
+        echo 'Index2()';
     }
 }

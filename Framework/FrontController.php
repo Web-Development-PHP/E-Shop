@@ -79,9 +79,39 @@ class FrontController
     private function initAction() {
         $customRoutes = $this->getAllActionsCustomRoutes($this->controller);
         $customRoutes = array_map('strtolower', $customRoutes);
+        $this->isActionAccessGrandet($customRoutes);
         $this->actionName = $this->parseSpecialRoute($this->actionName, $customRoutes, 'Action');
         if ($this->actionName == '') {
             $this->actionName = AppConfig::DEFAULT_ACTION;
+        }
+    }
+
+    private function isActionAccessGrandet($assoc) {
+        try {
+            $authorizationAnnotation = $this->getActionAuthorization($this->controller, $this->actionName);
+        }catch (\ReflectionException $e) {
+        }
+        if(!in_array($this->actionName, $assoc) && !empty($authorizationAnnotation[0])) {
+            if(!isset($_SESSION['id'])) {
+                throw new \Exception('You are not authorized');
+            }
+        }
+        $arr = array_values($assoc);
+        $arrKeys = array_keys($assoc);
+        $index = 0;
+
+        foreach ($arr as $value) {
+            $authorization = $this->getActionAuthorization($this->controller, $value);
+            foreach ($authorization as $auth) {
+
+                if($auth == "@Authorize" &&
+                    (strtolower($this->actionName) == $arrKeys[$index] || $this->actionName == $value)) {
+                    if(!isset($_SESSION['id'])) {
+                        throw new \Exception('You are not authorized');
+                    }
+                }
+            }
+            $index++;
         }
     }
 
@@ -113,8 +143,6 @@ class FrontController
 
         $this->controller = new $controllerName();
         $this->isAccessGranted($controllerName);
-
-
     }
 
     private function initRoutes() {
@@ -193,7 +221,9 @@ class FrontController
             preg_match_all("/@Authorize/", $doc, $authorizations);
 //            var_dump($routes);
 //            var_dump($authorizations);
-            return array($routes[1][0], $authorizations[0]);
+            if(isset($routes[1][0], $authorizations[0])) {
+                return array($routes[1][0], $authorizations[0]);
+            }
         }
     }
 
