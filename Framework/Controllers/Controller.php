@@ -7,6 +7,10 @@ abstract class Controller
         $this->onInit();
     }
 
+    public function index() {
+        echo 'You have loaded default action';
+    }
+
     /**
      * @Route("onInit")
      */

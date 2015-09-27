@@ -31,6 +31,7 @@ class FrontController
 
     public function dispatch() {
         $this->initRoutes();
+        $this->loadSpecialRoute();
         $this->initController();
         $this->initAction();
         View::$controllerName = $this->controllerName;
@@ -45,23 +46,42 @@ class FrontController
         );
     }
 
+    private function loadSpecialRoute() {
+        $customRoutes = $this->getAllClassesCustomRoutes();
+        var_dump(str_replace('controller', '', 'testcontroller'));
+        $this->controllerName = $this->parseSpecialRoute($this->controllerName, $customRoutes, self::CONTROLLER_SUFFIX);
+        var_dump($this->controllerName);
+        if($this->controllerName != '' && $this->controllerName != null &&
+            strtolower($this->controllerName) != strtolower(AppConfig::DEFAULT_CONTROLLER)) {
+            $this->customRoute = $this->controllerName;
+        }else {
+            $this->controllerName = AppConfig::DEFAULT_CONTROLLER;
+        }
+    }
+
+    private function parseSpecialRoute($param, $customRoutes = [], $paramName) {
+        if(in_array(strtolower($param), $customRoutes) ||
+            array_key_exists(strtolower($param), $customRoutes)) {
+
+            foreach ($customRoutes as $k => $v) {
+                if ($k == strtolower($param)) {
+                    $param = $v;
+                    break;
+                }
+                if (str_replace('controller', '', strtolower($param)) == $v && $k != $v) {
+                    throw new \Exception("This $paramName is pre defined by user");
+                }
+            }
+        }
+        return $param;
+    }
+
     private function initAction() {
         $customRoutes = $this->getAllActionsCustomRoutes($this->controller);
         $customRoutes = array_map('strtolower', $customRoutes);
-//        var_dump($customRoutes);
-//        var_dump($this->actionName);
-        if(in_array(strtolower($this->actionName), $customRoutes) ||
-            array_key_exists(strtolower($this->actionName), $customRoutes)) {
-
-            foreach ($customRoutes as $k => $v) {
-                if($k == strtolower($this->actionName)) {
-                   $this->actionName = $v;
-                    break;
-                }
-                if(strtolower($this->actionName) == $v && $k != $v) {
-                    throw new \Exception('This action is pre defined by user');
-                }
-            }
+        $this->actionName = $this->parseSpecialRoute($this->actionName, $customRoutes, 'Action');
+        if ($this->actionName == '') {
+            $this->actionName = AppConfig::DEFAULT_ACTION;
         }
     }
 
@@ -76,7 +96,14 @@ class FrontController
                 . $this->controllerName
                 . self::CONTROLLER_SUFFIX;
         }elseif($this->customRoute != null) {
-                // TODO
+                $controllerName =
+                    RouteConfig::CONTROLLER_DEFAULT_NAMESPACE
+                    .$this->customRoute;
+            $hasControllerSufix = substr($controllerName, strlen($controllerName) - 10, strlen($controllerName) - 1);
+            if($hasControllerSufix != self::CONTROLLER_SUFFIX) {
+                $controllerName .= self::CONTROLLER_SUFFIX;
+            }
+
         }else {
             $controllerName =
                 RouteConfig::CONTROLLER_DEFAULT_NAMESPACE
@@ -86,6 +113,8 @@ class FrontController
 
         $this->controller = new $controllerName();
         $this->isAccessGranted($controllerName);
+
+
     }
 
     private function initRoutes() {
@@ -126,23 +155,23 @@ class FrontController
     private function getAllClassesCustomRoutes() {
         $classesRoutes = [];
 
-        $declaredControllerFiles = scandir('Controllers');
+        $declaredControllerFiles = scandir(FolderConfig::CONTROLLERS_DEFAULT_FOLDER);
        // var_dump($declaredControllerFiles);
         foreach($declaredControllerFiles as $fileName){
             if(strpos($fileName, '.php') != false){
                 $controllerClassName = (substr($fileName,0,strlen($fileName)-4));
                 $controllerFullClassName =
                     RouteConfig::CONTROLLER_DEFAULT_NAMESPACE .$controllerClassName;
-
+//                var_dump($controllerFullClassName);
                 $controller = new $controllerFullClassName();
                 $classCustomRoute = $this->getClassAnnotations($controller)[0];
-                var_dump($classCustomRoute);
-                if(trim($classCustomRoute) != ""){
+//                var_dump($classCustomRoute);
+                if($classCustomRoute){
                     $classesRoutes[$classCustomRoute] = $controllerClassName;
                 }
             }
         }
-
+   // var_dump($classesRoutes);
         return $classesRoutes;
     }
 
@@ -162,7 +191,8 @@ class FrontController
         if($doc) {
             preg_match_all("/@Route\(\"(.+)\"\)/", $doc, $routes);
             preg_match_all("/@Authorize/", $doc, $authorizations);
-            var_dump($routes);
+//            var_dump($routes);
+//            var_dump($authorizations);
             return array($routes[1][0], $authorizations[0]);
         }
     }

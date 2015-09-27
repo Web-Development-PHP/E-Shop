@@ -4,6 +4,7 @@ namespace EShop\Controllers;
 
 /**
  * @Authorize
+ * @Route("pesho")
  */
 class TestController extends \EShop\Controllers\Controller
 {
@@ -11,8 +12,9 @@ class TestController extends \EShop\Controllers\Controller
         parent::__construct();
     }
 
-
-
+    /**
+     * @Route("test")
+     */
     public function index() {
         echo 'Index()';
     }
