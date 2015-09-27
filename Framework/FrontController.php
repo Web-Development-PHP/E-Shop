@@ -37,18 +37,18 @@ class FrontController
         View::$controllerName = $this->controllerName;
         View::$actionName = $this->actionName;
 
-        call_user_func_array(
-            [
-                $this->controller,
-                $this->actionName
-            ],
-            $this->requestParams
-        );
+        $actionTypeParams = $this->getFuncParamsTypes($this->controller, $this->actionName);
+        if(isset($actionTypeParams[0]) && strpos(strtolower($actionTypeParams[0]), 'bindingmodel') !== false){
+            $bindingModelClass = $actionTypeParams[0];
+            $bindingModel = new $bindingModelClass($_POST);
+            call_user_func(array($this->controller, $this->actionName), $bindingModel);
+        }else {
+            call_user_func_array([ $this->controller, $this->actionName ], $this->requestParams );
+        }
     }
 
     private function loadSpecialRoute() {
         $customRoutes = $this->getAllClassesCustomRoutes();
-        var_dump(str_replace('controller', '', 'testcontroller'));
         $this->controllerName = $this->parseSpecialRoute($this->controllerName, $customRoutes, self::CONTROLLER_SUFFIX);
         var_dump($this->controllerName);
         if($this->controllerName != '' && $this->controllerName != null &&
@@ -212,5 +212,15 @@ class FrontController
         preg_match_all("/@Authorize/", $doc, $authorizations);
        // var_dump($authorizations);
         return $authorizations[0];
+    }
+
+    private function getFuncParamsTypes($class, $func) {
+        $refFunc =  new \ReflectionMethod($class, $func);
+        $params = [];
+        foreach($refFunc->getParameters() as $param) {
+            array_push($params, $param->getClass()->name);
+        }
+
+        return $params;
     }
 }

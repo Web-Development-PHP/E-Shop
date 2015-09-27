@@ -1,10 +1,10 @@
 <?php
 
-namespace EShop\Models;
+namespace EShop\Models\BindModels;
 
-class User extends BaseModel
+
+class UserBindingModel
 {
-    private $_id;
     private $_username;
     private $_password;
     private $_email;
@@ -13,24 +13,12 @@ class User extends BaseModel
     private $_role = null;
     private $_cash = null;
 
-    public function __construct($data){
-        $this->setId($data['id']);
-        $this->setUsername($data['username']);
-        $this->setPassword($data['password']);
-        $this->setEmail($data['email']);
-        $this->setFullName($data['full_name']);
-        $this->setAge($data['age']);
-        $this->setCash($data['cash']);
-    }
-
-    public function getId()
-    {
-        return $this->_id;
-    }
-
-    public function setId($id)
-    {
-        $this->_id = $id;
+    public function __construct($bindingData){
+        $this->setUsername($bindingData['username']);
+        $this->setPassword($bindingData['password']);
+        $this->setEmail($bindingData['email']);
+        $this->setFullName($bindingData['full_name']);
+        $this->setAge($bindingData['age']);
     }
 
     public function getFullName()

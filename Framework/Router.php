@@ -26,6 +26,4 @@ class Router
         }
         return self::$_instance;
     }
-
-
 }
