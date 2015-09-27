@@ -10,4 +10,11 @@ class AboutController extends \EShop\Controllers\Controller
     public function Index() {
         echo 'Hello this is AboutController';
     }
+
+    /**
+     * @Route("test")
+     */
+    public function test123() {
+        echo 'test123 > Forum';
+    }
 }

@@ -21,6 +21,9 @@ class AccountController extends Controller
     public function __construct() {
         parent::__construct();
         $this->_repository = new UsersRepository();
+        if(!$this->isLogged()) {
+            RouteService::redirect('home', 'index', true);
+        }
     }
 
     public function index() {
@@ -28,11 +31,7 @@ class AccountController extends Controller
     }
 
     public function profile() {
-        if(!$this->isLogged()) {
-            RouteService::redirect('home', 'index', true);
-        }
         $currentUser = $this->_repository->findById($this->getCurrentUserId());
-
         if($currentUser != null) {
             $viewModel = new ProfileViewModel();
             $viewModel->userViewModel = $currentUser;

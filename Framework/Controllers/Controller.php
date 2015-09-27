@@ -3,18 +3,17 @@
 namespace EShop\Controllers;
 abstract class Controller
 {
+    protected $isPost = false;
+
     protected function __construct() {
         if($_SERVER['REQUEST_METHOD'] == "POST") {
-            $this->populateWithPost();
+            $this->isPost = true;
         }
         $this->onInit();
     }
 
     abstract public function index();
 
-    /**
-     * @Route("onInit")
-     */
     protected function onInit() {
     }
 
