@@ -40,6 +40,7 @@ class AccountController extends Controller
         if($currentUser != null) {
             $viewModel = new ProfileViewModel();
             $viewModel->userViewModel = $currentUser;
+            $this->escapeAll($viewModel);
             $viewModel->render();
         }
     }
@@ -67,6 +68,7 @@ class AccountController extends Controller
      * @Route("login")
      */
     public function loginUser(BindModels\LoginBindingModel $loginBindingModel) {
+        $this->isModelStateValid($loginBindingModel);
         var_dump($loginBindingModel);
         $username = $loginBindingModel->getUsername();
         $password = $loginBindingModel->getPassword();

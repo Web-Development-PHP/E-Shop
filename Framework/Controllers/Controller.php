@@ -1,6 +1,8 @@
 <?php
 
 namespace EShop\Controllers;
+use EShop\Models\IBindingModel;
+
 abstract class Controller
 {
     protected $isPost = false;
@@ -45,5 +47,45 @@ abstract class Controller
         }
 
         return $obj;
+    }
+
+    protected function escapeAll($toEscape) {
+        if(is_array($toEscape)) {
+            foreach ($toEscape as $key => &$value) {
+                if(is_object($value)) {
+                    $reflection = new \ReflectionClass($value);
+                    $properties = $reflection->getProperties();
+
+                    foreach ($properties as &$property) {
+                        $property->setAccessible(true);
+                        $property->setValue($value, $this->escapeAll($property->getValue($value)));
+                    }
+                }elseif(is_array($value)) {
+                    $this->escapeAll($value);
+                }else {
+                    $value = htmlspecialchars($value);
+                }
+            }
+        }elseif(is_object($toEscape)) {
+            $reflection = new \ReflectionClass($toEscape);
+            $properties = $reflection->getProperties();
+
+            foreach ($properties as &$property) {
+                $property->setAccessible(true);
+                $property->setValue($toEscape, $this->escapeAll($property->getValue($toEscape)));
+            }
+        }else {
+            $toEscape = htmlspecialchars($toEscape);
+        }
+
+        return $toEscape;
+    }
+
+    protected function isModelStateValid($postData) {
+        foreach ($postData as $k => $v) {
+            if(empty($v)) {
+                throw new \Exception("Model state is not valid $k cannot be empty!");
+            }
+        }
     }
 }
