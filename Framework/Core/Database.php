@@ -100,11 +100,18 @@ class Database
      * @return array
      */
     public function getAllEntities($fromTable, $limit = null, $offset = null) {
-        $stmt = $this->prepare("
-        SELECT * FROM $fromTable LIMIT ? OFFSET ?
-        ");
+        if($limit && $offset) {
+            $stmt = $this->prepare("
+            SELECT * FROM $fromTable LIMIT ? OFFSET ?");
+        }else {
+            $stmt = $this->prepare(" SELECT * FROM $fromTable ");
+        }
         try {
-            $stmt->execute([ $limit, $offset ]);
+            if($limit && $offset) {
+                $stmt->execute([ $limit, $offset ]);
+            }else {
+                $stmt->execute();
+            }
             return $stmt->fetchAll();
         }catch (\PDOException $e) {
             echo $e->getMessage();
@@ -140,32 +147,29 @@ class Database
      * @param $conditionColumn
      * @param $conditionValue
      */
-    public function updateEntityByColumn(
-            $tableName,
-            $columnToUpdate,
-            $columnNewData,
-            $conditionColumn,
-            $conditionValue)
+    public function updateEntityById($tableName, $entityData, $id)
     {
+        $valuesCount = $this->getValuesCount($entityData);
+        $columnNames = implode(', ', array_keys($entityData));
+
         $stmt = $this->prepare("
-            UPDATE ? SET ? = ? WHERE ? = ?
+            UPDATE $tableName SET $columnNames = $valuesCount WHERE id = ?
         ");
         $this->beginTransaction();
         try {
             $stmt->execute(
                 [
-                    $tableName,
-                    $columnToUpdate,
-                    $columnNewData,
-                    $conditionColumn,
-                    $conditionValue
+                    array_values($entityData),
+                    $id
                 ]
             );
         }catch (\PDOException $e) {
             echo $e->getMessage();
             $this->rollBack();
+            return false;
         }
         $this->commit();
+        return true;
     }
 
     /**

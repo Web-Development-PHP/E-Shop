@@ -5,7 +5,5 @@
     <p><?= $this->userViewModel->getUsername();?></p>
     <p><?= $this->userViewModel->getAge();?></p>
     <p><?= $this->userViewModel->getFullname();?></p>
+    <p><?= $this->userViewModel->getRoleName();?></p>
 </div>
-<form action="<?= \EShop\Config\RouteConfig::getBasePath(); ?>account/logout" method="post">
-    <input type="submit" name="logout" value="Logout">
-</form>

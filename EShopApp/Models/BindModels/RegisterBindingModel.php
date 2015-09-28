@@ -15,6 +15,7 @@ class RegisterBindingModel
     private $_password;
     private $_confirmPassword;
     private $_email;
+    private $_role = null;
     private $_cash = null;
 
     public function __construct($bindingData){
@@ -22,6 +23,15 @@ class RegisterBindingModel
         $this->setPassword($bindingData['password']);
         $this->setConfirmPassword($bindingData['confirmPassword']);
         $this->setEmail($bindingData['email']);
+        $this->setRole($bindingData['role']);
+    }
+
+    public function getRole() {
+        return $this->_role;
+    }
+
+    public function setRole($role) {
+        $this->_role = $role;
     }
 
     public function getConfirmPassword()

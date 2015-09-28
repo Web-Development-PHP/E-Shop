@@ -9,6 +9,8 @@ class UserViewModel extends ViewModel
     private $_email;
     private $_fullName;
     private $_age;
+    private $_roleId;
+    private $_roleName;
     private $_cash = null;
 
     public function __construct($viewData){
@@ -16,9 +18,29 @@ class UserViewModel extends ViewModel
         $this->setEmail($viewData['email']);
         $this->setFullName($viewData['full_name']);
         $this->setAge($viewData['age']);
+        $this->setRole($viewData['role_id']);
         $this->setCash($viewData['cash']);
     }
 
+    public function getRoleName()
+    {
+        return $this->_roleName;
+    }
+
+    public function setRoleName($roleName)
+    {
+        $this->_roleName = $roleName;
+    }
+
+    public function getRole()
+    {
+        return $this->_roleId;
+    }
+
+    public function setRole($roleId)
+    {
+        $this->_roleId = $roleId;
+    }
 
     public function getUsername()
     {
@@ -77,9 +99,6 @@ class UserViewModel extends ViewModel
     {
         $this->_cash = $cash;
     }
-
-
-
 
     public function render()
     {

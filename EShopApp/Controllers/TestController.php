@@ -5,21 +5,23 @@ namespace EShop\Controllers;
 /**
  * @Route("pesho")
  */
-class TestController extends \EShop\Controllers\Controller
+class TestController extends Controller
 {
     public function __construct() {
         parent::__construct();
     }
 
     /**
-     * @Authorize
-     * @Route("test")
+     * @Admin
+
      */
     public function index() {
+
         echo 'Index()';
     }
 
     /**
+     * @Editor
      * @Route("test2")
      */
     public function index2() {

@@ -10,7 +10,7 @@ class User extends BaseModel
     private $_email;
     private $_fullName;
     private $_age;
-    private $_role = null;
+    private $_roleId = null;
     private $_cash = null;
 
     public function __construct($data){
@@ -19,6 +19,7 @@ class User extends BaseModel
         $this->setPassword($data['password']);
         $this->setEmail($data['email']);
         $this->setFullName($data['full_name']);
+        $this->setRole($data['role_id']);
         $this->setAge($data['age']);
         $this->setCash($data['cash']);
     }
@@ -75,10 +76,10 @@ class User extends BaseModel
     }
 
     public function getRole(){
-        return $this->_role;
+        return $this->_roleId;
     }
     public function setRole($value){
-        $this->_role = $value;
+        $this->_roleId = $value;
     }
 
     public function getCash(){

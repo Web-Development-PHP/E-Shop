@@ -22,6 +22,10 @@ class AccountController extends Controller
      */
     private $_repository;
     const DEFAULT_USER_CASH = 150.00;
+    const DEFAULT_USER_ROLE = 2;        // Editor user role
+    const ADMIN_ROLE = 'Admin';
+    const EDITOR_ROLE = 'Editor';
+    const GUEST_ROLE = 'Guest';
 
     public function __construct() {
         parent::__construct();
@@ -32,14 +36,22 @@ class AccountController extends Controller
 
     }
 
+    public function getRoles() {
+      //  return $this->isInRole();
+    }
+
     /**
      * @Authorize
      */
     public function profile() {
+//        $this->isInRole();
         $currentUser = $this->_repository->findById($this->getCurrentUserId());
+     //   var_dump($currentUser);
+        var_dump($_SESSION);
         if($currentUser != null) {
             $viewModel = new ProfileViewModel();
             $viewModel->userViewModel = $currentUser;
+            $viewModel->userViewModel->setRoleName($this->getUserRoleName($currentUser->getRole()));
             $this->escapeAll($viewModel);
             $viewModel->render();
         }
@@ -50,13 +62,21 @@ class AccountController extends Controller
      * @Route("register")
      */
     public function registerUser(BindModels\RegisterBindingModel $userModel) {
-        var_dump($userModel);
+
         $userModel->setCash(self::DEFAULT_USER_CASH);
+        $userModel->setRole(self::DEFAULT_USER_ROLE);
         $isRegistered = $this->_repository->create($userModel);
         if($isRegistered) {
-            $user = $this->_repository->findByUsername($userModel->getUsername());
-            $this->setIdInSession($user->getId());
-            RouteService::redirect('account', 'profile', true);
+            $data = [
+                "username" => $userModel->getUsername(),
+                "password" => $userModel->getPassword()
+            ];
+            $loginDetails = new BindModels\LoginBindingModel($data);
+            $this->loginUser($loginDetails);
+//            $user = $this->_repository->findByUsername($userModel->getUsername());
+//            $this->setIdInSession($user->getId());
+//            $this->setCSRFToken();
+//            RouteService::redirect('account', 'profile', true);
         }
         //TODO throw more meaningful error message
         echo 'Register failed';
@@ -74,11 +94,11 @@ class AccountController extends Controller
         $password = $loginBindingModel->getPassword();
 
         $user = $this->_repository->findByUsername($username);
-
         if(!password_verify($password, $user->getPassword())){
             throw new \Exception('Invalid credentials');
         }
-
+        $_SESSION['role'] = $this->getUserRoleName($user->getRole());
+        $this->setCSRFToken();
         $this->setIdInSession($user->getId());
         RouteService::redirect('account', 'profile', true);
     }
@@ -90,4 +110,22 @@ class AccountController extends Controller
            RouteService::redirect('home', 'index', true);
        }
     }
+
+    private function getUserRoleName($roleId) {
+        switch($roleId) {
+            case '1':
+                return self::ADMIN_ROLE;
+            case '2':
+                return self::EDITOR_ROLE;
+            case '3':
+                return self::GUEST_ROLE;
+            default:
+                return 'Invalid user role id';
+        }
+    }
+
+
+        public function t() {
+            echo 'ECHOOO';
+        }
 }

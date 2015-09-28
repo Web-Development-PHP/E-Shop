@@ -16,6 +16,7 @@ class FrontController
     private $area = null;
     private $customRoute = null;
     private $controller;
+    private static $_router;
 
     const CONTROLLER_SUFFIX = 'Controller';
 
@@ -27,6 +28,7 @@ class FrontController
         $this->controllerName = $controllerName ? $controllerName : AppConfig::DEFAULT_CONTROLLER;
         $this->actionName = $actionName ? $actionName : AppConfig::DEFAULT_ACTION;
         $this->requestParams = $requestParams;
+        self::$_router = Router::getInstance();
     }
 
     public function dispatch() {
@@ -45,10 +47,15 @@ class FrontController
         }else {
             call_user_func_array([ $this->controller, $this->actionName ], $this->requestParams );
         }
+
+        self::$_router->getControllerRolesAnnotation($this->controller);
+        self::$_router->isInRole($this->actionName);
     }
 
+
+
     private function loadSpecialRoute() {
-        $customRoutes = $this->getAllClassesCustomRoutes();
+        $customRoutes = self::$_router->getAllClassesCustomRoutes();
         $this->controllerName = $this->parseSpecialRoute($this->controllerName, $customRoutes, self::CONTROLLER_SUFFIX);
         var_dump($this->controllerName);
         if($this->controllerName != '' && $this->controllerName != null &&
@@ -77,7 +84,7 @@ class FrontController
     }
 
     private function initAction() {
-        $customRoutes = $this->getAllActionsCustomRoutes($this->controller);
+        $customRoutes = self::$_router->getAllActionsCustomRoutes($this->controller);
         $customRoutes = array_map('strtolower', $customRoutes);
         $this->isActionAccessGrandet($customRoutes);
         $this->actionName = $this->parseSpecialRoute($this->actionName, $customRoutes, 'Action');
@@ -143,6 +150,7 @@ class FrontController
 
         $this->controller = new $controllerName();
         $this->isAccessGranted($controllerName);
+
     }
 
     private function initRoutes() {
@@ -163,66 +171,11 @@ class FrontController
         }
     }
 
-    private function getAllActionsCustomRoutes($class)
-    {
-        $refClass = new \ReflectionClass($class);
-        $refFuncs = $refClass->getMethods();
-        $funcsRoutes = [];
-        foreach($refFuncs as $refFunc){
-            $doc = $refFunc->getDocComment();
-            preg_match_all("/@Route\(\"(.+)\"\)/", $doc, $routes);
-            if(count($routes[1]) > 0){
-                $customRoute = $routes[1][0];
-                $funcsRoutes[$customRoute] =  $refFunc->getName();
-            }
-        }
-
-        return $funcsRoutes;
-    }
-
-    private function getAllClassesCustomRoutes() {
-        $classesRoutes = [];
-
-        $declaredControllerFiles = scandir(FolderConfig::CONTROLLERS_DEFAULT_FOLDER);
-       // var_dump($declaredControllerFiles);
-        foreach($declaredControllerFiles as $fileName){
-            if(strpos($fileName, '.php') != false){
-                $controllerClassName = (substr($fileName,0,strlen($fileName)-4));
-                $controllerFullClassName =
-                    RouteConfig::CONTROLLER_DEFAULT_NAMESPACE .$controllerClassName;
-//                var_dump($controllerFullClassName);
-                $controller = new $controllerFullClassName();
-                $classCustomRoute = $this->getClassAnnotations($controller)[0];
-//                var_dump($classCustomRoute);
-                if($classCustomRoute){
-                    $classesRoutes[$classCustomRoute] = $controllerClassName;
-                }
-            }
-        }
-   // var_dump($classesRoutes);
-        return $classesRoutes;
-    }
-
     private function isAccessGranted($controller) {
         $authorizations = $this->getControllerAuthorization($controller);
         if(!empty($authorizations[0])) {
             if(!isset($_SESSION['id'])) {
                 throw new \Exception("You are not authorized!");
-            }
-        }
-    }
-
-    // Reflection
-    private function getClassAnnotations($class) {
-        $refClass = new \ReflectionClass($class);
-        $doc = $refClass->getDocComment();
-        if($doc) {
-            preg_match_all("/@Route\(\"(.+)\"\)/", $doc, $routes);
-            preg_match_all("/@Authorize/", $doc, $authorizations);
-//            var_dump($routes);
-//            var_dump($authorizations);
-            if(isset($routes[1][0], $authorizations[0])) {
-                return array($routes[1][0], $authorizations[0]);
             }
         }
     }
@@ -240,7 +193,6 @@ class FrontController
         $refMethod = new \ReflectionClass($class);
         $doc = $refMethod->getDocComment();
         preg_match_all("/@Authorize/", $doc, $authorizations);
-       // var_dump($authorizations);
         return $authorizations[0];
     }
 

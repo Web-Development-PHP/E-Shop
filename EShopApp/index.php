@@ -9,9 +9,8 @@
 <body>
 <div class="container">
 <?php
-    include_once 'Views/public/navbar.php';
     require_once '../Framework/App.php';
-
+    include_once 'Views/public/navbar.php';
     error_reporting(E_ALL ^ E_NOTICE);
     $app = new \EShop\App();
     $app->start();

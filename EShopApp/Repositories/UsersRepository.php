@@ -50,13 +50,14 @@ class UsersRepository
 
     public function create(RegisterBindingModel $user) {
         if($user->getPassword() != $user->getConfirmPassword()) {
-            throw new \Exception('Passwords doesnt match');
+            throw new \Exception('Passwords does not match');
         }
         $isCreated = $this->db->insertEntity(self::USERS_TABLENAME, array(
             'username' => $user->getUsername(),
             'password' => password_hash($user->getPassword(), AppConfig::PASSWORD_CRYPT_METHOD),
             'email' => $user->getEmail(),
-            'cash' => $user->getCash()
+            'cash' => $user->getCash(),
+            'role_id' => $user->getRole()
         ));
         return $isCreated;
     }
