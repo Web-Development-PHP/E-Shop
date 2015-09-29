@@ -91,7 +91,6 @@ class Router
                 }
             }
         }
-//        var_dump($this->roleActionNames);
         return $this->roles;
     }
 

@@ -34,6 +34,7 @@ class CategoriesController extends Controller
     public function all() {
         $categories = $this->_repository->all();
         $viewModel = new CategoryViewModel();
+        $this->escapeAll($categories);
         $viewModel->categoryViewModel = $categories;
 
         $viewModel->render();

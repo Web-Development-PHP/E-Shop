@@ -3,6 +3,7 @@ namespace EShop;
 use EShop\Config\AppConfig;
 use EShop\Config\FolderConfig;
 use EShop\Config\RouteConfig;
+use EShop\Helpers\ReflectionService;
 
 session_start();
 require_once 'AutoLoader.php';
@@ -17,6 +18,7 @@ class FrontController
     private $customRoute = null;
     private $controller;
     private static $_router;
+    private static $_reflectionHelper;
 
     const CONTROLLER_SUFFIX = 'Controller';
 
@@ -29,6 +31,7 @@ class FrontController
         $this->actionName = $actionName ? $actionName : AppConfig::DEFAULT_ACTION;
         $this->requestParams = $requestParams;
         self::$_router = Router::getInstance();
+        self::$_reflectionHelper = ReflectionService::getInstance();
     }
 
     public function dispatch() {
@@ -57,7 +60,7 @@ class FrontController
     private function loadSpecialRoute() {
         $customRoutes = self::$_router->getAllClassesCustomRoutes();
         $this->controllerName = $this->parseSpecialRoute($this->controllerName, $customRoutes, self::CONTROLLER_SUFFIX);
-        var_dump($this->controllerName);
+//        var_dump($this->controllerName);
         if($this->controllerName != '' && $this->controllerName != null &&
             strtolower($this->controllerName) != strtolower(AppConfig::DEFAULT_CONTROLLER)) {
             $this->customRoute = $this->controllerName;
@@ -86,41 +89,14 @@ class FrontController
     private function initAction() {
         $customRoutes = self::$_router->getAllActionsCustomRoutes($this->controller);
         $customRoutes = array_map('strtolower', $customRoutes);
-        $this->isActionAccessGrandet($customRoutes);
+        //$this->isActionAccessGrandet($customRoutes);
+        self::$_reflectionHelper->isActionAccessGrandet($customRoutes, $this->controller, $this->actionName);
         $this->actionName = $this->parseSpecialRoute($this->actionName, $customRoutes, 'Action');
         if ($this->actionName == '') {
             $this->actionName = AppConfig::DEFAULT_ACTION;
         }
     }
 
-    private function isActionAccessGrandet($assoc) {
-        try {
-            $authorizationAnnotation = $this->getActionAuthorization($this->controller, $this->actionName);
-        }catch (\ReflectionException $e) {
-        }
-        if(!in_array($this->actionName, $assoc) && !empty($authorizationAnnotation[0])) {
-            if(!isset($_SESSION['id'])) {
-                throw new \Exception('You are not authorized');
-            }
-        }
-        $arr = array_values($assoc);
-        $arrKeys = array_keys($assoc);
-        $index = 0;
-
-        foreach ($arr as $value) {
-            $authorization = $this->getActionAuthorization($this->controller, $value);
-            foreach ($authorization as $auth) {
-
-                if($auth == "@Authorize" &&
-                    (strtolower($this->actionName) == $arrKeys[$index] || $this->actionName == $value)) {
-                    if(!isset($_SESSION['id'])) {
-                        throw new \Exception('You are not authorized');
-                    }
-                }
-            }
-            $index++;
-        }
-    }
 
     private function initController() {
         if ($this->area != null) {
@@ -149,8 +125,8 @@ class FrontController
         }
 
         $this->controller = new $controllerName();
-        $this->isAccessGranted($controllerName);
-
+       // $this->isAccessGranted($controllerName);
+        self::$_reflectionHelper->isAccessGranted($controllerName);
     }
 
     private function initRoutes() {
@@ -169,31 +145,6 @@ class FrontController
             $this->area = $areas[$index];
             array_shift($this->requestParams);
         }
-    }
-
-    private function isAccessGranted($controller) {
-        $authorizations = $this->getControllerAuthorization($controller);
-        if(!empty($authorizations[0])) {
-            if(!isset($_SESSION['id'])) {
-                throw new \Exception("You are not authorized!");
-            }
-        }
-    }
-
-    private function getActionAuthorization($class, $action)
-    {
-        $refMethod = new \ReflectionMethod($class, $action);
-        $doc = $refMethod->getDocComment();
-        preg_match_all("/@Authorize/", $doc, $authorizations);
-        return $authorizations[0];
-    }
-
-    private function getControllerAuthorization($class)
-    {
-        $refMethod = new \ReflectionClass($class);
-        $doc = $refMethod->getDocComment();
-        preg_match_all("/@Authorize/", $doc, $authorizations);
-        return $authorizations[0];
     }
 
     private function getFuncParamsTypes($class, $func) {
