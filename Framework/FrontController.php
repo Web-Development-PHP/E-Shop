@@ -46,6 +46,7 @@ class FrontController
         if(isset($actionTypeParams[0]) && strpos(strtolower($actionTypeParams[0]), 'bindingmodel') !== false){
             $bindingModelClass = $actionTypeParams[0];
             $bindingModel = new $bindingModelClass($_POST);
+            ReflectionService::validateBindingModel($bindingModel);
             call_user_func(array($this->controller, $this->actionName), $bindingModel);
         }else {
             call_user_func_array([ $this->controller, $this->actionName ], $this->requestParams );

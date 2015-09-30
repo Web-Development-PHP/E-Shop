@@ -2,6 +2,7 @@
 
 namespace EShop\Helpers\ViewHelpers;
 
+use EShop\Helpers\TokenHelper;
 use EShop\Helpers\ViewHelpers\Elements\Checkbox;
 use EShop\Helpers\ViewHelpers\Elements\PasswordField;
 use EShop\Helpers\ViewHelpers\Elements\RadioButton;
@@ -47,6 +48,7 @@ class FormViewHelper extends ViewHelper
                 $result .= "</$element->elementName>";
             }
         }
+        $result .= '<input type="hidden" name="formToken" value="' . TokenHelper::setCSRFToken() . '" />';
         $result .= "</form>";
         echo $result;
     }

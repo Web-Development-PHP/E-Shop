@@ -21,6 +21,7 @@
                             </div>
                         </div>
                     </div>
+                    <input type="hidden" name="formToken" value="<?= \EShop\Helpers\TokenHelper::setCSRFToken(); ?>" />
                     <div class="form-group">
                         <div class="col-lg-10 col-lg-offset-2">
                             <a href="register" class="btn btn-default">Go to register</a>

@@ -2,6 +2,8 @@
 
 namespace EShop\Helpers;
 
+use EShop\Models\IBindingModel;
+
 class ReflectionService
 {
     private static $_instance = null;
@@ -68,4 +70,33 @@ class ReflectionService
             $index++;
         }
     }
+
+    public static function validateBindingModel($model) {
+        if($_POST['formToken'] != TokenHelper::getCSRFToken()) {
+            throw new \Exception("Invalid BindingModel ");
+        }
+        if(!$model instanceof IBindingModel) {
+            throw new \Exception("Invalid BindingModel [Required parameters are empty/missing]");
+        }
+        $reflection = new \ReflectionClass($model);
+        $bindingModelProperties = $reflection->getProperties(\ReflectionProperty::IS_PRIVATE);
+        $postKeys = array_keys($_POST);
+        foreach ($bindingModelProperties as $property) {
+            if(startsWith($property->getName(), '_')) {
+                $property = substr($property->getName(), 1, strlen($property->getName()));
+            }
+            if(!in_array($property, $postKeys) || empty($_POST[$property])) {
+                throw new \Exception("Invalid BindingModel [Required parameters are empty/missing]");
+            }
+        }
+    }
+}
+
+function startsWith($haystack, $needle) {
+    // search backwards starting from haystack length characters from the end
+    return $needle === "" || strrpos($haystack, $needle, -strlen($haystack)) !== FALSE;
+}
+function endsWith($haystack, $needle) {
+    // search forward starting from end minus needle length characters
+    return $needle === "" || (($temp = strlen($haystack) - strlen($needle)) >= 0 && strpos($haystack, $needle, $temp) !== FALSE);
 }

@@ -9,7 +9,9 @@
 namespace EShop\Models\BindModels;
 
 
-class UpdateCategoryBindingModel
+use EShop\Models\IBindingModel;
+
+class UpdateCategoryBindingModel implements IBindingModel
 {
     private $_name;
 

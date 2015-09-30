@@ -8,7 +8,9 @@
 
 namespace EShop\Models\BindModels;
 
-class CreateCategoryBindingModel
+use EShop\Models\IBindingModel;
+
+class CreateCategoryBindingModel implements IBindingModel
 {
     private $_name;
     protected $_products = [];

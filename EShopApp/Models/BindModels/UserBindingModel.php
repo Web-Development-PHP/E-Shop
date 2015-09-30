@@ -3,7 +3,9 @@
 namespace EShop\Models\BindModels;
 
 
-class UserBindingModel
+use EShop\Models\IBindingModel;
+
+class UserBindingModel implements IBindingModel
 {
     private $_username;
     private $_password;

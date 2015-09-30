@@ -9,14 +9,16 @@
 namespace EShop\Models\BindModels;
 
 
-class RegisterBindingModel
+use EShop\Models\IBindingModel;
+
+class RegisterBindingModel implements IBindingModel
 {
     private $_username;
     private $_password;
     private $_confirmPassword;
     private $_email;
-    private $_role = null;
-    private $_cash = null;
+    protected $_role = null;
+    protected $_cash = null;
 
     public function __construct($bindingData){
         $this->setUsername($bindingData['username']);
