@@ -93,6 +93,25 @@ class Database
         }
     }
 
+    public function getAllEntitiesByColumnName($fromTable, $columnName,$columnValue, $limit = null, $offset = null) {
+        if($limit && $offset) {
+            $stmt = $this->prepare("
+            SELECT * FROM $fromTable WHERE $columnName = ? LIMIT ? OFFSET ?");
+        }else {
+            $stmt = $this->prepare(" SELECT * FROM $fromTable WHERE $columnName = ?");
+        }
+        try {
+            if($limit && $offset) {
+                $stmt->execute([ $columnValue, $limit, $offset ]);
+            }else {
+                $stmt->execute( [ $columnValue] );
+            }
+            return $stmt->fetchAll();
+        }catch (\PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
     /**
      * @param $fromTable
      * @param null $limit
@@ -174,28 +193,24 @@ class Database
 
     /**
      * @param $tableName
-     * @param $primaryKeyColumnName
-     * @param $primaryKeyValue
+     * @param $id
+     * @return bool
      */
-    public function deleteEntityByPrimaryKey($tableName, $primaryKeyColumnName, $primaryKeyValue) {
+    public function deleteEntityById($tableName, $id) {
         $stmt = $this->prepare("
-        DELETE FROM ? WHERE ? = ?
+        DELETE FROM $tableName WHERE id = ?
         ");
 
         $this->beginTransaction();
         try {
-            $stmt->execute(
-                [
-                    $tableName,
-                    $primaryKeyColumnName,
-                    $primaryKeyValue
-                ]
-            );
+            $stmt->execute( [ $id ] );
         }catch (\PDOException $e) {
             echo $e->getMessage();
             $this->rollBack();
+            return false;
         }
         $this->commit();
+        return true;
     }
 
     private function getValuesCount($assoc) {
@@ -205,5 +220,53 @@ class Database
             $columns .= '?, ';
         }
         return substr($columns, 0, strlen($columns) - 2);
+    }
+
+
+    /**
+     * ---------CUSTOM QUERIES--RELATED-TO-E-SHOP----
+     *
+     */
+
+    /**
+     * @param $userId
+     * @return mixed
+     */
+    public function getUserCart($userId) {
+        $stmt = $this->prepare("
+            SELECT
+            c.id, u.username, p.id as productId, p.price, p.name
+            FROM users u
+            JOIN usercart c ON c.user_id = u.id
+            JOIN cart_products cp ON cp.cart_id = c.id
+            JOIN products p ON cp.product_id = p.id
+            WHERE u.id = ?;
+        ");
+        try{
+            $stmt->execute([$userId]);
+            return $stmt->fetchAll();
+        }catch (\PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
+    /**
+     * @param $cartId
+     * @return array
+     */
+    public function getProductsInCart($cartId) {
+        $stmt = $this->prepare("
+            SELECT
+	        p.name, p.price
+            FROM cart_products cp
+            JOIN products p ON cp.product_id = p.id
+            WHERE cp.cart_id = ?;
+        ");
+        try{
+            $stmt->execute([$cartId]);
+            return $stmt->fetchAll();
+        }catch (\PDOException $e) {
+            echo $e->getMessage();
+        }
     }
 }

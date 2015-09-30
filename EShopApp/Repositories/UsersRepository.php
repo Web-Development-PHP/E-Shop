@@ -7,6 +7,7 @@ use EShop\Config\DatabaseConfig;
 use EShop\Core\Database;
 use EShop\Models\BindModels\RegisterBindingModel;
 use EShop\Models\BindModels\UserBindingModel;
+use EShop\Models\Cart;
 use EShop\Models\User;
 use EShop\ViewModels\UserViewModel;
 
@@ -62,16 +63,32 @@ class UsersRepository
         return $isCreated;
     }
 
-    public function removeById($id) {
-        $this->db->deleteEntityByPrimaryKey(self::USERS_TABLENAME, 'id', $id);
+    public function viewCart($id) {
+        $data = $this->db->getUserCart($id);
+        if($data == null) {
+            throw new \Exception("Invalid user id");
+        }
+        $cartItems = [];
+        foreach ($data as $c) {
+            $cart = new Cart($c);
+            array_push($cartItems, $cart);
+        }
+        // TODO MAKE VIEW MODEL FOR CART ITEMS
+
+        return $cartItems;
     }
 
-    public function changePassword($username, $newPassword) {
-        $user = $this->findByUsername($username);
-        if($user != null) {
-            $this->db->updateEntityByColumn(self::USERS_TABLENAME, 'password', $newPassword, 'username', $username);
-        }else {
-            throw new \Exception('Error during change password');
-        }
-    }
+
+//    public function removeById($id) {
+//        $this->db->deleteEntityByPrimaryKey(self::USERS_TABLENAME, 'id', $id);
+//    }
+//
+//    public function changePassword($username, $newPassword) {
+//        $user = $this->findByUsername($username);
+//        if($user != null) {
+//            $this->db->updateEntityByColumn(self::USERS_TABLENAME, 'password', $newPassword, 'username', $username);
+//        }else {
+//            throw new \Exception('Error during change password');
+//        }
+//    }
 }

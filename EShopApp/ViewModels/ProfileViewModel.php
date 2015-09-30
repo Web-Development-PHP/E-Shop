@@ -15,9 +15,9 @@ class ProfileViewModel extends ViewModel
      */
     public $userViewModel = [];
 
-
     public function render()
     {
-        include_once FolderConfig::VIEWS_DEFAULT_FOLDER . '/account/profile.php';
+        $file =  '/account/profile.php';
+        $this->loadTemplate($file, $this->userViewModel);
     }
 }

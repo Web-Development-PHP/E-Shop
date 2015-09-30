@@ -9,6 +9,7 @@ use EShop\Models\User;
 use EShop\Repositories\UsersRepository;
 use EShop\View;
 use EShop\ViewModels\ProfileViewModel;
+use EShop\ViewModels\UserCartViewModel;
 use EShop\ViewModels\UserViewModel;
 
 /**
@@ -36,18 +37,12 @@ class AccountController extends Controller
 
     }
 
-    public function getRoles() {
-      //  return $this->isInRole();
-    }
-
     /**
      * @Authorize
      */
     public function profile() {
 //        $this->isInRole();
         $currentUser = $this->_repository->findById($this->getCurrentUserId());
-     //   var_dump($currentUser);
-        var_dump($_SESSION);
         if($currentUser != null) {
             $viewModel = new ProfileViewModel();
             $viewModel->userViewModel = $currentUser;
@@ -73,10 +68,6 @@ class AccountController extends Controller
             ];
             $loginDetails = new BindModels\LoginBindingModel($data);
             $this->loginUser($loginDetails);
-//            $user = $this->_repository->findByUsername($userModel->getUsername());
-//            $this->setIdInSession($user->getId());
-//            $this->setCSRFToken();
-//            RouteService::redirect('account', 'profile', true);
         }
         //TODO throw more meaningful error message
         echo 'Register failed';
@@ -98,7 +89,6 @@ class AccountController extends Controller
             throw new \Exception('Invalid credentials');
         }
         $_SESSION['role'] = $this->getUserRoleName($user->getRole());
-        $this->setCSRFToken();
         $this->setIdInSession($user->getId());
         RouteService::redirect('account', 'profile', true);
     }
@@ -111,6 +101,19 @@ class AccountController extends Controller
        }
     }
 
+    /**
+     * @Authorize
+     */
+    public function viewCart() {
+        $userId = $this->getCurrentUserId();
+        $cartItems = $this->_repository->viewCart($userId);
+        $this->escapeAll($cartItems);
+        $viewModel = new UserCartViewModel();
+        $viewModel->cart = $cartItems;
+        $viewModel->render();
+    }
+
+    // ADD Role Id and their corresponding names from the Database
     private function getUserRoleName($roleId) {
         switch($roleId) {
             case '1':
@@ -123,9 +126,4 @@ class AccountController extends Controller
                 return 'Invalid user role id';
         }
     }
-
-
-        public function t() {
-            echo 'ECHOOO';
-        }
 }

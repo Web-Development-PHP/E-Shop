@@ -16,6 +16,7 @@ class LoginViewModel extends  ViewModel
 
     public function render()
     {
-        include_once FolderConfig::VIEWS_DEFAULT_FOLDER . "/home/login.php";
+        $file =  "/home/login.php";
+        $this->loadTemplate($file, null);
     }
 }

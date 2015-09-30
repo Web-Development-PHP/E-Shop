@@ -10,8 +10,12 @@ namespace EShop\Controllers;
 
 use EShop\Helpers\RouteService;
 use EShop\Models\BindModels\CreateCategoryBindingModel;
+use EShop\Models\BindModels\UpdateCategoryBindingModel;
 use EShop\Repositories\CategoriesRepository;
+use EShop\ViewModels\CategoryProductsViewModel;
 use EShop\ViewModels\CategoryViewModel;
+use EShop\ViewModels\EditCategoryViewModel;
+use EShop\ViewModels\ViewModel;
 
 /**
  * Class CategoriesController
@@ -50,17 +54,33 @@ class CategoriesController extends Controller
     }
 
     public function delete($id) {
-        var_dump($id);
+        $isDeleted = $this->_repository->remove($id);
+        // TODO ADD JAVASCRIPT CONFIRMATION BOX
+        if($isDeleted) {
+            RouteService::redirect('categories', 'all', true);
+        }else {
+            echo 'Error during delete category';
+        }
     }
 
+    // GET categories/products/id
+    /**
+     * @param $id
+     * @Route("products")
+     */
+    public function getProducts($id) {
+        $products = $this->_repository->getAllProducts($id);
+        $this->escapeAll($products);
+        $viewModel = new CategoryProductsViewModel();
+        $viewModel->productViewModel = $products;
+        $viewModel->render();
+    }
 
-    public function index()
-    {
+    public function index() {
         // TODO: Implement index() method.
     }
 
-    public function getRoles()
-    {
+    public function getRoles() {
         // TODO: Implement getRoles() method.
     }
 }

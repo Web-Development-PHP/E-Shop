@@ -23,5 +23,6 @@ final class App
 
     public function start() {
         $this->frontController->dispatch();
+        // TODO TRY CATCH ERRORS BEFORE DISPATCH
     }
 }

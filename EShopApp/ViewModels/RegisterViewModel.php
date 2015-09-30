@@ -16,6 +16,7 @@ class RegisterViewModel extends ViewModel
 
     public function render()
     {
-        include_once FolderConfig::VIEWS_DEFAULT_FOLDER . "/home/register.php";
+        $file = "/home/register.php";
+        $this->loadTemplate($file, null);
     }
 }

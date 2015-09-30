@@ -12,6 +12,7 @@ use EShop\Core\Database;
 use EShop\Models\BindModels\CreateCategoryBindingModel;
 use EShop\Models\BindModels\UpdateCategoryBindingModel;
 use EShop\Models\Category;
+use EShop\Models\Product;
 
 
 class CategoriesRepository implements IRepository
@@ -21,9 +22,22 @@ class CategoriesRepository implements IRepository
      */
     protected $db;
     const CATEGORIES_TABLENAME = 'categories';
+    const PRODUCTS_TABLENAME = 'products';
 
     public function __construct() {
         $this->db = \EShop\Core\Database::getInstance(DatabaseConfig::DB_INSTANCE);
+    }
+
+    public function getAllProducts($id) {
+        $data = $this->db->getAllEntitiesByColumnName(self::PRODUCTS_TABLENAME, 'category_id', $id);
+        $categoryProducts = [];
+        foreach ($data as $prod) {
+            $product = new Product($prod);
+            if($product->getIsSold() == 0 ) {
+                array_push($categoryProducts, $product);
+            }
+        }
+        return $categoryProducts;
     }
 
     public function all() {
@@ -54,8 +68,8 @@ class CategoriesRepository implements IRepository
         if($cat == null) {
             throw new \Exception("category with such id does not exist!");
         }
-        $this->db->deleteEntityByPrimaryKey(self::CATEGORIES_TABLENAME, 'id', $id);
-        return true;
+        $isDeleted = $this->db->deleteEntityById(self::CATEGORIES_TABLENAME, $id);
+        return $isDeleted;
     }
 
     public function create(CreateCategoryBindingModel $model)

@@ -1,22 +1,17 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Krisss
- * Date: 27.09.2015
- * Time: 13:37
- */
 
 namespace EShop\ViewModels;
-
 
 use EShop\Config\FolderConfig;
 use EShop\Helpers\ViewHelpers\FormViewHelper;
 
-class HomeViewModel extends ViewModel
+class EditCategoryViewModel extends ViewModel
 {
+    public $categoryId;
+
     public function render()
     {
-        $file=  "/home/home.php";
+        $file =  '/category/editCategory.php';
         $this->loadTemplate($file, null);
     }
 }

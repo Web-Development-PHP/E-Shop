@@ -13,41 +13,12 @@ abstract class Controller
         if($_SERVER['REQUEST_METHOD'] == "POST") {
             $this->isPost = true;
         }
-       // $this->getControllerRolesAnnotation($this);
         $this->onInit();
-
     }
 
     abstract public function index();
 
-//    protected function  test() {
-////        var_dump($this->roles);
-////        var_dump($_SESSION['role']);
-//        foreach ($this->roles as $role) {
-//            if($_SESSION['role'] == $role || $_SESSION['role'] == '@Admin') {
-//                return  'Allowed' . '</br>';
-//            }else {
-//                return  'not allowed'. '</br>';
-//            }
-//            $index++;
-//        }
-//        if($index == 0) {
-//            return  'Allowed' . '</br>';
-//        }
-//    }
-   // abstract public function getRoles();
-
     protected function onInit() { }
-
-    protected function setCSRFToken(){
-        $_SESSION['formToken'] = uniqid(mt_rand(), true);
-    }
-
-    protected function getCSRFToken() {
-        if($this->isLogged()) {
-            return $_SESSION['formToken'];
-        }
-    }
 
     protected function isLogged() {
         return isset($_SESSION['id']);
@@ -109,6 +80,4 @@ abstract class Controller
         }
         return true;
     }
-
-
 }

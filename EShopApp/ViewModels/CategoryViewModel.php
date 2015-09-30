@@ -12,9 +12,13 @@ class CategoryViewModel extends ViewModel
      */
     public $categoryViewModel = [];
 
+    public $categoryData = [];
+
     public function render()
     {
-        include_once FolderConfig::VIEWS_DEFAULT_FOLDER . '/category/category.php';
-        include_once FolderConfig::VIEWS_DEFAULT_FOLDER . '/category/addCategory.php';
+        $file = '/category/category.php';
+        $this->loadTemplate($file, $this->categoryViewModel);
+        $addCategoryTemplate =  '/category/addCategory.php';
+        $this->loadTemplate($addCategoryTemplate, null);
     }
 }
