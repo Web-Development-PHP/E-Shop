@@ -147,6 +147,7 @@ class Database
         $stmt = $this->prepare("
             INSERT INTO $inTable ($columnNames) VALUES($valuesCount)
         ");
+
         $this->beginTransaction();
         try {
             $stmt->execute(array_values($entityData));
@@ -174,14 +175,13 @@ class Database
         $stmt = $this->prepare("
             UPDATE $tableName SET $columnNames = $valuesCount WHERE id = ?
         ");
+        $params = [];
+        array_push($entityData, $id);
+        array_push($params, array_values($entityData));
+
         $this->beginTransaction();
         try {
-            $stmt->execute(
-                [
-                    array_values($entityData),
-                    $id
-                ]
-            );
+            $stmt->execute( $params[0] );
         }catch (\PDOException $e) {
             echo $e->getMessage();
             $this->rollBack();
@@ -235,7 +235,12 @@ class Database
     public function getUserCart($userId) {
         $stmt = $this->prepare("
             SELECT
-            c.id, u.username, p.id as productId, p.price, p.name
+              cp.id as cartProductId,
+              c.id,
+              u.username,
+              p.id as productId,
+              p.price,
+              p.name
             FROM users u
             JOIN usercart c ON c.user_id = u.id
             JOIN cart_products cp ON cp.cart_id = c.id
@@ -265,6 +270,89 @@ class Database
         try{
             $stmt->execute([$cartId]);
             return $stmt->fetchAll();
+        }catch (\PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
+    public function getUserProducts($userId) {
+        $stmt = $this->prepare("
+            SELECT
+            u.id as userId,
+            u.username,
+            p.id as productId,
+            p.name as productName,
+            p.price as productPrice
+            FROM
+            users_products up
+            JOIN products p ON up.product_id = p.id
+            JOIN users u ON u.id = up.user_id
+            WHERE u.id = ?;
+        ");
+        try{
+            $stmt->execute([$userId]);
+            return $stmt->fetchAll();
+        }catch (\PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
+    public function getAvailableProductsInCategory($userId, $categoryId) {
+        $stmt = $this->prepare("
+            SELECT
+            p.category_id,
+            c.name as categoryName,
+            p.id,
+            p.name as productName,
+            p.quantity,
+            p.price,
+            p.is_sold
+            FROM products p
+            JOIN categories c ON c.id = p.category_id
+            WHERE p.is_sold = 0
+              AND p.id NOT IN (SELECT up.product_id FROM users_products up WHERE up.user_id = ?)
+              AND c.id = ?
+        ");
+        try{
+            $stmt->execute([$userId, $categoryId]);
+            return $stmt->fetchAll();
+        }catch (\PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
+    public function getCartByUserId($userId) {
+        $stmt = $this->prepare("
+            SELECT
+             id
+            FROM usercart uc
+            WHERE uc.user_id = ?
+
+        ");
+        try{
+            $stmt->execute([$userId]);
+            return $stmt->fetch();
+        }catch (\PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
+    /**
+     * @param $cartId
+     * @param $productId
+     * @return bool
+     */
+    public function isProductInCart($cartId, $productId) {
+        $stmt = $this->prepare("
+            SELECT
+            id
+            FROM
+            cart_products
+            WHERE cart_id = ? AND product_id = ?
+        ");
+        try{
+            $stmt->execute([$cartId, $productId]);
+            return $stmt->rowCount() > 0;
         }catch (\PDOException $e) {
             echo $e->getMessage();
         }

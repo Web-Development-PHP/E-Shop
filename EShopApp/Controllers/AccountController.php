@@ -7,9 +7,11 @@ use EShop\Helpers\RouteService;
 use EShop\Models\BindModels;
 use EShop\Models\User;
 use EShop\Repositories\UsersRepository;
+use EShop\Services\ElectronicShopData;
 use EShop\View;
 use EShop\ViewModels\ProfileViewModel;
 use EShop\ViewModels\UserCartViewModel;
+use EShop\ViewModels\UserProductsViewModel;
 use EShop\ViewModels\UserViewModel;
 
 /**
@@ -22,6 +24,10 @@ class AccountController extends Controller
      * @var UsersRepository
      */
     private $_repository;
+    /**
+     * @var ElectronicShopData
+     */
+    private $_eshopData;
     const DEFAULT_USER_CASH = 150.00;
     const DEFAULT_USER_ROLE = 2;        // Editor user role
     const ADMIN_ROLE = 'Admin';
@@ -31,6 +37,7 @@ class AccountController extends Controller
     public function __construct() {
         parent::__construct();
         $this->_repository = new UsersRepository();
+        $this->_eshopData = new ElectronicShopData();
     }
 
     public function index() {
@@ -60,8 +67,11 @@ class AccountController extends Controller
 
         $userModel->setCash(self::DEFAULT_USER_CASH);
         $userModel->setRole(self::DEFAULT_USER_ROLE);
-        $isRegistered = $this->_repository->create($userModel);
+
+        $isRegistered = $this->_eshopData->getUsersRepository()->create($userModel);
         if($isRegistered) {
+            $user = $this->_eshopData->getUsersRepository()->findByUsername($userModel->getUsername());
+            $this->_eshopData->getCartsRepository()->create($user->getId());
             $data = [
                 "username" => $userModel->getUsername(),
                 "password" => $userModel->getPassword()
@@ -84,7 +94,7 @@ class AccountController extends Controller
         $username = $loginBindingModel->getUsername();
         $password = $loginBindingModel->getPassword();
 
-        $user = $this->_repository->findByUsername($username);
+        $user = $this->_eshopData->getUsersRepository()->findByUsername($username);
         if(!password_verify($password, $user->getPassword())){
             throw new \Exception('Invalid credentials');
         }
@@ -106,11 +116,75 @@ class AccountController extends Controller
      */
     public function viewCart() {
         $userId = $this->getCurrentUserId();
-        $cartItems = $this->_repository->viewCart($userId);
-        $this->escapeAll($cartItems);
-        $viewModel = new UserCartViewModel();
-        $viewModel->cart = $cartItems;
-        $viewModel->render();
+        $user = $this->_repository->findById($userId);
+        if($user == null) {
+            throw new \Exception("Invalid user id");
+        }
+        $cartItems = $this->_eshopData->getCartsRepository()->findById($userId);
+        if($cartItems) {
+            $this->escapeAll($cartItems);
+            $viewModel = new UserCartViewModel();
+            $viewModel->cart = $cartItems;
+            $viewModel->render();
+        }
+    }
+
+    public function addToCart($productId) {
+        $userId = $this->getCurrentUserId();
+        $user = $this->_repository->findById($userId);
+        if($user == null) {
+            throw new \Exception("Invalid user id");
+        }
+        $cartId = $this->_eshopData->getCartsRepository()->getCartForCurrentUser($userId);
+
+        $product = $this->_eshopData->getProductsRepository()->findById($productId);
+        if($product->getQuantity() <= 0) {
+            throw new \Exception("There is no quantity left of current product. We're sorry");
+        }
+        //CART ALREADY HAS THIS PRODUCT
+        $isProductInCart = $this->_eshopData->getCartsRepository()->isProductInCart($cartId, $productId);
+        if($isProductInCart) {
+            throw new \Exception("You already added product to your cart");
+        }
+        $isAdded = $this->_eshopData->getCartsRepository()->addToCart($cartId, $productId);
+        var_dump($isAdded);
+    }
+
+//    public function purchaseProduct()
+//    {
+//        // USER HAVE ENOUGH MONEY TO BUY PRODUCT
+//        $userHasEnoughtMoneyToBuyProduct = $user->getCash() - $product->getPrice();
+//        if($userHasEnoughtMoneyToBuyProduct < 0) {
+//            throw new \Exception("Sorry, you do not have enought cash to buy this product.");
+//        }
+//        // CART ALREADY HAS THIS PRODUCT
+//        $isProductInCart = $this->_eshopData->getCartsRepository()->isProductInCart($cartId, $productId);
+//        if($isProductInCart) {
+//            throw new \Exception("You already added product to your cart");
+//        }
+//        // UPDATE PRODUCT QUANTITY
+//        $this->_eshopData->getProductsRepository()->sellProduct($productId);
+//
+//        // UPDATE USER CASH
+//    }
+
+    /**
+     * @throws \Exception
+     * @Route("products")
+     */
+    public function viewMyProducts() {
+        $userId = $this->getCurrentUserId();
+        $user = $this->_repository->findById($userId);
+        if($user == null) {
+            throw new \Exception("Invalid user id");
+        }
+        $userProducts = $this->_repository->getUserProducts($userId);
+        if($userProducts) {
+            $this->escapeAll($userProducts);
+            $viewModel = new UserProductsViewModel();
+            $viewModel->userProducts = $userProducts;
+            $viewModel->render();
+        }
     }
 
     // ADD Role Id and their corresponding names from the Database

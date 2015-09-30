@@ -5,14 +5,15 @@
 <ul>
     <?php foreach($this->productViewModel as $product) : ?>
         <li>
+            <div>
             <a href="#"><?= $product->getName(); ?></a>
-            <div>
+
                 <b>Quantity: <?= $product->getQuantity(); ?></b>
-            </div>
-            <div>
+
                 <b>Price: <?= $product->getPrice(); ?></b>
             </div>
-            <a href="">Add to cart</a>
+            <a href="<?= \EShop\Config\RouteConfig::getBasePath(); ?>account/addToCart/<?= $product->getId(); ?>">
+                Add to cart</a>
         </li>
     <?php endforeach; ?>
 </ul>

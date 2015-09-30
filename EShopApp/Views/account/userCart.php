@@ -12,4 +12,13 @@
             <?php  endforeach;?>
         </ul>
     </div>
+    <div>
+        <b>Total price: </b> <?= $this->getProductsTotalSum(); ?> лв.
+    </div>
+    <?php
+    \EShop\Helpers\ViewHelpers\FormViewHelper::initSubmitButton()
+    ->setValue('Checkout cart')
+    ->create();
+    \EShop\Helpers\ViewHelpers\FormViewHelper::setAction("test/123")->setMethod('post')->render();
+    ?>
 </div>

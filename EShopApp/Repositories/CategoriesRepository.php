@@ -28,8 +28,8 @@ class CategoriesRepository implements IRepository
         $this->db = \EShop\Core\Database::getInstance(DatabaseConfig::DB_INSTANCE);
     }
 
-    public function getAllProducts($id) {
-        $data = $this->db->getAllEntitiesByColumnName(self::PRODUCTS_TABLENAME, 'category_id', $id);
+    public function getAllProducts($userid, $categoryId) {
+        $data = $this->db->getAvailableProductsInCategory($userid, $categoryId);
         $categoryProducts = [];
         foreach ($data as $prod) {
             $product = new Product($prod);
@@ -51,7 +51,7 @@ class CategoriesRepository implements IRepository
         return $categories;
     }
 
-    public function find($id) {
+    public function findById($id) {
         $data = $this->db->getEntityById(self::CATEGORIES_TABLENAME, $id);
         if($data == null) {
             return null;
@@ -64,7 +64,7 @@ class CategoriesRepository implements IRepository
 
     public function remove($id)
     {
-        $cat = $this->find($id);
+        $cat = $this->findById($id);
         if($cat == null) {
             throw new \Exception("category with such id does not exist!");
         }

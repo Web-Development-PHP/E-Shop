@@ -18,6 +18,15 @@ class UserCartViewModel extends ViewModel
      */
     public $cart = [];
 
+    private $totalSum = 0;
+
+    public function getProductsTotalSum() {
+        foreach ($this->cart as $cartItem) {
+            $this->totalSum += $cartItem->getProductPrice();
+        }
+        return $this->totalSum;
+    }
+
     public function render()
     {
         $file = "/account/userCart.php";

@@ -9,9 +9,11 @@
 namespace EShop\Repositories;
 
 
+use EShop\Models\IBindingModel;
+
 interface IRepository
 {
-    public function find($id);
+    public function findById($id);
 
     public function remove($id);
 }

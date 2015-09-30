@@ -6,18 +6,21 @@ use EShop\Config\AppConfig;
 use EShop\Config\DatabaseConfig;
 use EShop\Core\Database;
 use EShop\Models\BindModels\RegisterBindingModel;
-use EShop\Models\BindModels\UserBindingModel;
 use EShop\Models\Cart;
+use EShop\Models\MiniProduct;
 use EShop\Models\User;
+use EShop\Services\ElectronicShopData;
 use EShop\ViewModels\UserViewModel;
 
-class UsersRepository
+class UsersRepository implements IRepository
 {
     /**
      * @var Database
      */
     protected $db;
     const USERS_TABLENAME = 'users';
+    const CART_TABLENAME = 'usercart';
+    const CART_PRODUCTS_TABLENAME = 'cart_products';
 
     public function __construct() {
         $this->db = \EShop\Core\Database::getInstance(DatabaseConfig::DB_INSTANCE);
@@ -63,32 +66,26 @@ class UsersRepository
         return $isCreated;
     }
 
-    public function viewCart($id) {
-        $data = $this->db->getUserCart($id);
-        if($data == null) {
-            throw new \Exception("Invalid user id");
-        }
-        $cartItems = [];
-        foreach ($data as $c) {
-            $cart = new Cart($c);
-            array_push($cartItems, $cart);
-        }
-        // TODO MAKE VIEW MODEL FOR CART ITEMS
+    /**
+     *
+     * !!!!!!!!!!!!!!!! ADD INITIAL USER CART ON USER REGISTER!!!!!!!!!!!!!!
+     */
 
-        return $cartItems;
+    public function getUserProducts($id) {
+        $data = $this->db->getUserProducts($id);
+        $products = [];
+
+        foreach ($data as $row) {
+            $minifiedProduct = new MiniProduct($row);
+            array_push($products, $minifiedProduct);
+        }
+
+        return $products;
     }
 
 
-//    public function removeById($id) {
-//        $this->db->deleteEntityByPrimaryKey(self::USERS_TABLENAME, 'id', $id);
-//    }
-//
-//    public function changePassword($username, $newPassword) {
-//        $user = $this->findByUsername($username);
-//        if($user != null) {
-//            $this->db->updateEntityByColumn(self::USERS_TABLENAME, 'password', $newPassword, 'username', $username);
-//        }else {
-//            throw new \Exception('Error during change password');
-//        }
-//    }
+    public function remove($id)
+    {
+        // TODO: Implement remove() method.
+    }
 }

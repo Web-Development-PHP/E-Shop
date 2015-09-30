@@ -11,3 +11,7 @@
     <p><?= $this->userViewModel->getFullname();?></p>
     <p><?= $this->userViewModel->getRoleName();?></p>
 </div>
+
+<div>
+    <a href="<?= \EShop\Config\RouteConfig::getBasePath(); ?>account/products">View my products</a>
+</div>

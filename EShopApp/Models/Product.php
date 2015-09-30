@@ -10,14 +10,32 @@ class Product
     private $_quantity;
     private $_price;
     private $_isSold;
+    private $_categoryName;
 
     public function __construct($data){
         $this->setId($data['id']);
-        $this->setName($data['name']);
+        $this->setName($data['productName']);
         $this->setCategoryId($data['category_id']);
+        $this->setCategoryName($data['categoryName']);
         $this->setQuantity($data['quantity']);
         $this->setPrice($data['price']);
         $this->setIsSold($data['is_sold']);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCategoryName()
+    {
+        return $this->_categoryName;
+    }
+
+    /**
+     * @param mixed $categoryName
+     */
+    public function setCategoryName($categoryName)
+    {
+        $this->_categoryName = $categoryName;
     }
 
     /**

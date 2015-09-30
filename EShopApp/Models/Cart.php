@@ -6,6 +6,7 @@ class Cart
 {
     private $_id;
     private $_cartOwner;
+    private $_cartProductId;
     private $_productId;
     private $_productName;
     private $_productPrice;
@@ -16,6 +17,23 @@ class Cart
         $this->setProductId($data['productId']);
         $this->setProductName($data['name']);
         $this->setProductPrice($data['price']);
+        $this->setCartProductId($data['cartProductId']);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCartProductId()
+    {
+        return $this->_cartProductId;
+    }
+
+    /**
+     * @param mixed $cartProductId
+     */
+    public function setCartProductId($cartProductId)
+    {
+        $this->_cartProductId = $cartProductId;
     }
 
     /**

@@ -68,8 +68,9 @@ class CategoriesController extends Controller
      * @param $id
      * @Route("products")
      */
-    public function getProducts($id) {
-        $products = $this->_repository->getAllProducts($id);
+    public function getProducts($categoryId) {
+        $userId = $this->getCurrentUserId();
+        $products = $this->_repository->getAllProducts($userId, $categoryId);
         $this->escapeAll($products);
         $viewModel = new CategoryProductsViewModel();
         $viewModel->productViewModel = $products;
@@ -78,9 +79,5 @@ class CategoriesController extends Controller
 
     public function index() {
         // TODO: Implement index() method.
-    }
-
-    public function getRoles() {
-        // TODO: Implement getRoles() method.
     }
 }
