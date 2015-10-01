@@ -8,6 +8,8 @@
                 <li>
                     <p><b><?= $cartItems->getProductName(); ?></b></p>
                     <p>Price : <b><?= $cartItems->getProductPrice(); ?></b></p>
+<!--                    TODO-->
+                    <a href="#">Remove from cart</a>
                 </li>
             <?php  endforeach;?>
         </ul>

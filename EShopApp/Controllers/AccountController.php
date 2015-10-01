@@ -21,14 +21,10 @@ use EShop\ViewModels\UserViewModel;
 class AccountController extends Controller
 {
     /**
-     * @var UsersRepository
-     */
-    private $_repository;
-    /**
      * @var ElectronicShopData
      */
     private $_eshopData;
-    const DEFAULT_USER_CASH = 150.00;
+    const DEFAULT_USER_CASH = 150.00;   // Initial cash
     const DEFAULT_USER_ROLE = 2;        // Editor user role
     const ADMIN_ROLE = 'Admin';
     const EDITOR_ROLE = 'Editor';
@@ -36,12 +32,10 @@ class AccountController extends Controller
 
     public function __construct() {
         parent::__construct();
-        $this->_repository = new UsersRepository();
         $this->_eshopData = new ElectronicShopData();
     }
 
     public function index() {
-
     }
 
     /**
@@ -49,7 +43,7 @@ class AccountController extends Controller
      */
     public function profile() {
 //        $this->isInRole();
-        $currentUser = $this->_repository->findById($this->getCurrentUserId());
+        $currentUser = $this->_eshopData->getUsersRepository()->findById($this->getCurrentUserId());
         if($currentUser != null) {
             $viewModel = new ProfileViewModel();
             $viewModel->userViewModel = $currentUser;
@@ -116,7 +110,7 @@ class AccountController extends Controller
      */
     public function viewCart() {
         $userId = $this->getCurrentUserId();
-        $user = $this->_repository->findById($userId);
+        $user = $this->_eshopData->getUsersRepository()->findById($userId);
         if($user == null) {
             throw new \Exception("Invalid user id");
         }
@@ -131,7 +125,7 @@ class AccountController extends Controller
 
     public function addToCart($productId) {
         $userId = $this->getCurrentUserId();
-        $user = $this->_repository->findById($userId);
+        $user = $this->_eshopData->getUsersRepository()->findById($userId);
         if($user == null) {
             throw new \Exception("Invalid user id");
         }
@@ -225,11 +219,11 @@ class AccountController extends Controller
      */
     public function viewMyProducts() {
         $userId = $this->getCurrentUserId();
-        $user = $this->_repository->findById($userId);
+        $user = $this->_eshopData->getUsersRepository()->findById($userId);
         if($user == null) {
             throw new \Exception("Invalid user id");
         }
-        $userProducts = $this->_repository->getUserProducts($userId);
+        $userProducts = $this->_eshopData->getUsersRepository()->getUserProducts($userId);
         if($userProducts) {
             $this->escapeAll($userProducts);
             $viewModel = new UserProductsViewModel();
