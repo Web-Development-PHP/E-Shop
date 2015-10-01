@@ -61,7 +61,6 @@ class FrontController
     private function loadSpecialRoute() {
         $customRoutes = self::$_router->getAllClassesCustomRoutes();
         $this->controllerName = $this->parseSpecialRoute($this->controllerName, $customRoutes, self::CONTROLLER_SUFFIX);
-//        var_dump($this->controllerName);
         if($this->controllerName != '' && $this->controllerName != null &&
             strtolower($this->controllerName) != strtolower(AppConfig::DEFAULT_CONTROLLER)) {
             $this->customRoute = $this->controllerName;
@@ -90,7 +89,7 @@ class FrontController
     private function initAction() {
         $customRoutes = self::$_router->getAllActionsCustomRoutes($this->controller);
         $customRoutes = array_map('strtolower', $customRoutes);
-        //$this->isActionAccessGrandet($customRoutes);
+        $customRoutes = array_change_key_case($customRoutes, CASE_LOWER);
         self::$_reflectionHelper->isActionAccessGrandet($customRoutes, $this->controller, $this->actionName);
         $this->actionName = $this->parseSpecialRoute($this->actionName, $customRoutes, 'Action');
         if ($this->actionName == '') {
@@ -126,7 +125,6 @@ class FrontController
         }
 
         $this->controller = new $controllerName();
-       // $this->isAccessGranted($controllerName);
         self::$_reflectionHelper->isAccessGranted($controllerName);
     }
 

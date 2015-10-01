@@ -9,6 +9,7 @@ abstract class Element
     public $attributes = [];
     public $classes = [];
     public $elementName;
+    public $innerElements = [];
     public $innerValue = false;
 
     public function setName($value) {
@@ -51,7 +52,7 @@ abstract class Element
         return $this;
     }
     public function create(){
-        $t = $this->setAttribute('class', implode(' ', $this->classes));
+        $this->setAttribute('class', implode(' ', $this->classes));
         FormViewHelper::$elements[] = $this;
         return new FormViewHelper();
     }

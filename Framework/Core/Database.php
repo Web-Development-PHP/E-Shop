@@ -277,6 +277,8 @@ class Database
     public function getUserProducts($userId) {
         $stmt = $this->prepare("
             SELECT
+            p.category_id as categoryId,
+            c.name as categoryName,
             u.id as userId,
             u.username,
             p.id as productId,
@@ -286,6 +288,7 @@ class Database
             users_products up
             JOIN products p ON up.product_id = p.id
             JOIN users u ON u.id = up.user_id
+            JOIN categories c ON c.id = p.category_id
             WHERE u.id = ?;
         ");
         try{
@@ -311,6 +314,7 @@ class Database
             WHERE p.is_sold = 0
               AND p.id NOT IN (SELECT up.product_id FROM users_products up WHERE up.user_id = ?)
               AND p.id NOT IN (SELECT cp.product_id FROM cart_products cp WHERE cp.cart_id = ?)
+              AND p.quantity > 0
               AND c.id = ?
         ");
         try{
@@ -366,6 +370,20 @@ class Database
         ");
         try{
             $stmt->execute([$cartId, $productId]);
+            return $stmt->rowCount() > 0;
+        }catch (\PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
+    public function deleteProductFromUser($userId, $productId) {
+        $stmt = $this->prepare("
+            DELETE
+            FROM users_products
+            WHERE user_id= ?  AND product_id= ?
+        ");
+        try{
+            $stmt->execute([$userId, $productId]);
             return $stmt->rowCount() > 0;
         }catch (\PDOException $e) {
             echo $e->getMessage();

@@ -42,7 +42,6 @@ class AccountController extends Controller
      * @Authorize
      */
     public function profile() {
-//        $this->isInRole();
         $currentUser = $this->_eshopData->getUsersRepository()->findById($this->getCurrentUserId());
         if($currentUser != null) {
             $viewModel = new ProfileViewModel();
@@ -151,7 +150,7 @@ class AccountController extends Controller
     public function checkoutCart($cartId)
     {
         $userId = $this->getCurrentUserId();
-        $user = $this->_repository->findById($userId);
+        $user = $this->_eshopData->getUsersRepository()->findById($userId);
         if($user == null) {
             throw new \Exception("Invalid user id");
         }
@@ -214,6 +213,20 @@ class AccountController extends Controller
     }
 
     /**
+     * @Route("removeProduct")
+     */
+    public function removeProductFromCart($cartId, $productId) {
+        $isProductInCart = $this->_eshopData->getCartsRepository()->isProductInCart($cartId, $productId);
+        if(!$isProductInCart) {
+            throw new \Exception("You are trying to remove a product that is not in your cart");
+        }
+        $isRemoved = $this->_eshopData->getCartsRepository()->removeProductsFromCart($cartId, $productId);
+        if($isRemoved) {
+            RouteService::redirect('account', 'viewCart', true);
+        }
+    }
+
+    /**
      * @throws \Exception
      * @Route("products")
      */
@@ -229,6 +242,38 @@ class AccountController extends Controller
             $viewModel = new UserProductsViewModel();
             $viewModel->userProducts = $userProducts;
             $viewModel->render();
+        }
+    }
+
+    public function sellProduct($productId) {
+        $userId = $this->getCurrentUserId();
+        $user = $this->_eshopData->getUsersRepository()->findById($userId);
+        if($user == null) {
+            throw new \Exception("Invalid user id");
+        }
+
+        $product = $this->_eshopData->getProductsRepository()->findById($productId);
+
+        $isQuantityDescreased = $this->_eshopData->getProductsRepository()->sellProduct($product->getId());
+        if(!$isQuantityDescreased) {
+            throw new \Exception("You dont have enough quantity left of this product.");
+        }
+        if($isQuantityDescreased) {
+            $isProductRemovedFromUser =
+                $this->_eshopData->getProductsRepository()->removeProductFromUser($userId, $productId);
+            if(!$isProductRemovedFromUser) {
+                throw new \Exception("Error during selling your product.");
+            }
+        }
+        if($isProductRemovedFromUser) {
+            $updateUserCash =
+                $this->_eshopData->getUsersRepository()->sellItems($userId, $product->getPrice());
+            if(!$updateUserCash) {
+                throw new \Exception("Error during selling your product.");
+            }
+        }
+        if($updateUserCash) {
+            RouteService::redirect('account', 'profile', true);
         }
     }
 

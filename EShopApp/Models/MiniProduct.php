@@ -9,6 +9,8 @@ class MiniProduct
     private $_username;
     private $_price;
     private $_productName;
+    private $_categoryName;
+    private $_categoryId;
 
     public function __construct($data)
     {
@@ -17,6 +19,39 @@ class MiniProduct
         $this->setUsername($data['username']);
         $this->setPrice($data['productPrice']);
         $this->setProductName($data['productName']);
+        $this->setCategoryName($data['categoryName']);
+        $this->setCategoryId($data['categoryId']);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCategoryId()
+    {
+        return $this->_categoryId;
+    }
+
+    /**
+     * @param mixed $categoryId
+     */
+    public function setCategoryId($categoryId)
+    {
+        $this->_categoryId = $categoryId;
+    }
+    /**
+     * @return mixed
+     */
+    public function getCategoryName()
+    {
+        return $this->_categoryName;
+    }
+
+    /**
+     * @param mixed $categoryName
+     */
+    public function setCategoryName($categoryName)
+    {
+        $this->_categoryName = $categoryName;
     }
 
     /**

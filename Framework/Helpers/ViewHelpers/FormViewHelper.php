@@ -4,8 +4,11 @@ namespace EShop\Helpers\ViewHelpers;
 
 use EShop\Helpers\TokenHelper;
 use EShop\Helpers\ViewHelpers\Elements\Checkbox;
+use EShop\Helpers\ViewHelpers\Elements\Dropdown;
+use EShop\Helpers\ViewHelpers\Elements\Option;
 use EShop\Helpers\ViewHelpers\Elements\PasswordField;
 use EShop\Helpers\ViewHelpers\Elements\RadioButton;
+use EShop\Helpers\ViewHelpers\Elements\Select;
 use EShop\Helpers\ViewHelpers\Elements\SubmitButton;
 use EShop\Helpers\ViewHelpers\Elements\TextArea;
 use EShop\Helpers\ViewHelpers\Elements\TextField;
@@ -30,6 +33,7 @@ class FormViewHelper extends ViewHelper
     public static function render() {
         self::setAttribute('class', implode(' ', self::$classes));
         $attributesString = "";
+        $innerAttribute = "";
         foreach(self::$attributes as $attribute => $value) {
             $attributesString .= " $attribute = " . "\"$value\"";
         }
@@ -46,6 +50,19 @@ class FormViewHelper extends ViewHelper
             if($element->innerValue === true) {
                 $result .= ($element->attributes['value'] != null ? $element->attributes['value'] : "");
                 $result .= "</$element->elementName>";
+            }
+            if($element->innerElements) {
+                foreach ($element->innerElements as $innerElement) {
+                    $result .= "<$innerElement->elementName";
+                    foreach($innerElement->attributes as $a => $v) {
+                        if( $innerElement->innerValue === false) {
+                            $innerAttribute .= " $a = " . "\"$v\"";
+                        }
+                    }
+                    $result .= $innerAttribute . ">";
+                    $result .= ($innerElement->attributes['text'] != null ? $innerElement->attributes['text'] : "");
+                    $result .= "</$innerElement->elementName>";
+                }
             }
         }
         $result .= '<input type="hidden" name="formToken" value="' . TokenHelper::setCSRFToken() . '" />';
@@ -118,5 +135,9 @@ class FormViewHelper extends ViewHelper
 
     public static function initSubmitButton() {
         return new SubmitButton();
+    }
+
+    public static function initSelect() {
+        return new Select();
     }
 }

@@ -65,11 +65,6 @@ class UsersRepository implements IRepository
         return $isCreated;
     }
 
-    /**
-     *
-     * !!!!!!!!!!!!!!!! ADD INITIAL USER CART ON USER REGISTER!!!!!!!!!!!!!!
-     */
-
     public function getUserProducts($id) {
         $data = $this->db->getUserProducts($id);
         $products = [];
@@ -80,6 +75,16 @@ class UsersRepository implements IRepository
         }
 
         return $products;
+    }
+
+    public function sellItems($userId, $itemsTotalCash) {
+        $user = $this->findById($userId);
+        $userCurrentCash = $user->getCash();
+        $userCurrentCash = $userCurrentCash + $itemsTotalCash;
+        $isUpdated = $this->db->updateEntityById(self::USERS_TABLENAME, array(
+            'cash' => $userCurrentCash
+        ), $userId);
+        return $isUpdated;
     }
 
     public function purchaseItems($userId, $itemsTotalCash) {

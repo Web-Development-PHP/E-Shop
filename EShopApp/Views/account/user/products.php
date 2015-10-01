@@ -6,9 +6,12 @@
         <?php foreach($this->userProducts as $product): ?>
             <li>
                 <p>
+                    <b>Category name [<?= $product->getCategoryName(); ?>]</b>
                     <b><?= $product->getProductName(); ?></b>
-                <span>Price : <b><?= $product->getPrice(); ?></b></span>
-                <a href="#">[Sell]</a>
+                    <span>Price : <b><?= $product->getPrice(); ?></b></span>
+                <a href="<?= \EShop\Config\RouteConfig::getBasePath(); ?>account/sellProduct/<?= $product->getId();?>">
+                    [Sell]
+                </a>
                 </p>
             </li>
         <?php  endforeach;?>

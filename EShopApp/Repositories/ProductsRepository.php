@@ -41,6 +41,11 @@ class ProductsRepository implements IRepository
         return $isUpdated;
     }
 
+    public function removeProductFromUser($userId, $productId) {
+        $isDeleted = $this->db->deleteProductFromUser($userId, $productId);
+        return $isDeleted;
+    }
+
     public function transferProductToUser($userId, $productId) {
         $isCreated = $this->db->insertEntity(self::USERS_PRODUCTS_TABLENAME, array(
             'user_id' => $userId,
