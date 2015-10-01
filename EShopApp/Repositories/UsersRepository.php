@@ -5,6 +5,7 @@ namespace EShop\Repositories;
 use EShop\Config\AppConfig;
 use EShop\Config\DatabaseConfig;
 use EShop\Core\Database;
+use EShop\Exceptions\InvalidUserInputException;
 use EShop\Models\BindModels\RegisterBindingModel;
 use EShop\Models\Cart;
 use EShop\Models\MiniProduct;
@@ -53,7 +54,7 @@ class UsersRepository implements IRepository
 
     public function create(RegisterBindingModel $user) {
         if($user->getPassword() != $user->getConfirmPassword()) {
-            throw new \Exception('Passwords does not match');
+            throw new InvalidUserInputException('Passwords does not match');
         }
         $isCreated = $this->db->insertEntity(self::USERS_TABLENAME, array(
             'username' => $user->getUsername(),

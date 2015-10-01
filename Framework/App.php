@@ -4,7 +4,10 @@ namespace EShop;
 require_once 'FrontController.php';
 use EShop\Config\AppConfig;
 use EShop\Config\RouteConfig;
+use EShop\Exceptions\InvalidCredentialsException;
+use EShop\Exceptions\InvalidUserInputException;
 use EShop\Helpers\RouteService;
+use EShop\Helpers\TokenHelper;
 
 RouteService::init(RouteConfig::getBasePath());
 final class App
@@ -22,7 +25,21 @@ final class App
     }
 
     public function start() {
-        $this->frontController->dispatch();
+        if(!isset($_SESSION['formToken'])) {
+            TokenHelper::setCSRFToken();
+        }
+        try
+        {
+            $this->frontController->dispatch();
+        }
+        catch (InvalidCredentialsException $credError)
+        {
+            echo $credError->getMessage();
+        }
+        catch(InvalidUserInputException $inputError)
+        {
+            echo $inputError->getMessage();
+        }
         // TODO TRY CATCH ERRORS BEFORE DISPATCH
     }
 }

@@ -11,3 +11,6 @@
     </li>
 <?php endforeach; ?>
 </ul>
+<div>
+<?php $this->renderAddProductMenu(); ?>
+</div>

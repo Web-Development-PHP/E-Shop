@@ -28,7 +28,7 @@
                             <input type="email" class="form-control" name="email" id="inputEmail" placeholder="Email">
                         </div>
                     </div>
-                    <input type="hidden" name="formToken" value="<?= \EShop\Helpers\TokenHelper::setCSRFToken(); ?>" />
+                    <input type="hidden" name="formToken" value="<?= \EShop\Helpers\TokenHelper::getCSRFToken(); ?>" />
                     <div class="form-group">
                         <div class="col-lg-10 col-lg-offset-2">
                             <a href="login" class="btn btn-default">Go to login</a>

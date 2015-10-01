@@ -78,6 +78,7 @@ class ReflectionService
         if(!$model instanceof IBindingModel) {
             throw new \Exception("Invalid BindingModel [Required parameters are empty/missing]");
         }
+
         $reflection = new \ReflectionClass($model);
         $bindingModelProperties = $reflection->getProperties(\ReflectionProperty::IS_PRIVATE);
         $postKeys = array_keys($_POST);

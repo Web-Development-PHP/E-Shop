@@ -2,6 +2,7 @@
 
 namespace EShop\Helpers\ViewHelpers\Elements;
 
+use EShop\Helpers\TokenHelper;
 use EShop\Helpers\ViewHelpers\FormViewHelper;
 
 abstract class Element
@@ -52,7 +53,7 @@ abstract class Element
         return $this;
     }
     public function create(){
-        $this->setAttribute('class', implode(' ', $this->classes));
+        $this->attributes["class"] = implode(" ", $this->classes);
         FormViewHelper::$elements[] = $this;
         return new FormViewHelper();
     }

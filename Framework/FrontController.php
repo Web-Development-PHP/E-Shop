@@ -4,6 +4,7 @@ use EShop\Config\AppConfig;
 use EShop\Config\FolderConfig;
 use EShop\Config\RouteConfig;
 use EShop\Helpers\ReflectionService;
+use EShop\Helpers\TokenHelper;
 
 session_start();
 require_once 'AutoLoader.php';
@@ -47,11 +48,17 @@ class FrontController
             $bindingModelClass = $actionTypeParams[0];
             $bindingModel = new $bindingModelClass($_POST);
             ReflectionService::validateBindingModel($bindingModel);
+            unset($_SESSION['formToken']);
             call_user_func(array($this->controller, $this->actionName), $bindingModel);
+
         }else {
             call_user_func_array([ $this->controller, $this->actionName ], $this->requestParams );
         }
-
+        if( $_SERVER['REQUEST_METHOD'] == 'POST' ||
+            $_SERVER['REQUEST_METHOD'] == 'PUT'  ||
+            $_SERVER['REQUEST_METHOD'] == 'DELETE') {
+            TokenHelper::setCSRFToken();
+        }
         self::$_router->getControllerRolesAnnotation($this->controller);
         self::$_router->isInRole($this->actionName);
     }

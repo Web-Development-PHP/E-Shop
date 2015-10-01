@@ -21,15 +21,15 @@ abstract class ViewModel
             $expectedType = implode('\\', $matches[0]);
             if(is_array($model) && isset($model[0])) {
                 if(get_class($model[0]) != $expectedType) {
-                    throw new \Exception("Invalid typf of ViewModel!");
+                    throw new \Exception("Invalid type of ViewModel!");
                 }
             }else {
                 if(get_class($model) != $expectedType) {
-                    throw new \Exception("Invalid typf of ViewModel!");
+                    throw new \Exception("Invalid type of ViewModel!");
                 }
             }
         }
 
-        include_once $file;
+        require $file;
     }
 }

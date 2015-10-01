@@ -3,6 +3,7 @@
 namespace EShop\Controllers;
 
 use EShop\Config\RouteConfig;
+use EShop\Exceptions\InvalidCredentialsException;
 use EShop\Helpers\RouteService;
 use EShop\Models\BindModels;
 use EShop\Models\User;
@@ -83,13 +84,13 @@ class AccountController extends Controller
      */
     public function loginUser(BindModels\LoginBindingModel $loginBindingModel) {
         $this->isModelStateValid($loginBindingModel);
-        var_dump($loginBindingModel);
+//        var_dump($loginBindingModel);
         $username = $loginBindingModel->getUsername();
         $password = $loginBindingModel->getPassword();
 
         $user = $this->_eshopData->getUsersRepository()->findByUsername($username);
-        if(!password_verify($password, $user->getPassword())){
-            throw new \Exception('Invalid credentials');
+        if($user == null || !password_verify($password, $user->getPassword())){
+            throw new InvalidCredentialsException('Invalid credentials');
         }
         $_SESSION['role'] = $this->getUserRoleName($user->getRole());
         $this->setIdInSession($user->getId());

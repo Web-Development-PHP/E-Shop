@@ -5,6 +5,7 @@ namespace EShop\Repositories;
 
 use EShop\Config\DatabaseConfig;
 use EShop\Core\Database;
+use EShop\Models\BindModels\AddProductBindingModel;
 use EShop\Models\Product;
 
 class ProductsRepository implements IRepository
@@ -50,6 +51,17 @@ class ProductsRepository implements IRepository
         $isCreated = $this->db->insertEntity(self::USERS_PRODUCTS_TABLENAME, array(
             'user_id' => $userId,
             'product_id' => $productId
+        ));
+        return $isCreated;
+    }
+
+    public function create(AddProductBindingModel $model)
+    {
+        $isCreated = $this->db->insertEntity(self::PRODUCTS_TABLENAME, array(
+            'name' =>$model->getProductName(),
+            'category_id' =>$model->getCategoryId(),
+            'quantity' =>$model->getQuantity(),
+            'price' =>$model->getProductPrice()
         ));
         return $isCreated;
     }

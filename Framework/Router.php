@@ -5,6 +5,7 @@ use EShop\Config\AppConfig;
 use EShop\Config\FolderConfig;
 use EShop\Config\RouteConfig;
 use EShop\Helpers\RouteService;
+use EShop\Helpers\TokenHelper;
 
 require_once 'AutoLoader.php';
 Autoloader::register();
@@ -22,6 +23,7 @@ class Router
         if(self::$_instance == null){
             self::$_instance = new \EShop\Router();
         }
+
         return self::$_instance;
     }
 

@@ -2,6 +2,7 @@
 
 namespace EShop\Controllers;
 use EShop\Helpers\RouteService;
+use EShop\Helpers\TokenHelper;
 use EShop\Models\IBindingModel;
 
 abstract class Controller
@@ -10,9 +11,6 @@ abstract class Controller
     protected $roles = [];
 
     protected function __construct() {
-        if($_SERVER['REQUEST_METHOD'] == "POST") {
-            $this->isPost = true;
-        }
         $this->onInit();
     }
 

@@ -14,14 +14,9 @@
                         <label for="inputPassword" class="col-lg-2 control-label">Password</label>
                         <div class="col-lg-6">
                             <input type="password" class="form-control" name="password" id="inputPassword" placeholder="Password">
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox"> Remember me
-                                </label>
-                            </div>
                         </div>
                     </div>
-                    <input type="hidden" name="formToken" value="<?= \EShop\Helpers\TokenHelper::setCSRFToken(); ?>" />
+                    <input type="hidden" name="formToken" value="<?= \EShop\Helpers\TokenHelper::getCSRFToken(); ?>" />
                     <div class="form-group">
                         <div class="col-lg-10 col-lg-offset-2">
                             <a href="register" class="btn btn-default">Go to register</a>

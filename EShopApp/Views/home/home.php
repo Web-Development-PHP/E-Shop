@@ -6,4 +6,3 @@
 <div>
     <a href="<?= \EShop\Config\RouteConfig::getBasePath(); ?>home/register">Register</a>
 </div>
-
