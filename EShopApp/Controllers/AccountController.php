@@ -147,26 +147,77 @@ class AccountController extends Controller
             throw new \Exception("You already added product to your cart");
         }
         $isAdded = $this->_eshopData->getCartsRepository()->addToCart($cartId, $productId);
-        var_dump($isAdded);
+        if($isAdded) {
+            // TODO ADD SUCCESS MSG (WITH NOTY)
+            RouteService::redirect('categories', 'products/' . $product->getCategoryId(), true);
+        }
+        echo 'failed to added product to cart';
     }
 
-//    public function purchaseProduct()
-//    {
-//        // USER HAVE ENOUGH MONEY TO BUY PRODUCT
-//        $userHasEnoughtMoneyToBuyProduct = $user->getCash() - $product->getPrice();
-//        if($userHasEnoughtMoneyToBuyProduct < 0) {
-//            throw new \Exception("Sorry, you do not have enought cash to buy this product.");
-//        }
-//        // CART ALREADY HAS THIS PRODUCT
-//        $isProductInCart = $this->_eshopData->getCartsRepository()->isProductInCart($cartId, $productId);
-//        if($isProductInCart) {
-//            throw new \Exception("You already added product to your cart");
-//        }
-//        // UPDATE PRODUCT QUANTITY
-//        $this->_eshopData->getProductsRepository()->sellProduct($productId);
-//
-//        // UPDATE USER CASH
-//    }
+    public function checkoutCart($cartId)
+    {
+        $userId = $this->getCurrentUserId();
+        $user = $this->_repository->findById($userId);
+        if($user == null) {
+            throw new \Exception("Invalid user id");
+        }
+
+        // CART BELONGS TO CURRENT USER
+        $userCartId = $this->_eshopData->getCartsRepository()->getCartForCurrentUser($userId);
+        if($userCartId != $cartId) {
+            throw new \Exception("You cannot check out another user cart");
+        }
+        // GET PRODUCTS IN CART
+        $cartProducts = $this->_eshopData->getCartsRepository()->getProductsInCart($cartId);
+        if(!$cartProducts) {
+            throw new \Exception("You dont have any products in your cart.");
+        }
+        // CHECK IF TOTAL SUM OF PRODUCTS IS LESS THAN USER CASH
+        $cartProductsTotalSum = $this->getProductsTotalSum($cartProducts);
+        if($cartProductsTotalSum > $user->getCash()) {
+            throw new \Exception("You do not have enough cash to buy all the products in your cart.");
+        }
+        // UPDATE USER CASH
+        $isCashUpdated = $this->_eshopData->getUsersRepository()->purchaseItems($userId, $cartProductsTotalSum);
+        if(!$isCashUpdated) {
+            throw new \Exception("Error during checkout cart. Sorry for the inconvenience. Please try again.");
+        }
+        if($isCashUpdated) {
+            // UPDATE PRODUCT QUANTITY
+            foreach ($cartProducts as $product) {
+                $isProductsQuantityUpdated = $this->_eshopData->getProductsRepository()->sellProduct($product['id']);
+                if(!$isProductsQuantityUpdated) {
+                    throw new \Exception("Product with name [{$product['name']}] does not have enough quantity left.");
+                }
+            }
+        }
+        if($isProductsQuantityUpdated) {
+            // TRANSFER PRODUCTS TO USER_PRODUCTS
+            foreach ($cartProducts as $product) {
+                $areProductsSuccessfullyTransferedToUser =
+                    $this->_eshopData
+                        ->getProductsRepository()
+                        ->transferProductToUser($userId, $product['id']);
+                if(!$areProductsSuccessfullyTransferedToUser) {
+                    throw new \Exception("You already have product {$product['name']} in your products inventory");
+                }
+            }
+        }
+        if($areProductsSuccessfullyTransferedToUser) {
+            // REMOVE PRODUCTS FROM CART
+            foreach ($cartProducts as $product) {
+                $isRemovedFromCart =
+                    $this->_eshopData
+                        ->getCartsRepository()
+                        ->removeProductsFromCart($cartId, $product['id']);
+                if(!$isRemovedFromCart) {
+                    throw new \Exception("Error during cart checkout. Sorry for the inconvenience");
+                }
+            }
+        }
+
+        RouteService::redirect('account', 'profile', true);
+    }
 
     /**
      * @throws \Exception
@@ -199,5 +250,13 @@ class AccountController extends Controller
             default:
                 return 'Invalid user role id';
         }
+    }
+    
+    private function getProductsTotalSum($cartProducts) {
+        $totalPrice = 0.0;
+        foreach ($cartProducts as $product) {
+            $totalPrice += $product['price'];
+        }
+        return $totalPrice;
     }
 }

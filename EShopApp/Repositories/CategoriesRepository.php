@@ -28,8 +28,8 @@ class CategoriesRepository implements IRepository
         $this->db = \EShop\Core\Database::getInstance(DatabaseConfig::DB_INSTANCE);
     }
 
-    public function getAllProducts($userid, $categoryId) {
-        $data = $this->db->getAvailableProductsInCategory($userid, $categoryId);
+    public function getAllProducts($userid, $cartId, $categoryId) {
+        $data = $this->db->getAvailableProductsInCategory($userid, $cartId, $categoryId);
         $categoryProducts = [];
         foreach ($data as $prod) {
             $product = new Product($prod);

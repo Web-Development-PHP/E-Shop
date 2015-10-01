@@ -162,10 +162,9 @@ class Database
 
     /**
      * @param $tableName
-     * @param $columnToUpdate
-     * @param $columnNewData
-     * @param $conditionColumn
-     * @param $conditionValue
+     * @param $entityData
+     * @param $id
+     * @return bool
      */
     public function updateEntityById($tableName, $entityData, $id)
     {
@@ -262,7 +261,7 @@ class Database
     public function getProductsInCart($cartId) {
         $stmt = $this->prepare("
             SELECT
-	        p.name, p.price
+	        p.id, p.name, p.price
             FROM cart_products cp
             JOIN products p ON cp.product_id = p.id
             WHERE cp.cart_id = ?;
@@ -297,7 +296,7 @@ class Database
         }
     }
 
-    public function getAvailableProductsInCategory($userId, $categoryId) {
+    public function getAvailableProductsInCategory($userId, $currentUserCartId, $categoryId) {
         $stmt = $this->prepare("
             SELECT
             p.category_id,
@@ -311,10 +310,11 @@ class Database
             JOIN categories c ON c.id = p.category_id
             WHERE p.is_sold = 0
               AND p.id NOT IN (SELECT up.product_id FROM users_products up WHERE up.user_id = ?)
+              AND p.id NOT IN (SELECT cp.product_id FROM cart_products cp WHERE cp.cart_id = ?)
               AND c.id = ?
         ");
         try{
-            $stmt->execute([$userId, $categoryId]);
+            $stmt->execute([$userId, $currentUserCartId, $categoryId]);
             return $stmt->fetchAll();
         }catch (\PDOException $e) {
             echo $e->getMessage();
@@ -349,6 +349,20 @@ class Database
             FROM
             cart_products
             WHERE cart_id = ? AND product_id = ?
+        ");
+        try{
+            $stmt->execute([$cartId, $productId]);
+            return $stmt->rowCount() > 0;
+        }catch (\PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
+    public function deleteProductFromCart($cartId, $productId) {
+        $stmt = $this->prepare("
+            DELETE
+            FROM cart_products
+            WHERE cart_id= ?  AND product_id= ?
         ");
         try{
             $stmt->execute([$cartId, $productId]);

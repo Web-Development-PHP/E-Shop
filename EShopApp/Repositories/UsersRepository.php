@@ -20,7 +20,6 @@ class UsersRepository implements IRepository
     protected $db;
     const USERS_TABLENAME = 'users';
     const CART_TABLENAME = 'usercart';
-    const CART_PRODUCTS_TABLENAME = 'cart_products';
 
     public function __construct() {
         $this->db = \EShop\Core\Database::getInstance(DatabaseConfig::DB_INSTANCE);
@@ -83,6 +82,15 @@ class UsersRepository implements IRepository
         return $products;
     }
 
+    public function purchaseItems($userId, $itemsTotalCash) {
+        $user = $this->findById($userId);
+        $userCurrentCash = $user->getCash();
+        $userCurrentCash = $userCurrentCash - $itemsTotalCash;
+        $isUpdated = $this->db->updateEntityById(self::USERS_TABLENAME, array(
+            'cash' => $userCurrentCash
+        ), $userId);
+        return $isUpdated;
+    }
 
     public function remove($id)
     {

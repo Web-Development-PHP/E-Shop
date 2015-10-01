@@ -14,6 +14,7 @@ class ProductsRepository implements IRepository
      */
     protected $db;
     const PRODUCTS_TABLENAME = 'products';
+    const USERS_PRODUCTS_TABLENAME = 'users_products';
 
     public function __construct()
     {
@@ -38,6 +39,14 @@ class ProductsRepository implements IRepository
             'quantity' => $quantity
         ), $productId);
         return $isUpdated;
+    }
+
+    public function transferProductToUser($userId, $productId) {
+        $isCreated = $this->db->insertEntity(self::USERS_PRODUCTS_TABLENAME, array(
+            'user_id' => $userId,
+            'product_id' => $productId
+        ));
+        return $isCreated;
     }
 
     public function remove($id)

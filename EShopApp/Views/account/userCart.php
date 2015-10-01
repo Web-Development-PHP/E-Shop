@@ -19,6 +19,7 @@
     \EShop\Helpers\ViewHelpers\FormViewHelper::initSubmitButton()
     ->setValue('Checkout cart')
     ->create();
-    \EShop\Helpers\ViewHelpers\FormViewHelper::setAction("test/123")->setMethod('post')->render();
+    \EShop\Helpers\ViewHelpers\FormViewHelper::setAction(\EShop\Config\RouteConfig::getBasePath() . 'account/checkoutCart/' . $this->cart[0]->getId())
+        ->setMethod('post')->render();
     ?>
 </div>

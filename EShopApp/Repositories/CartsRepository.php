@@ -72,10 +72,22 @@ class CartsRepository implements IRepository
         return $isAdded;
     }
 
+    public function getProductsInCart($cartId)
+    {
+        $cartProducts = $this->db->getProductsInCart($cartId);
+        return $cartProducts;
+    }
+
     public function isProductInCart($cartId, $productId)
     {
         $isInCart = $this->db->isProductInCart($cartId, $productId);
         return $isInCart;
+    }
+
+    public function removeProductsFromCart($cartId, $productId)
+    {
+        $isRemoved = $this->db->deleteProductFromCart($cartId, $productId);
+        return $isRemoved;
     }
 
     public function remove($id)

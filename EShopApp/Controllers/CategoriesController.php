@@ -12,6 +12,7 @@ use EShop\Helpers\RouteService;
 use EShop\Models\BindModels\CreateCategoryBindingModel;
 use EShop\Models\BindModels\UpdateCategoryBindingModel;
 use EShop\Repositories\CategoriesRepository;
+use EShop\Services\ElectronicShopData;
 use EShop\ViewModels\CategoryProductsViewModel;
 use EShop\ViewModels\CategoryViewModel;
 use EShop\ViewModels\EditCategoryViewModel;
@@ -25,18 +26,19 @@ use EShop\ViewModels\ViewModel;
 class CategoriesController extends Controller
 {
     /**
-     * @var CategoriesRepository
+     * @var ElectronicShopData
      */
-    private $_repository;
+    private $_eshopData;
 
     public function __construct() {
         parent::__construct();
-        $this->_repository = new CategoriesRepository();
+
+        $this->_eshopData = new ElectronicShopData();
     }
 
 
     public function all() {
-        $categories = $this->_repository->all();
+        $categories = $this->_eshopData->getCategoriesRepository()->all();
         $viewModel = new CategoryViewModel();
         $this->escapeAll($categories);
         $viewModel->categoryViewModel = $categories;
@@ -46,7 +48,7 @@ class CategoriesController extends Controller
 
     public function add(CreateCategoryBindingModel $model) {
         $this->isModelStateValid($model);
-        $isCreated = $this->_repository->create($model);
+        $isCreated = $this->_eshopData->getCategoriesRepository()->create($model);
         if($isCreated) {
             RouteService::redirect('categories', 'all', true);
         }
@@ -54,7 +56,7 @@ class CategoriesController extends Controller
     }
 
     public function delete($id) {
-        $isDeleted = $this->_repository->remove($id);
+        $isDeleted = $this->_eshopData->getCategoriesRepository()->remove($id);
         // TODO ADD JAVASCRIPT CONFIRMATION BOX
         if($isDeleted) {
             RouteService::redirect('categories', 'all', true);
@@ -65,16 +67,19 @@ class CategoriesController extends Controller
 
     // GET categories/products/id
     /**
-     * @param $id
+     * @param $categoryId
      * @Route("products")
      */
     public function getProducts($categoryId) {
         $userId = $this->getCurrentUserId();
-        $products = $this->_repository->getAllProducts($userId, $categoryId);
-        $this->escapeAll($products);
-        $viewModel = new CategoryProductsViewModel();
-        $viewModel->productViewModel = $products;
-        $viewModel->render();
+        $userCartId = $this->_eshopData->getCartsRepository()->getCartForCurrentUser($userId);
+        $products = $this->_eshopData->getCategoriesRepository()->getAllProducts($userId, $userCartId, $categoryId);
+        if($products) {
+            $this->escapeAll($products);
+            $viewModel = new CategoryProductsViewModel();
+            $viewModel->productViewModel = $products;
+            $viewModel->render();
+        }
     }
 
     public function index() {
