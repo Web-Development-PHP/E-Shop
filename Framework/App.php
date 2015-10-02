@@ -6,6 +6,7 @@ use EShop\Config\AppConfig;
 use EShop\Config\RouteConfig;
 use EShop\Exceptions\InvalidCredentialsException;
 use EShop\Exceptions\InvalidUserInputException;
+use EShop\Exceptions\InvalidUserOperationException;
 use EShop\Helpers\RouteService;
 use EShop\Helpers\TokenHelper;
 
@@ -39,6 +40,10 @@ final class App
         catch(InvalidUserInputException $inputError)
         {
             echo $inputError->getMessage();
+        }
+        catch(InvalidUserOperationException $userOperError)
+        {
+            echo $userOperError->getMessage();
         }
         // TODO TRY CATCH ERRORS BEFORE DISPATCH
     }

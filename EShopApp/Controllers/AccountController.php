@@ -5,6 +5,7 @@ namespace EShop\Controllers;
 use EShop\Config\AppUserRolesConfig;
 use EShop\Config\RouteConfig;
 use EShop\Exceptions\InvalidCredentialsException;
+use EShop\Exceptions\InvalidUserOperationException;
 use EShop\Helpers\RouteService;
 use EShop\Models\BindModels;
 use EShop\Models\User;
@@ -27,7 +28,6 @@ class AccountController extends Controller
      */
     private $_eshopData;
     const DEFAULT_USER_CASH = 150.00;   // Initial cash
-
 
     public function __construct() {
         parent::__construct();
@@ -134,7 +134,7 @@ class AccountController extends Controller
         //CART ALREADY HAS THIS PRODUCT
         $isProductInCart = $this->_eshopData->getCartsRepository()->isProductInCart($cartId, $productId);
         if($isProductInCart) {
-            throw new \Exception("You already added product to your cart");
+            throw new InvalidUserOperationException("You already added product to your cart");
         }
         $isAdded = $this->_eshopData->getCartsRepository()->addToCart($cartId, $productId);
         if($isAdded) {
@@ -155,17 +155,17 @@ class AccountController extends Controller
         // CART BELONGS TO CURRENT USER
         $userCartId = $this->_eshopData->getCartsRepository()->getCartForCurrentUser($userId);
         if($userCartId != $cartId) {
-            throw new \Exception("You cannot check out another user cart");
+            throw new InvalidUserOperationException("You cannot check out another user cart");
         }
         // GET PRODUCTS IN CART
         $cartProducts = $this->_eshopData->getCartsRepository()->getProductsInCart($cartId);
         if(!$cartProducts) {
-            throw new \Exception("You dont have any products in your cart.");
+            throw new InvalidUserOperationException("You dont have any products in your cart.");
         }
         // CHECK IF TOTAL SUM OF PRODUCTS IS LESS THAN USER CASH
         $cartProductsTotalSum = $this->getProductsTotalSum($cartProducts);
         if($cartProductsTotalSum > $user->getCash()) {
-            throw new \Exception("You do not have enough cash to buy all the products in your cart.");
+            throw new InvalidUserOperationException("You do not have enough cash to buy all the products in your cart.");
         }
         // UPDATE USER CASH
         $isCashUpdated = $this->_eshopData->getUsersRepository()->purchaseItems($userId, $cartProductsTotalSum);
@@ -189,7 +189,7 @@ class AccountController extends Controller
                         ->getProductsRepository()
                         ->transferProductToUser($userId, $product['id']);
                 if(!$areProductsSuccessfullyTransferedToUser) {
-                    throw new \Exception("You already have product {$product['name']} in your products inventory");
+                    throw new InvalidUserOperationException("You already have product {$product['name']} in your products inventory");
                 }
             }
         }
@@ -215,7 +215,7 @@ class AccountController extends Controller
     public function removeProductFromCart($cartId, $productId) {
         $isProductInCart = $this->_eshopData->getCartsRepository()->isProductInCart($cartId, $productId);
         if(!$isProductInCart) {
-            throw new \Exception("You are trying to remove a product that is not in your cart");
+            throw new InvalidUserOperationException("You are trying to remove a product that is not in your cart");
         }
         $isRemoved = $this->_eshopData->getCartsRepository()->removeProductsFromCart($cartId, $productId);
         if($isRemoved) {
@@ -252,7 +252,7 @@ class AccountController extends Controller
 
         $isQuantityDescreased = $this->_eshopData->getProductsRepository()->sellProduct($product->getId());
         if(!$isQuantityDescreased) {
-            throw new \Exception("You dont have enough quantity left of this product.");
+            throw new InvalidUserOperationException("You dont have enough quantity left of this product.");
         }
         if($isQuantityDescreased) {
             $isProductRemovedFromUser =

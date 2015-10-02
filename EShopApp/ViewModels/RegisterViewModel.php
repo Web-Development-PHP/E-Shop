@@ -17,6 +17,6 @@ class RegisterViewModel extends ViewModel
     public function render()
     {
         $file = "/home/register.php";
-        $this->loadTemplate($file, null);
+        $this->loadTemplate($file, new HomeViewModel());
     }
 }

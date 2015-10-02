@@ -16,9 +16,7 @@ class CategoryProductsViewModel extends ViewModel
 
     public function renderAddProductMenu()
     {
-        if(AppUserRolesConfig::hasSufficientRoleRights(array(
-            AppUserRolesConfig::ADMIN_ROLE,
-            AppUserRolesConfig::EDITOR_ROLE))) {
+        if(AppUserRolesConfig::hasAddEditDeletePriviligies()) {
 
             \EShop\Helpers\ViewHelpers\FormViewHelper::init();
             \EShop\Helpers\ViewHelpers\FormViewHelper::initTextField()

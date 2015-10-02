@@ -16,7 +16,6 @@ use EShop\Repositories\CategoriesRepository;
 use EShop\Services\ElectronicShopData;
 use EShop\ViewModels\CategoryProductsViewModel;
 use EShop\ViewModels\CategoryViewModel;
-use EShop\ViewModels\EditCategoryViewModel;
 use EShop\ViewModels\ViewModel;
 
 /**
@@ -42,7 +41,6 @@ class CategoriesController extends Controller
         $categories = $this->_eshopData->getCategoriesRepository()->all();
         $viewModel = new CategoryViewModel();
         $viewModel->categoryViewModel = $categories;
-
         $viewModel->render();
     }
 

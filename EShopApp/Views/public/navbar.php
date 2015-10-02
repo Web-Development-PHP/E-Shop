@@ -1,3 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>E-Shop</title>
+    <link rel="stylesheet" href="/Eshop/content/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/Eshop/content/css/styles.css">
+    <script src="/Eshop/content/libs/jquery-2.1.4.js"></script>
+    <script src="/Eshop/content/js/app.js"></script>
+</head>
+<body>
 <div class="row">
     <div class="col-lg-12">
         <nav class="navbar navbar-inverse">

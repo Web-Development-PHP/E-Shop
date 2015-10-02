@@ -24,10 +24,11 @@ final class AppUserRolesConfig
         }
     }
 
-    public static function hasSufficientRoleRights($roles = [])
+    public static function hasAddEditDeletePriviligies()
     {
-        if(in_array($_SESSION['role'], $roles)){
-            return true;
+        switch($_SESSION['role']) {
+            case self::ADMIN_ROLE: return true;
+            case self::EDITOR_ROLE: return true;
         }
         return false;
     }

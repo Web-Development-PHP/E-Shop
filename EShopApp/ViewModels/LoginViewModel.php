@@ -13,10 +13,9 @@ use EShop\Config\FolderConfig;
 
 class LoginViewModel extends  ViewModel
 {
-
     public function render()
     {
         $file =  "/home/login.php";
-        $this->loadTemplate($file, null);
+        $this->loadTemplate($file, new HomeViewModel());
     }
 }

@@ -1,3 +1,5 @@
+<?php /** * @var \EShop\ViewModels\HomeViewModel */  ?>
+
 <div class="row">
     <div class="col-lg-12">
         <div class="well bs-component">

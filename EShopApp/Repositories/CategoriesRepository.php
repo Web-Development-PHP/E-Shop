@@ -42,7 +42,9 @@ class CategoriesRepository implements IRepository
 
     public function all() {
         $data = $this->db->getAllEntities(self::CATEGORIES_TABLENAME, 'name');
-
+        $data = array_filter($data, function($d) {
+            return $d['isDeleted'] == 0;
+        });
         $categories = [];
         foreach ($data as $cat) {
             $category = new Category($cat);
@@ -68,7 +70,11 @@ class CategoriesRepository implements IRepository
         if($cat == null) {
             throw new \Exception("category with such id does not exist!");
         }
-        $isDeleted = $this->db->deleteEntityById(self::CATEGORIES_TABLENAME, $id);
+        $isDeleted = $this->db->updateEntityById(
+            self::CATEGORIES_TABLENAME,
+            array('isDeleted' => 1),
+            $id
+        );
         return $isDeleted;
     }
 

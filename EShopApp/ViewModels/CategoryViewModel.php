@@ -21,9 +21,7 @@ class CategoryViewModel extends ViewModel
 
     public function renderDeleteButton($categoryId)
     {
-        if(AppUserRolesConfig::hasSufficientRoleRights(array(
-            AppUserRolesConfig::ADMIN_ROLE,
-            AppUserRolesConfig::EDITOR_ROLE))) {
+        if(AppUserRolesConfig::hasAddEditDeletePriviligies()) {
 
             FormViewHelper::init();
             FormViewHelper::setMethod("post");
@@ -42,9 +40,7 @@ class CategoryViewModel extends ViewModel
 
     public function renderAddProductMenu()
     {
-        if(AppUserRolesConfig::hasSufficientRoleRights(array(
-            AppUserRolesConfig::ADMIN_ROLE,
-            AppUserRolesConfig::EDITOR_ROLE))) {
+        if(AppUserRolesConfig::hasAddEditDeletePriviligies()) {
 
             \EShop\Helpers\ViewHelpers\FormViewHelper::init();
             \EShop\Helpers\ViewHelpers\FormViewHelper::initTextField()
@@ -81,9 +77,7 @@ class CategoryViewModel extends ViewModel
 
     public function renderAddCategoryMenu()
     {
-        if(AppUserRolesConfig::hasSufficientRoleRights(array(
-            AppUserRolesConfig::ADMIN_ROLE,
-            AppUserRolesConfig::EDITOR_ROLE)))  {
+        if(AppUserRolesConfig::hasAddEditDeletePriviligies())  {
             FormViewHelper::init();
             FormViewHelper::setMethod("post");
             FormViewHelper::setAction(\EShop\Config\RouteConfig::getBasePath() . "categories/add");
@@ -103,7 +97,5 @@ class CategoryViewModel extends ViewModel
     {
         $file = '/category/category.php';
         $this->loadTemplate($file, $this->categoryViewModel);
-        $addCategoryTemplate =  '/category/addCategory.php';
-        $this->loadTemplate($addCategoryTemplate, null);
     }
 }
