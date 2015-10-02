@@ -9,8 +9,12 @@
             <?= $category->getName(); ?>
         </a>
     </li>
+    <?php $this->renderDeleteButton($category->getId()); ?>
 <?php endforeach; ?>
 </ul>
 <div>
 <?php $this->renderAddProductMenu(); ?>
+</div>
+<div>
+    <?php $this->renderAddCategoryMenu(); ?>
 </div>

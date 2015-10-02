@@ -3,6 +3,7 @@
 namespace EShop\Helpers\ViewHelpers;
 
 use EShop\Helpers\TokenHelper;
+use EShop\Helpers\ViewHelpers\Elements\Anchor;
 use EShop\Helpers\ViewHelpers\Elements\Checkbox;
 use EShop\Helpers\ViewHelpers\Elements\CSRF;
 use EShop\Helpers\ViewHelpers\Elements\Dropdown;
@@ -29,7 +30,9 @@ class FormViewHelper extends ViewHelper
     public static function init($ajaxForm = false) {
         self::$elements = [];
         self::$attributes = [];
-        self::setAttribute("class", "ajaxForm");
+        if($ajaxForm) {
+            self::setAttribute("class", "ajaxForm");
+        }
         return new self();
     }
 

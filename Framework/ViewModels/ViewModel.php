@@ -16,7 +16,7 @@ abstract class ViewModel
             $contents = file_get_contents($file);
             $rows = explode("\n", $contents);
             $modelTypeAnnotation = $rows[0];
-
+            $this->escapeAll($model);
             preg_match_all("/([A-Z])\w+/", $modelTypeAnnotation, $matches);
             $expectedType = implode('\\', $matches[0]);
             if(is_array($model) && isset($model[0])) {
@@ -31,5 +31,37 @@ abstract class ViewModel
         }
 
         require $file;
+    }
+
+    protected function escapeAll($toEscape) {
+        if(is_array($toEscape)) {
+            foreach ($toEscape as $key => &$value) {
+                if(is_object($value)) {
+                    $reflection = new \ReflectionClass($value);
+                    $properties = $reflection->getProperties();
+
+                    foreach ($properties as &$property) {
+                        $property->setAccessible(true);
+                        $property->setValue($value, $this->escapeAll($property->getValue($value)));
+                    }
+                }elseif(is_array($value)) {
+                    $this->escapeAll($value);
+                }else {
+                    $value = htmlspecialchars($value);
+                }
+            }
+        }elseif(is_object($toEscape)) {
+            $reflection = new \ReflectionClass($toEscape);
+            $properties = $reflection->getProperties();
+
+            foreach ($properties as &$property) {
+                $property->setAccessible(true);
+                $property->setValue($toEscape, $this->escapeAll($property->getValue($toEscape)));
+            }
+        }else {
+            $toEscape = htmlspecialchars($toEscape);
+        }
+
+        return $toEscape;
     }
 }

@@ -41,7 +41,7 @@ class CategoriesRepository implements IRepository
     }
 
     public function all() {
-        $data = $this->db->getAllEntities(self::CATEGORIES_TABLENAME);
+        $data = $this->db->getAllEntities(self::CATEGORIES_TABLENAME, 'name');
 
         $categories = [];
         foreach ($data as $cat) {

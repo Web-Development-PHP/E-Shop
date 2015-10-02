@@ -118,18 +118,18 @@ class Database
      * @param null $offset
      * @return array
      */
-    public function getAllEntities($fromTable, $limit = null, $offset = null) {
+    public function getAllEntities($fromTable, $orderByColumnName, $limit = null, $offset = null) {
         if($limit && $offset) {
             $stmt = $this->prepare("
-            SELECT * FROM $fromTable LIMIT ? OFFSET ?");
+            SELECT * FROM $fromTable LIMIT ? OFFSET ? ORDER BY ? ASC, id ASC");
         }else {
-            $stmt = $this->prepare(" SELECT * FROM $fromTable ");
+            $stmt = $this->prepare(" SELECT * FROM $fromTable ORDER BY ? ASC, id ASC");
         }
         try {
             if($limit && $offset) {
-                $stmt->execute([ $limit, $offset ]);
+                $stmt->execute([ $limit, $offset, $orderByColumnName ]);
             }else {
-                $stmt->execute();
+                $stmt->execute([$orderByColumnName]);
             }
             return $stmt->fetchAll();
         }catch (\PDOException $e) {

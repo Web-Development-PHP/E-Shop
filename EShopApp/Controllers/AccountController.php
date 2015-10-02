@@ -2,6 +2,7 @@
 
 namespace EShop\Controllers;
 
+use EShop\Config\AppUserRolesConfig;
 use EShop\Config\RouteConfig;
 use EShop\Exceptions\InvalidCredentialsException;
 use EShop\Helpers\RouteService;
@@ -26,10 +27,7 @@ class AccountController extends Controller
      */
     private $_eshopData;
     const DEFAULT_USER_CASH = 150.00;   // Initial cash
-    const DEFAULT_USER_ROLE = 2;        // Editor user role
-    const ADMIN_ROLE = 'Admin';
-    const EDITOR_ROLE = 'Editor';
-    const GUEST_ROLE = 'Guest';
+
 
     public function __construct() {
         parent::__construct();
@@ -43,12 +41,14 @@ class AccountController extends Controller
      * @Authorize
      */
     public function profile() {
+        if(!$this->isLogged()) {
+            RouteService::redirect('home', 'login', true);
+        }
         $currentUser = $this->_eshopData->getUsersRepository()->findById($this->getCurrentUserId());
         if($currentUser != null) {
             $viewModel = new ProfileViewModel();
             $viewModel->userViewModel = $currentUser;
-            $viewModel->userViewModel->setRoleName($this->getUserRoleName($currentUser->getRole()));
-            $this->escapeAll($viewModel);
+            $viewModel->userViewModel->setRoleName(AppUserRolesConfig::getUserRoleName($currentUser->getRole()));
             $viewModel->render();
         }
     }
@@ -58,9 +58,8 @@ class AccountController extends Controller
      * @Route("register")
      */
     public function registerUser(BindModels\RegisterBindingModel $userModel) {
-
         $userModel->setCash(self::DEFAULT_USER_CASH);
-        $userModel->setRole(self::DEFAULT_USER_ROLE);
+        $userModel->setRole(AppUserRolesConfig::DEFAULT_USER_ROLE);
 
         $isRegistered = $this->_eshopData->getUsersRepository()->create($userModel);
         if($isRegistered) {
@@ -83,8 +82,6 @@ class AccountController extends Controller
      * @Route("login")
      */
     public function loginUser(BindModels\LoginBindingModel $loginBindingModel) {
-        $this->isModelStateValid($loginBindingModel);
-//        var_dump($loginBindingModel);
         $username = $loginBindingModel->getUsername();
         $password = $loginBindingModel->getPassword();
 
@@ -92,7 +89,7 @@ class AccountController extends Controller
         if($user == null || !password_verify($password, $user->getPassword())){
             throw new InvalidCredentialsException('Invalid credentials');
         }
-        $_SESSION['role'] = $this->getUserRoleName($user->getRole());
+        $_SESSION['role'] = AppUserRolesConfig::getUserRoleName($user->getRole());
         $this->setIdInSession($user->getId());
         RouteService::redirect('account', 'profile', true);
     }
@@ -116,7 +113,6 @@ class AccountController extends Controller
         }
         $cartItems = $this->_eshopData->getCartsRepository()->findById($userId);
         if($cartItems) {
-            $this->escapeAll($cartItems);
             $viewModel = new UserCartViewModel();
             $viewModel->cart = $cartItems;
             $viewModel->render();
@@ -239,7 +235,6 @@ class AccountController extends Controller
         }
         $userProducts = $this->_eshopData->getUsersRepository()->getUserProducts($userId);
         if($userProducts) {
-            $this->escapeAll($userProducts);
             $viewModel = new UserProductsViewModel();
             $viewModel->userProducts = $userProducts;
             $viewModel->render();
@@ -275,20 +270,6 @@ class AccountController extends Controller
         }
         if($updateUserCash) {
             RouteService::redirect('account', 'profile', true);
-        }
-    }
-
-    // ADD Role Id and their corresponding names from the Database
-    private function getUserRoleName($roleId) {
-        switch($roleId) {
-            case '1':
-                return self::ADMIN_ROLE;
-            case '2':
-                return self::EDITOR_ROLE;
-            case '3':
-                return self::GUEST_ROLE;
-            default:
-                return 'Invalid user role id';
         }
     }
     

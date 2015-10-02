@@ -4,6 +4,7 @@
 namespace EShop\Controllers;
 
 
+use EShop\Helpers\RouteService;
 use EShop\Models\BindModels\LoginBindingModel;
 use EShop\ViewModels\HomeViewModel;
 use EShop\ViewModels\LoginViewModel;
@@ -22,11 +23,17 @@ class HomeController extends Controller
     }
 
     public function login() {
+        if($this->isLogged()) {
+            RouteService::redirect('account', 'profile', true);
+        }
         $v = new LoginViewModel();
         $v->render();
     }
 
     public function register() {
+        if($this->isLogged()) {
+            RouteService::redirect('account', 'profile', true);
+        }
         $v = new RegisterViewModel();
         $v->render();
     }

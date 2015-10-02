@@ -2,9 +2,9 @@
 
 namespace EShop\ViewModels;
 
+use EShop\Config\AppUserRolesConfig;
 use EShop\Config\FolderConfig;
 use EShop\Helpers\TokenHelper;
-use EShop\Helpers\ViewHelpers\Elements\CSRF;
 use EShop\Helpers\ViewHelpers\Elements\HiddenField;
 use EShop\Helpers\ViewHelpers\Elements\Select;
 use EShop\Helpers\ViewHelpers\FormViewHelper;
@@ -19,37 +19,84 @@ class CategoryViewModel extends ViewModel
 
     public $categoryData = [];
 
+    public function renderDeleteButton($categoryId)
+    {
+        if(AppUserRolesConfig::hasSufficientRoleRights(array(
+            AppUserRolesConfig::ADMIN_ROLE,
+            AppUserRolesConfig::EDITOR_ROLE))) {
+
+            FormViewHelper::init();
+            FormViewHelper::setMethod("post");
+            FormViewHelper::setAction(\EShop\Config\RouteConfig::getBasePath(). 'categories/delete');
+            FormViewHelper::initSubmitButton()
+                ->setValue('Delete')
+                ->setAttribute('class', 'btn-delete-category')
+                ->create();
+            FormViewHelper::initHiddenField()
+                ->setName('categoryId')
+                ->setValue($categoryId)
+                ->create()
+                ->render();
+        }
+    }
+
     public function renderAddProductMenu()
     {
-        \EShop\Helpers\ViewHelpers\FormViewHelper::initTextField()
-            ->setName("productName")
-            ->setAttribute('placeholder', 'Product name...')
-            ->create();
+        if(AppUserRolesConfig::hasSufficientRoleRights(array(
+            AppUserRolesConfig::ADMIN_ROLE,
+            AppUserRolesConfig::EDITOR_ROLE))) {
 
-        \EShop\Helpers\ViewHelpers\FormViewHelper::initTextField()
-            ->setName("productPrice")
-            ->setAttribute("placeholder", "Product price")
-            ->create();
+            \EShop\Helpers\ViewHelpers\FormViewHelper::init();
+            \EShop\Helpers\ViewHelpers\FormViewHelper::initTextField()
+                ->setName("productName")
+                ->setAttribute('placeholder', 'Product name...')
+                ->create();
 
-        \EShop\Helpers\ViewHelpers\FormViewHelper::initNumberField()
-            ->setName("quantity")
-            ->setAttribute('min', '1')
-            ->create();
+            \EShop\Helpers\ViewHelpers\FormViewHelper::initTextField()
+                ->setName("productPrice")
+                ->setAttribute("placeholder", "Product price")
+                ->create();
 
-        $select = FormViewHelper::initSelect();
-        $select->setName('categoryId');
-        foreach ($this->categoryViewModel as $model) {
-            $select->addOption($model->getId(), $model->getName());
+            \EShop\Helpers\ViewHelpers\FormViewHelper::initNumberField()
+                ->setName("quantity")
+                ->setAttribute('min', '1')
+                ->create();
+
+            $select = FormViewHelper::initSelect();
+            $select->setName('categoryId');
+            foreach ($this->categoryViewModel as $model) {
+                $select->addOption($model->getId(), $model->getName());
+            }
+            $select->create();
+
+            \EShop\Helpers\ViewHelpers\FormViewHelper::initSubmitButton()
+                ->setValue('Add Product')
+                ->create();
+
+            \EShop\Helpers\ViewHelpers\FormViewHelper::setAction(\EShop\Config\RouteConfig::getBasePath(). 'products/addProduct');
+            \EShop\Helpers\ViewHelpers\FormViewHelper::setMethod("post");
+            \EShop\Helpers\ViewHelpers\FormViewHelper::render();
         }
-        $select->create();
+    }
 
-        \EShop\Helpers\ViewHelpers\FormViewHelper::initSubmitButton()
-            ->setValue('Add Product')
-            ->create();
-
-        \EShop\Helpers\ViewHelpers\FormViewHelper::setAction(\EShop\Config\RouteConfig::getBasePath(). 'products/addProduct');
-        \EShop\Helpers\ViewHelpers\FormViewHelper::setMethod("post");
-        \EShop\Helpers\ViewHelpers\FormViewHelper::render();
+    public function renderAddCategoryMenu()
+    {
+        if(AppUserRolesConfig::hasSufficientRoleRights(array(
+            AppUserRolesConfig::ADMIN_ROLE,
+            AppUserRolesConfig::EDITOR_ROLE)))  {
+            FormViewHelper::init();
+            FormViewHelper::setMethod("post");
+            FormViewHelper::setAction(\EShop\Config\RouteConfig::getBasePath() . "categories/add");
+            FormViewHelper::initTextField()
+                ->setName('name')
+                ->setAttribute('placeholder', 'Category name')
+                ->setAttribute('class', 'add-category-field')
+                ->create();
+            FormViewHelper::initSubmitButton()
+                ->setValue('Add Category')
+                ->create()
+                ->render();
+        }
     }
 
     public function render()

@@ -78,7 +78,6 @@ class Router
     public function getControllerRolesAnnotation($class) {
         $refClass = new \ReflectionClass($class);
         $reflMethods = $refClass->getMethods();
-        $roles = [];
         foreach ($reflMethods as $method) {
             $doc = $method->getDocComment();
             preg_match_all("/@(Admin)|@(Editor)|@(Guest)/", $doc, $userRoles);
@@ -111,8 +110,8 @@ class Router
                     break;
                 }elseif(strtolower($currentUserRole) != strtolower($roleName) &&
                     strtolower($actionName) != strtolower($currentActionName)) {
-                    var_dump($currentActionName);
-                    var_dump($actionName);
+//                    var_dump($currentActionName);
+//                    var_dump($actionName);
                     $isInRole = true;
                     break;
                 }
@@ -128,5 +127,4 @@ class Router
             throw new \Exception('You are not authorized');
         }
     }
-
 }

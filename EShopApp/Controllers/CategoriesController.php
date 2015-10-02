@@ -10,6 +10,7 @@ namespace EShop\Controllers;
 
 use EShop\Helpers\RouteService;
 use EShop\Models\BindModels\CreateCategoryBindingModel;
+use EShop\Models\BindModels\DeleteCategoryBindingModel;
 use EShop\Models\BindModels\UpdateCategoryBindingModel;
 use EShop\Repositories\CategoriesRepository;
 use EShop\Services\ElectronicShopData;
@@ -40,14 +41,12 @@ class CategoriesController extends Controller
     public function all() {
         $categories = $this->_eshopData->getCategoriesRepository()->all();
         $viewModel = new CategoryViewModel();
-        $this->escapeAll($categories);
         $viewModel->categoryViewModel = $categories;
 
         $viewModel->render();
     }
 
     public function add(CreateCategoryBindingModel $model) {
-        $this->isModelStateValid($model);
         $isCreated = $this->_eshopData->getCategoriesRepository()->create($model);
         if($isCreated) {
             RouteService::redirect('categories', 'all', true);
@@ -55,8 +54,14 @@ class CategoriesController extends Controller
         echo 'Error during create category';
     }
 
-    public function delete($id) {
-        $isDeleted = $this->_eshopData->getCategoriesRepository()->remove($id);
+    /**
+     * @param DeleteCategoryBindingModel $model
+     * @throws \Exception
+     * @Admin
+     * @Editor
+     */
+    public function delete(DeleteCategoryBindingModel $model) {
+        $isDeleted = $this->_eshopData->getCategoriesRepository()->remove($model->getCategoryId());
         // TODO ADD JAVASCRIPT CONFIRMATION BOX
         if($isDeleted) {
             RouteService::redirect('categories', 'all', true);
@@ -75,7 +80,6 @@ class CategoriesController extends Controller
         $userCartId = $this->_eshopData->getCartsRepository()->getCartForCurrentUser($userId);
         $products = $this->_eshopData->getCategoriesRepository()->getAllProducts($userId, $userCartId, $categoryId);
         if($products) {
-            $this->escapeAll($products);
             $viewModel = new CategoryProductsViewModel();
             $viewModel->productViewModel = $products;
             $viewModel->render();
