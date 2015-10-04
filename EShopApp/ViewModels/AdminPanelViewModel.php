@@ -52,8 +52,10 @@ class AdminPanelViewModel extends ViewModel
     public function renderCustomPromoProducts()
     {
         if($this->productsOnPromotion) {
-            $html = "<table border=\"1\" class='table table-striped table-hover'>";
+            $rowCount = 1;
+            $html = "<table  class='table table-striped table-hover'>";
             $html .= "<tr class='info'>";
+            $html .= "<th>#</th>";
             $html .= "<th>Product name</th>";
             $html .= "<th>Discount</th>";
             $html .= "<th>Promoted At</th>";
@@ -61,15 +63,17 @@ class AdminPanelViewModel extends ViewModel
             $html .= "</tr>";
             foreach ($this->productsOnPromotion as $prod) {
                 $html .= "<tr>";
+                $html .= "<td>{$rowCount}</td>";
                 $html .= "<td>{$prod->getProductName()}</td>";
                 $html .= "<td>{$prod->getDiscount()} %</td>";
                 $html .= "<td>{$prod->getPromotedAt()}</td>";
                 $html .= '<td class="remove-btn">
                         <a href="'.\EShop\Config\RouteConfig::getBasePath().'admin/admin/removeProductFromPromotion/'.$prod->getId().'">
-                        Remove from promo
+                        Remove
                         </a>
                     </td>';
                 $html .= "</tr>";
+                $rowCount++;
             }
             $html .= "</table>";
             echo $html;
@@ -79,22 +83,26 @@ class AdminPanelViewModel extends ViewModel
     public function renderPromotionsForAllProducts()
     {
         if($this->allProductsPromotion) {
-            $html = "<table border=\"1\" class='table table-striped table-hover'>";
+            $rowCount = 1;
+            $html = "<table  class='table table-striped table-hover'>";
             $html .= "<tr class='danger'>";
+            $html .= "<th>#</th>";
             $html .= "<th>Discount</th>";
             $html .= "<th>Promoted At</th>";
             $html .= "<th></th>";
             $html .= "</tr>";
             foreach ($this->allProductsPromotion as $promo) {
                 $html .= "<tr>";
+                $html .= "<td>{$rowCount}</td>";
                 $html .= "<td>{$promo->getDiscount()} %</td>";
                 $html .= "<td>{$promo->getPromotedAt()}</td>";
                 $html .= '<td class="remove-btn">
                         <a href="'.\EShop\Config\RouteConfig::getBasePath().'admin/admin/removeAllProductsDiscount/'.$promo->getId().'">
-                        Remove Promotion
+                        Remove
                         </a>
                     </td>';
                 $html .= "</tr>";
+                $rowCount++;
             }
             $html .= "</table>";
             echo $html;
@@ -105,8 +113,10 @@ class AdminPanelViewModel extends ViewModel
     {
         // DONT RENDER IF IS EMPTY
         if($this->categoryPromotions){
-            $html = "<table border=\"1\" class='table table-striped table-hover'>";
+            $rowCount = 1;
+            $html = "<table  class='table table-striped table-hover'>";
             $html .= "<tr class='warning'>";
+            $html .= "<th>#</th>";
             $html .= "<th>Category name</th>";
             $html .= "<th>Category Discount</th>";
             $html .= "<th>Promoted At</th>";
@@ -114,15 +124,17 @@ class AdminPanelViewModel extends ViewModel
             $html .= "</tr>";
             foreach ($this->categoryPromotions as $catPromo) {
                 $html .= "<tr>";
+                $html .= "<td>{$rowCount}</td>";
                 $html .= "<td>{$catPromo->getCategoryName()}</td>";
                 $html .= "<td>{$catPromo->getDiscount()} %</td>";
                 $html .= "<td>{$catPromo->getPromotedAt()}</td>";
                 $html .= '<td class="remove-btn">
                         <a href="'.\EShop\Config\RouteConfig::getBasePath().'admin/admin/removeCategoryDiscount/'.$catPromo->getCategoryId().'">
-                        Remove Promotion
+                        Remove
                         </a>
                     </td>';
                 $html .= "</tr>";
+                $rowCount++;
             }
             $html .= "</table>";
             echo $html;

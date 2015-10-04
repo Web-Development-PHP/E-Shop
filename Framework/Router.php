@@ -4,6 +4,7 @@ namespace EShop;
 use EShop\Config\AppConfig;
 use EShop\Config\FolderConfig;
 use EShop\Config\RouteConfig;
+use EShop\Exceptions\UnauthorizedException;
 use EShop\Helpers\RouteService;
 use EShop\Helpers\TokenHelper;
 
@@ -16,8 +17,7 @@ class Router
     public $roles = [];
     public $roleActionNames = [];
 
-    private function __construct(){
-    }
+    private function __construct() {}
 
     public static function getInstance() {
         if(self::$_instance == null){
@@ -110,8 +110,6 @@ class Router
                     break;
                 }elseif(strtolower($currentUserRole) != strtolower($roleName) &&
                     strtolower($actionName) != strtolower($currentActionName)) {
-//                    var_dump($currentActionName);
-//                    var_dump($actionName);
                     $isInRole = true;
                     break;
                 }
@@ -124,7 +122,7 @@ class Router
         }
 
         if($isInRole === false) {
-            throw new \Exception('You are not authorized');
+            throw new UnauthorizedException('You are not authorized');
         }
     }
 }

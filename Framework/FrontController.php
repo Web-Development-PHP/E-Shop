@@ -23,26 +23,27 @@ class FrontController
 
     const CONTROLLER_SUFFIX = 'Controller';
 
-    public function __construct(
-        $controllerName = AppConfig::DEFAULT_CONTROLLER,
-        $actionName = AppConfig::DEFAULT_ACTION,
-        $requestParams = [])
+    public function __construct()
     {
-        $this->controllerName = $controllerName ? $controllerName : AppConfig::DEFAULT_CONTROLLER;
-        $this->actionName = $actionName ? $actionName : AppConfig::DEFAULT_ACTION;
-        $this->requestParams = $requestParams;
         self::$_router = Router::getInstance();
         self::$_reflectionHelper = ReflectionService::getInstance();
     }
 
     public function dispatch() {
         $this->initRoutes();
-        $this->loadSpecialRoute();
+        $this->loadAnnotationRoute();
         $this->initController();
         $this->initAction();
         View::$controllerName = $this->controllerName;
         View::$actionName = $this->actionName;
 
+        $this->handleBindingModel();
+
+        self::$_router->getControllerRolesAnnotation($this->controller);
+        self::$_router->isInRole($this->actionName);
+    }
+
+    private function handleBindingModel() {
         $actionTypeParams = $this->getFuncParamsTypes($this->controller, $this->actionName);
         if(isset($actionTypeParams[0]) && strpos(strtolower($actionTypeParams[0]), 'bindingmodel') !== false){
             $bindingModelClass = $actionTypeParams[0];
@@ -56,14 +57,12 @@ class FrontController
             unset($_SESSION['formToken']);
             call_user_func_array([ $this->controller, $this->actionName ], $this->requestParams );
         }
-
-        self::$_router->getControllerRolesAnnotation($this->controller);
-        self::$_router->isInRole($this->actionName);
     }
 
-    private function loadSpecialRoute() {
+    // Loading @Route('*******')
+    private function loadAnnotationRoute() {
         $customRoutes = self::$_router->getAllClassesCustomRoutes();
-        $this->controllerName = $this->parseSpecialRoute($this->controllerName, $customRoutes, self::CONTROLLER_SUFFIX);
+        $this->controllerName = $this->parseAnnotatedRoute($this->controllerName, $customRoutes, self::CONTROLLER_SUFFIX);
         if($this->controllerName != '' && $this->controllerName != null &&
             strtolower($this->controllerName) != strtolower(AppConfig::DEFAULT_CONTROLLER)) {
             $this->customRoute = $this->controllerName;
@@ -72,7 +71,7 @@ class FrontController
         }
     }
 
-    private function parseSpecialRoute($param, $customRoutes = [], $paramName) {
+    private function parseAnnotatedRoute($param, $customRoutes = [], $paramName) {
         if(in_array(strtolower($param), $customRoutes) ||
             array_key_exists(strtolower($param), $customRoutes)) {
 
@@ -94,12 +93,11 @@ class FrontController
         $customRoutes = array_map('strtolower', $customRoutes);
         $customRoutes = array_change_key_case($customRoutes, CASE_LOWER);
         self::$_reflectionHelper->isActionAccessGrandet($customRoutes, $this->controller, $this->actionName);
-        $this->actionName = $this->parseSpecialRoute($this->actionName, $customRoutes, 'Action');
+        $this->actionName = $this->parseAnnotatedRoute($this->actionName, $customRoutes, 'Action');
         if ($this->actionName == '') {
             $this->actionName = AppConfig::DEFAULT_ACTION;
         }
     }
-
 
     private function initController() {
         if ($this->area != null) {
@@ -131,6 +129,7 @@ class FrontController
         self::$_reflectionHelper->isAccessGranted($controllerName);
     }
 
+    // Parse normal route
     private function initRoutes() {
         if(isset($_GET['uri'])) {
             $this->requestParams = explode('/', $_GET['uri']);

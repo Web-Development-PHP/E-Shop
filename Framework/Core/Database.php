@@ -21,15 +21,12 @@ class Database
         if(!isset(self::$_instances[$instanceName])) {
             throw new \Exception("Instance with this name does not exists.");
         }
-
         return static::$_instances[$instanceName];
     }
 
     public static function setInstance ($instanceName, $driver, $user, $pass, $dbName, $host = null) {
         $driver = \EShop\Core\Drivers\DriverFactory::create($driver, $user, $pass, $dbName, $host);
-
         $pdo = new \PDO($driver->getDsn(), $user, $pass, DatabaseConfig::$DB_PDO_OPTIONS);
-
         self::$_instances[$instanceName] = new self($pdo);
     }
 
@@ -63,6 +60,12 @@ class Database
         return $this->db->rollBack();
     }
 
+    /**
+     * @param $fromTable
+     * @param $columnName
+     * @param $columnValue
+     * @return mixed
+     */
     public function getEntityByColumnName($fromTable, $columnName, $columnValue) {
         $stmt = $this->prepare("
             SELECT * FROM $fromTable
@@ -93,7 +96,16 @@ class Database
         }
     }
 
-    public function getAllEntitiesByColumnName($fromTable, $columnName,$columnValue, $limit = null, $offset = null) {
+    /**
+     * @param $fromTable
+     * @param $columnName
+     * @param $columnValue
+     * @param null $limit
+     * @param null $offset
+     * @return array
+     */
+    public function getAllEntitiesByColumnName($fromTable, $columnName,$columnValue,
+                                               $limit = null, $offset = null) {
         if($limit && $offset) {
             $stmt = $this->prepare("
             SELECT * FROM $fromTable WHERE $columnName = ? LIMIT ? OFFSET ?");
@@ -114,18 +126,22 @@ class Database
 
     /**
      * @param $fromTable
+     * @param $orderByColumnName
      * @param null $limit
      * @param null $offset
      * @return array
      */
     public function getAllEntities($fromTable, $orderByColumnName, $limit = null, $offset = null) {
-        if($limit && $offset) {
-            $stmt = $this->prepare("
-            SELECT * FROM $fromTable LIMIT ? OFFSET ? ORDER BY ? ASC, id ASC");
-        }else {
-            $stmt = $this->prepare(" SELECT * FROM $fromTable ORDER BY ? ASC, id ASC");
-        }
         try {
+            if($limit && $offset) {
+                $stmt = $this->prepare("
+            SELECT *
+            FROM $fromTable LIMIT ? OFFSET ? ORDER BY ? ASC, id ASC");
+            }else {
+                $stmt = $this->prepare("
+              SELECT *
+              FROM $fromTable ORDER BY ? ASC, id ASC");
+            }
             if($limit && $offset) {
                 $stmt->execute([ $limit, $offset, $orderByColumnName ]);
             }else {
@@ -137,6 +153,12 @@ class Database
         }
     }
 
+    /**
+     * @param $fromTable
+     * @param $condition
+     * @param $orderByColumnName
+     * @return array
+     */
     public function getAllEntitiesWithCondition($fromTable, $condition, $orderByColumnName) {
         try{
             $stmt = $this->prepare("
@@ -219,7 +241,6 @@ class Database
         $stmt = $this->prepare("
         DELETE FROM $tableName WHERE id = ?
         ");
-
         $this->beginTransaction();
         try {
             $stmt->execute( [ $id ] );
@@ -243,7 +264,7 @@ class Database
 
 
     /**
-     * ---------CUSTOM QUERIES--RELATED-TO-E-SHOP----
+     * ---------CUSTOM QUERIES--RELATED-TO---E-SHOP----
      *
      */
 

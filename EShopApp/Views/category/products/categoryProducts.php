@@ -8,7 +8,7 @@
             <?php foreach($this->productViewModel as $product) : ?>
                 <li class="list-group-item">
                     <div>
-                        <h3><?= $product->getName(); ?></h3>
+                        <h3 class="product-name"><?= $product->getName(); ?></h3>
                         <b>Quantity: </b><span class="badge"><?= $product->getQuantity(); ?></span>
 
                         <span class="input-group-addon price">Price:  <?= $product->getPrice(); ?> лв.</span>
@@ -17,7 +17,7 @@
                             <?= $this->renderDeleteProductButton($product->getId()); ?>
                         </div>
                     </div>
-                    <a class="btn btn-primary" href="<?= \EShop\Config\RouteConfig::getBasePath(); ?>account/addToCart/<?= $product->getId(); ?>">
+                    <a class="btn btn-primary cart-btn" href="<?= \EShop\Config\RouteConfig::getBasePath(); ?>account/addToCart/<?= $product->getId(); ?>">
                         Add to cart <span class="glyphicon glyphicon-shopping-cart"></span></a>
                 </li>
             <?php endforeach; ?>

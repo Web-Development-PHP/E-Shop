@@ -7,7 +7,6 @@ use EShop\Models\IBindingModel;
 
 abstract class Controller
 {
-    protected $isPost = false;
     protected $roles = [];
 
     protected function __construct() {

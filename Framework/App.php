@@ -46,9 +46,9 @@ final class App
         {
             echo $userOperError->getMessage();
         }
-        catch(UnauthorizedException $unathourErro)
+        catch(UnauthorizedException $unathourError)
         {
-            echo $unathourErro->getMessage();
+            echo $unathourError->getMessage();
         }
         // TODO TRY CATCH ERRORS BEFORE DISPATCH
     }

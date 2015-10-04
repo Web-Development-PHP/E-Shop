@@ -37,4 +37,18 @@ select  {
 .price {
     margin-bottom: 1%;
     margin-top: 1%;
+    font-weight: 900;
+}
+.product-name {
+    font-weight: 900;
+}
+
+.product-name:hover {
+    cursor: pointer;
+    color: #bf3e11;
+}
+
+.list-group-item {
+    margin-top: 1%;
+    margin-bottom: 1%;
 }
