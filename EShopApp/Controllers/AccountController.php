@@ -16,6 +16,7 @@ use EShop\View;
 use EShop\ViewModels\AdminPanelViewModel;
 use EShop\ViewModels\EditUserViewModel;
 use EShop\ViewModels\ProfileViewModel;
+use EShop\ViewModels\SoldProductsViewModel;
 use EShop\ViewModels\UserCartViewModel;
 use EShop\ViewModels\UserProductsViewModel;
 use EShop\ViewModels\UserViewModel;
@@ -339,7 +340,45 @@ class AccountController extends Controller
             RouteService::redirect('account', 'profile', true);
         }
     }
-    
+
+    /**
+     * @Editor
+     * @Admin
+     */
+    public function getSoldProducts()
+    {
+        $soldProducts = $this->_eshopData->getProductsRepository()->getSoldProducts();
+        $viewModel = new SoldProductsViewModel();
+        $viewModel->soldProducts = $soldProducts;
+        $viewModel->render();
+    }
+
+    /**
+     * @param BindModels\ReorderProductBindingModel $model
+     * @throws InvalidUserInputException
+     * @throws InvalidUserOperationException
+     * @throws \Exception
+     * @Authorize
+     * @Admin
+     * @Editor
+     */
+    public function reorder(BindModels\ReorderProductBindingModel $model)
+    {
+        if($model->getQuantity() < 2) {
+            throw new InvalidUserInputException("You cannot order less than 1 item quantity");
+        }
+        $productExists = $this->_eshopData->getProductsRepository()->findById($model->getProductId());
+        if($productExists == null) {
+            throw new InvalidUserOperationException("The selected product does not exist anymore.");
+        }
+        $isUpdated = $this->_eshopData->getProductsRepository()
+            ->reorderProduct($model->getProductId(), $model->getQuantity());
+        if($isUpdated) {
+            RouteService::redirect('categories', 'products/' . $productExists->getCategoryId(), true);
+        }
+        echo 'Error during reorder product';
+    }
+
     private function getProductsTotalSum($cartProducts)
     {
         $totalPrice = 0.0;

@@ -19,6 +19,11 @@
                     <div>
                         <a class="list-group-item" href="<?= \EShop\Config\RouteConfig::getBasePath(); ?>account/products">View my products</a>
                     </div>
+                    <?php if(\EShop\Config\AppUserRolesConfig::hasAddEditDeletePriviligies()) : ?>
+                    <div>
+                        <a class="list-group-item" href="<?= \EShop\Config\RouteConfig::getBasePath(); ?>account/getSoldProducts">Reorder product</a>
+                    </div>
+                    <?php endif; ?>
                 </div>
             </div>
             <div class="col-lg-4">

@@ -11,6 +11,7 @@ use EShop\Models\BindModels\EditProductBindingModel;
 use EShop\Models\Product;
 use EShop\Models\ProductPromo;
 use EShop\Models\ProductsPromo;
+use EShop\Models\SoldProduct;
 
 class ProductsRepository implements IRepository
 {
@@ -218,6 +219,26 @@ class ProductsRepository implements IRepository
             $isDeleted = $this->db->deleteEntityById(self::PRODUCTS_PROMO_TABLENAME, $id);
         }
         return $isDeleted;
+    }
+
+    public function getSoldProducts()
+    {
+        $condition = "quantity < 0";
+        $data = $this->db->getAllEntitiesWithCondition(self::PRODUCTS_TABLENAME, $condition, 'id');
+        $soldProducts = [];
+        foreach ($data as $p) {
+            $product = new SoldProduct($p);
+            array_push($soldProducts, $product);
+        }
+        return $soldProducts;
+    }
+
+    public function reorderProduct($productId, $reorderQuantity)
+    {
+        $isUpdated = $this->db->updateEntityById(self::PRODUCTS_TABLENAME, array(
+            "quantity" => $reorderQuantity
+        ), $productId);
+        return $isUpdated;
     }
 
     public function remove($id)

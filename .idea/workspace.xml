@@ -34,10 +34,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Framework/Helpers/ViewHelpers/Elements/Option.php" />
-        <option value="$PROJECT_DIR$/Framework/Helpers/ViewHelpers/FormViewHelper.php" />
-        <option value="$PROJECT_DIR$/EShopApp/Config/AppUserRolesConfig.php" />
-        <option value="$PROJECT_DIR$/EShopApp/Models/BindModels/AddCategoryPromoBindingModel.php" />
         <option value="$PROJECT_DIR$/EShopApp/Models/PromoCategory.php" />
         <option value="$PROJECT_DIR$/EShopApp/Models/BindModels/AddAllProductsPromoBindingModel.php" />
         <option value="$PROJECT_DIR$/EShopApp/Models/ProductsPromo.php" />
@@ -45,7 +41,6 @@
         <option value="$PROJECT_DIR$/EShopApp/Models/BindModels/AddProductPromoBindingModel.php" />
         <option value="$PROJECT_DIR$/EShopApp/Areas/Admin/Controllers/AdminController.php" />
         <option value="$PROJECT_DIR$/EShopApp/Models/BindModels/DeleteProductBindingModel.php" />
-        <option value="$PROJECT_DIR$/EShopApp/Repositories/ProductsRepository.php" />
         <option value="$PROJECT_DIR$/EShopApp/ViewModels/ProfileViewModel.php" />
         <option value="$PROJECT_DIR$/EShopApp/Views/public/footer.php" />
         <option value="$PROJECT_DIR$/EShopApp/Views/account/userCart.php" />
@@ -58,12 +53,10 @@
         <option value="$PROJECT_DIR$/EShopApp/Repositories/UsersRepository.php" />
         <option value="$PROJECT_DIR$/EShopApp/ViewModels/EditUserViewModel.php" />
         <option value="$PROJECT_DIR$/EShopApp/Views/account/editProfile.php" />
-        <option value="$PROJECT_DIR$/EShopApp/Views/account/profile.php" />
         <option value="$PROJECT_DIR$/Framework/ViewModels/ViewModel.php" />
         <option value="$PROJECT_DIR$/EShopApp/Views/category/category.php" />
         <option value="$PROJECT_DIR$/EShopApp/ViewModels/CategoryProductsViewModel.php" />
         <option value="$PROJECT_DIR$/EShopApp/Controllers/CategoriesController.php" />
-        <option value="$PROJECT_DIR$/EShopApp/Controllers/AccountController.php" />
         <option value="$PROJECT_DIR$/EShopApp/Controllers/HomeController.php" />
         <option value="$PROJECT_DIR$/EShopApp/Controllers/TestController.php" />
         <option value="$PROJECT_DIR$/EShopApp/Controllers/ProductsController.php" />
@@ -85,6 +78,13 @@
         <option value="$PROJECT_DIR$/EShopApp/Views/category/products/categoryProducts.php" />
         <option value="$PROJECT_DIR$/content/css/styles.css" />
         <option value="$PROJECT_DIR$/EShopApp/ViewModels/AdminPanelViewModel.php" />
+        <option value="$PROJECT_DIR$/EShopApp/Models/SoldProduct.php" />
+        <option value="$PROJECT_DIR$/EShopApp/Views/account/user/soldProducts.php" />
+        <option value="$PROJECT_DIR$/EShopApp/Models/BindModels/ReorderProductBindingModel.php" />
+        <option value="$PROJECT_DIR$/EShopApp/Repositories/ProductsRepository.php" />
+        <option value="$PROJECT_DIR$/EShopApp/ViewModels/SoldProductsViewModel.php" />
+        <option value="$PROJECT_DIR$/EShopApp/Views/account/profile.php" />
+        <option value="$PROJECT_DIR$/EShopApp/Controllers/AccountController.php" />
       </list>
     </option>
   </component>
@@ -145,136 +145,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="EShop" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="EShop" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="EShop" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="EShopApp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="EShop" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="EShop" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="EShopApp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="EShop" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="EShop" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="EShopApp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="account" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="EShop" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="EShop" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="EShopApp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="account" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="user" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="EShop" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="EShop" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="EShopApp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ViewModels" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="EShop" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="EShop" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="content" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="EShop" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="EShop" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="content" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="css" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -388,198 +258,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/EShopApp/Views/category/products/editProduct.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.11033275">
-          <caret line="3" column="30" selection-start-line="3" selection-start-column="30" selection-end-line="3" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/EShopApp/Views/account/editProfile.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.18388791">
-          <caret line="5" column="35" selection-start-line="5" selection-start-column="35" selection-end-line="5" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/EShopApp/Views/account/profile.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-15.4">
-          <caret line="34" column="36" selection-start-line="34" selection-start-column="36" selection-end-line="34" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/EShopApp/Config/AppUserRolesConfig.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33099824">
-          <caret line="9" column="10" selection-start-line="9" selection-start-column="10" selection-end-line="9" selection-end-column="10" />
-          <folding>
-            <element signature="e#291#643#0#PHP" expanded="false" />
-            <element signature="e#649#878#0#PHP" expanded="false" />
-            <element signature="e#884#1051#0#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/EShopApp/Models/BindModels/AddProductBindingModel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.2206655">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/EShopApp/ViewModels/CategoryProductsViewModel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.441331">
-          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/EShopApp/Controllers/CategoriesController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6619965">
-          <caret line="46" column="26" selection-start-line="46" selection-start-column="26" selection-end-line="46" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/EShopApp/Controllers/AccountController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.25744307">
-          <caret line="26" column="42" selection-start-line="26" selection-start-column="42" selection-end-line="26" selection-end-column="42" />
-          <folding>
-            <element signature="e#675#739#0#PHP" expanded="false" />
-            <element signature="e#789#831#0#PHP" expanded="false" />
-            <element signature="e#918#1044#0#PHP" expanded="false" />
-            <element signature="e#1110#1139#0#PHP" expanded="false" />
-            <element signature="e#1144#1578#0#PHP" expanded="false" />
-            <element signature="e#1285#1572#0#PHP" expanded="false" />
-            <element signature="e#1613#1707#0#PHP" expanded="false" />
-            <element signature="e#1712#2570#0#PHP" expanded="false" />
-            <element signature="e#2007#2481#0#PHP" expanded="false" />
-            <element signature="e#2228#2356#0#PHP" expanded="false" />
-            <element signature="e#2602#2724#0#PHP" expanded="false" />
-            <element signature="e#2729#3364#0#PHP" expanded="false" />
-            <element signature="e#3013#3168#0#PHP" expanded="false" />
-            <element signature="e#3405#3433#0#PHP" expanded="false" />
-            <element signature="e#3438#4024#0#PHP" expanded="false" />
-            <element signature="e#3529#3687#0#PHP" expanded="false" />
-            <element signature="e#3762#3865#0#PHP" expanded="false" />
-            <element signature="e#3875#3973#0#PHP" expanded="false" />
-            <element signature="e#4074#4103#0#PHP" expanded="false" />
-            <element signature="e#4108#4238#0#PHP" expanded="false" />
-            <element signature="e#4271#4300#0#PHP" expanded="false" />
-            <element signature="e#4305#4493#0#PHP" expanded="false" />
-            <element signature="e#4339#4487#0#PHP" expanded="false" />
-            <element signature="e#4527#4556#0#PHP" expanded="false" />
-            <element signature="e#4561#5054#0#PHP" expanded="false" />
-            <element signature="e#4723#4805#0#PHP" expanded="false" />
-            <element signature="e#4895#5048#0#PHP" expanded="false" />
-            <element signature="e#5090#5215#0#PHP" expanded="false" />
-            <element signature="e#5220#6406#0#PHP" expanded="false" />
-            <element signature="e#5393#5475#0#PHP" expanded="false" />
-            <element signature="e#5661#5800#0#PHP" expanded="false" />
-            <element signature="e#5955#6082#0#PHP" expanded="false" />
-            <element signature="e#6183#6352#0#PHP" expanded="false" />
-            <element signature="e#6445#6567#0#PHP" expanded="false" />
-            <element signature="e#6572#9631#0#PHP" expanded="false" />
-            <element signature="e#6745#6827#0#PHP" expanded="false" />
-            <element signature="e#6971#7104#0#PHP" expanded="false" />
-            <element signature="e#7238#7365#0#PHP" expanded="false" />
-            <element signature="e#7514#7692#0#PHP" expanded="false" />
-            <element signature="e#7842#7985#0#PHP" expanded="false" />
-            <element signature="e#7994#8433#0#PHP" expanded="false" />
-            <element signature="e#8066#8423#0#PHP" expanded="false" />
-            <element signature="e#8238#8409#0#PHP" expanded="false" />
-            <element signature="e#8442#9036#0#PHP" expanded="false" />
-            <element signature="e#8537#9026#0#PHP" expanded="false" />
-            <element signature="e#8654#8794#0#PHP" expanded="false" />
-            <element signature="e#8812#9012#0#PHP" expanded="false" />
-            <element signature="e#9045#9564#0#PHP" expanded="false" />
-            <element signature="e#9145#9554#0#PHP" expanded="false" />
-            <element signature="e#9240#9378#0#PHP" expanded="false" />
-            <element signature="e#9396#9540#0#PHP" expanded="false" />
-            <element signature="e#9675#9735#0#PHP" expanded="false" />
-            <element signature="e#9740#10281#0#PHP" expanded="false" />
-            <element signature="e#9919#10068#0#PHP" expanded="false" />
-            <element signature="e#10184#10275#0#PHP" expanded="false" />
-            <element signature="e#10318#10399#0#PHP" expanded="false" />
-            <element signature="e#10404#10931#0#PHP" expanded="false" />
-            <element signature="e#10572#10654#0#PHP" expanded="false" />
-            <element signature="e#10754#10925#0#PHP" expanded="false" />
-            <element signature="e#10968#11093#0#PHP" expanded="false" />
-            <element signature="e#11098#12444#0#PHP" expanded="false" />
-            <element signature="e#11273#11355#0#PHP" expanded="false" />
-            <element signature="e#11559#11705#0#PHP" expanded="false" />
-            <element signature="e#11714#12030#0#PHP" expanded="false" />
-            <element signature="e#11898#12020#0#PHP" expanded="false" />
-            <element signature="e#12039#12334#0#PHP" expanded="false" />
-            <element signature="e#12212#12324#0#PHP" expanded="false" />
-            <element signature="e#12343#12438#0#PHP" expanded="false" />
-            <element signature="e#12454#12674#0#PHP" expanded="false" />
-            <element signature="e#12547#12640#0#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/EShopApp/Controllers/HomeController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.29422066">
-          <caret line="12" column="39" selection-start-line="12" selection-start-column="39" selection-end-line="12" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/EShopApp/Controllers/TestController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="5.1488614">
-          <caret line="140" column="4" selection-start-line="140" selection-start-column="4" selection-end-line="140" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/EShopApp/Controllers/ProductsController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="2.9789844">
-          <caret line="81" column="14" selection-start-line="81" selection-start-column="14" selection-end-line="81" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/EShopApp/Views/public/navbar.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.18388791">
-          <caret line="5" column="66" selection-start-line="5" selection-start-column="66" selection-end-line="5" selection-end-column="66" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/EShopApp/ViewModels/CategoryViewModel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.66900176">
-          <caret line="35" column="45" selection-start-line="35" selection-start-column="45" selection-end-line="35" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/content/js/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.75540763">
-          <caret line="35" column="7" selection-start-line="35" selection-start-column="7" selection-end-line="35" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/EShopApp/Views/home/home.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5884413">
-          <caret line="16" column="28" selection-start-line="16" selection-start-column="28" selection-end-line="16" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/EShopApp/Views/category/category.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2591944">
-          <caret line="9" column="24" selection-start-line="9" selection-start-column="24" selection-end-line="9" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Framework/Exceptions/InvalidUserOperationException.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.8091068">
@@ -1001,14 +679,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/EShopApp/Repositories/ProductsRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/EShopApp/Repositories/UsersRepository.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.5744308">
@@ -1048,11 +718,225 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/EShopApp/Controllers/ProductsController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.97898424">
+          <caret line="81" column="14" selection-start-line="81" selection-start-column="14" selection-end-line="81" selection-end-column="14" />
+          <folding>
+            <element signature="e#37#84#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/EShopApp/Views/account/editProfile.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="64" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/EShopApp/ViewModels/UserProductsViewModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5884413">
+          <caret line="16" column="56" selection-start-line="15" selection-start-column="7" selection-end-line="16" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/EShopApp/ViewModels/ProfileViewModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.5814361">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/EShopApp/ViewModels/CategoryViewModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.66900176">
+          <caret line="70" column="30" selection-start-line="65" selection-start-column="12" selection-end-line="70" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/EShopApp/ViewModels/CategoryProductsViewModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.714536">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/EShopApp/Models/MiniProduct.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/EShopApp/Models/SoldProduct.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4045534">
+          <caret line="20" column="39" selection-start-line="20" selection-start-column="39" selection-end-line="20" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/EShopApp/Models/BindModels/ReorderProductBindingModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.55866903">
+          <caret line="16" column="50" selection-start-line="16" selection-start-column="50" selection-end-line="16" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/EShopApp/Models/BindModels/DeleteCategoryBindingModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.39754817">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/EShopApp/ViewModels/EditUserViewModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.51488614">
+          <caret line="19" column="102" selection-start-line="19" selection-start-column="8" selection-end-line="19" selection-end-column="102" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/EShopApp/Models/Product.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.8563923">
+          <caret line="14" column="20" selection-start-line="14" selection-start-column="20" selection-end-line="14" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/EShopApp/Repositories/ProductsRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.55341506">
+          <caret line="37" column="26" selection-start-line="37" selection-start-column="26" selection-end-line="37" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/EShopApp/Views/account/profile.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.86514884">
+          <caret line="25" column="32" selection-start-line="25" selection-start-column="32" selection-end-line="25" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/EShopApp/ViewModels/SoldProductsViewModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.96322244">
+          <caret line="37" column="60" selection-start-line="37" selection-start-column="60" selection-end-line="37" selection-end-column="60" />
+          <folding>
+            <element signature="e#36#72#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/EShopApp/Views/account/user/soldProducts.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.073555164">
+          <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/content/css/styles.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5108153">
-          <caret line="39" column="21" selection-start-line="39" selection-start-column="21" selection-end-line="39" selection-end-column="21" />
+        <state vertical-scroll-proportion="0.13976705">
+          <caret line="4" column="12" selection-start-line="4" selection-start-column="1" selection-end-line="4" selection-end-column="12" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/EShopApp/Controllers/AccountController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="2.464098">
+          <caret line="355" column="7" selection-start-line="355" selection-start-column="7" selection-end-line="355" selection-end-column="7" />
+          <folding>
+            <element signature="e#719#783#0#PHP" expanded="false" />
+            <element signature="e#833#875#0#PHP" expanded="false" />
+            <element signature="e#962#1088#0#PHP" expanded="false" />
+            <element signature="e#1154#1183#0#PHP" expanded="false" />
+            <element signature="e#1188#1622#0#PHP" expanded="false" />
+            <element signature="e#1329#1616#0#PHP" expanded="false" />
+            <element signature="e#1657#1751#0#PHP" expanded="false" />
+            <element signature="e#1756#2614#0#PHP" expanded="false" />
+            <element signature="e#2051#2525#0#PHP" expanded="false" />
+            <element signature="e#2272#2400#0#PHP" expanded="false" />
+            <element signature="e#2646#2768#0#PHP" expanded="false" />
+            <element signature="e#2773#3408#0#PHP" expanded="false" />
+            <element signature="e#3057#3212#0#PHP" expanded="false" />
+            <element signature="e#3449#3477#0#PHP" expanded="false" />
+            <element signature="e#3482#4068#0#PHP" expanded="false" />
+            <element signature="e#3573#3731#0#PHP" expanded="false" />
+            <element signature="e#3806#3909#0#PHP" expanded="false" />
+            <element signature="e#3919#4017#0#PHP" expanded="false" />
+            <element signature="e#4118#4147#0#PHP" expanded="false" />
+            <element signature="e#4152#4282#0#PHP" expanded="false" />
+            <element signature="e#4315#4344#0#PHP" expanded="false" />
+            <element signature="e#4349#4537#0#PHP" expanded="false" />
+            <element signature="e#4383#4531#0#PHP" expanded="false" />
+            <element signature="e#4571#4600#0#PHP" expanded="false" />
+            <element signature="e#4605#5098#0#PHP" expanded="false" />
+            <element signature="e#4767#4849#0#PHP" expanded="false" />
+            <element signature="e#4939#5092#0#PHP" expanded="false" />
+            <element signature="e#5134#5259#0#PHP" expanded="false" />
+            <element signature="e#5264#6450#0#PHP" expanded="false" />
+            <element signature="e#5437#5519#0#PHP" expanded="false" />
+            <element signature="e#5705#5844#0#PHP" expanded="false" />
+            <element signature="e#5999#6126#0#PHP" expanded="false" />
+            <element signature="e#6227#6396#0#PHP" expanded="false" />
+            <element signature="e#6489#6611#0#PHP" expanded="false" />
+            <element signature="e#6616#9675#0#PHP" expanded="false" />
+            <element signature="e#6789#6871#0#PHP" expanded="false" />
+            <element signature="e#7015#7148#0#PHP" expanded="false" />
+            <element signature="e#7282#7409#0#PHP" expanded="false" />
+            <element signature="e#7558#7736#0#PHP" expanded="false" />
+            <element signature="e#7886#8029#0#PHP" expanded="false" />
+            <element signature="e#8038#8477#0#PHP" expanded="false" />
+            <element signature="e#8110#8467#0#PHP" expanded="false" />
+            <element signature="e#8282#8453#0#PHP" expanded="false" />
+            <element signature="e#8486#9080#0#PHP" expanded="false" />
+            <element signature="e#8581#9070#0#PHP" expanded="false" />
+            <element signature="e#8698#8838#0#PHP" expanded="false" />
+            <element signature="e#8856#9056#0#PHP" expanded="false" />
+            <element signature="e#9089#9608#0#PHP" expanded="false" />
+            <element signature="e#9189#9598#0#PHP" expanded="false" />
+            <element signature="e#9284#9422#0#PHP" expanded="false" />
+            <element signature="e#9440#9584#0#PHP" expanded="false" />
+            <element signature="e#9719#9779#0#PHP" expanded="false" />
+            <element signature="e#9784#10325#0#PHP" expanded="false" />
+            <element signature="e#9963#10112#0#PHP" expanded="false" />
+            <element signature="e#10228#10319#0#PHP" expanded="false" />
+            <element signature="e#10362#10443#0#PHP" expanded="false" />
+            <element signature="e#10448#10975#0#PHP" expanded="false" />
+            <element signature="e#10616#10698#0#PHP" expanded="false" />
+            <element signature="e#10798#10969#0#PHP" expanded="false" />
+            <element signature="e#11012#11137#0#PHP" expanded="false" />
+            <element signature="e#11142#12488#0#PHP" expanded="false" />
+            <element signature="e#11317#11399#0#PHP" expanded="false" />
+            <element signature="e#11603#11749#0#PHP" expanded="false" />
+            <element signature="e#11758#12074#0#PHP" expanded="false" />
+            <element signature="e#11942#12064#0#PHP" expanded="false" />
+            <element signature="e#12083#12378#0#PHP" expanded="false" />
+            <element signature="e#12256#12368#0#PHP" expanded="false" />
+            <element signature="e#12387#12482#0#PHP" expanded="false" />
+            <element signature="e#12494#12534#0#PHP" expanded="false" />
+            <element signature="e#12539#12801#0#PHP" expanded="false" />
+            <element signature="e#12807#13036#0#PHP" expanded="false" />
+            <element signature="e#13041#13842#0#PHP" expanded="false" />
+            <element signature="e#13848#14068#0#PHP" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
