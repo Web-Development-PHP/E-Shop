@@ -17,8 +17,8 @@ class Select extends Element
         return $this;
     }
 
-    public function addOption($value, $text = null) {
-        $option = new Option($value, $text);
+    public function addOption($value, $text = null, $isSelected = false) {
+        $option = new Option($value, $text, $isSelected);
         $this->innerElements[] = $option;
         return $this;
     }

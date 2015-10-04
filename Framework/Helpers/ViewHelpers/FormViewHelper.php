@@ -37,7 +37,6 @@ class FormViewHelper extends ViewHelper
     }
 
     public static function render() {
-        //self::setAttribute('class', implode(' ', self::$classes));
         self::$attributes["class"] = implode(" ", self::$classes);
         $attributesString = "";
         $innerAttribute = "";
@@ -61,9 +60,10 @@ class FormViewHelper extends ViewHelper
             if($element->innerElements) {
                 foreach ($element->innerElements as $innerElement) {
                     $result .= "<$innerElement->elementName";
+                    $innerAttribute = "";
                     foreach($innerElement->attributes as $a => $v) {
                         if($a != 'text') {
-                            $innerAttribute = " $a = " . "\"$v\"";
+                            $innerAttribute .= " $a = " . "\"$v\"";
                         }
                     }
                     $result .= $innerAttribute . ">";

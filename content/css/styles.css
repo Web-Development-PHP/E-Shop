@@ -1,0 +1,40 @@
+#productMenu, #productMenu2, #categoryMenu {
+    display: none;
+}
+
+.productForm > input {
+    display: block;
+    padding: 5px;
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+
+.productForm > input[type="number"] {
+    width: 10%;
+}
+
+select  {
+    padding: 2px;
+    border-radius: 5px;
+}
+
+.delete-category-form {
+    display: inline;
+}
+
+#categoryName {
+    color: #333333;
+    text-decoration: none;
+    font-weight: 900;
+}
+
+.remove-btn {
+    width: 10%;
+}
+.discount {
+    width: 18% !important;
+}
+.price {
+    margin-bottom: 1%;
+    margin-top: 1%;
+}

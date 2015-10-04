@@ -80,7 +80,7 @@ class Router
         $reflMethods = $refClass->getMethods();
         foreach ($reflMethods as $method) {
             $doc = $method->getDocComment();
-            preg_match_all("/@(Admin)|@(Editor)|@(Guest)/", $doc, $userRoles);
+            preg_match_all("/@(Admin)|@(Editor)|@(User)/", $doc, $userRoles);
             if($userRoles[0] !== null &&  !empty($userRoles[0])) {
                 if($userRoles[0][0] !== null &&  !empty($userRoles[0][0])) {
                     foreach ($userRoles[0] as $value) {

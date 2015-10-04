@@ -8,7 +8,8 @@ use EShop\ViewModels\TestViewModel;
  */
 class TestController extends Controller
 {
-    public function __construct() {
+    public function __construct()
+    {
         parent::__construct();
     }
 
@@ -16,7 +17,8 @@ class TestController extends Controller
      * @Admin
 
      */
-    public function index() {
+    public function index()
+    {
 
         echo 'Index()';
     }
@@ -135,7 +137,8 @@ class TestController extends Controller
      * @Editor
      * @Route("test2")
      */
-    public function index2() {
+    public function index2()
+    {
         echo 'Index2()';
     }
 }

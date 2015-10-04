@@ -5,6 +5,7 @@ namespace EShop\Controllers;
 use EShop\Config\AppUserRolesConfig;
 use EShop\Config\RouteConfig;
 use EShop\Exceptions\InvalidCredentialsException;
+use EShop\Exceptions\InvalidUserInputException;
 use EShop\Exceptions\InvalidUserOperationException;
 use EShop\Helpers\RouteService;
 use EShop\Models\BindModels;
@@ -12,6 +13,8 @@ use EShop\Models\User;
 use EShop\Repositories\UsersRepository;
 use EShop\Services\ElectronicShopData;
 use EShop\View;
+use EShop\ViewModels\AdminPanelViewModel;
+use EShop\ViewModels\EditUserViewModel;
 use EShop\ViewModels\ProfileViewModel;
 use EShop\ViewModels\UserCartViewModel;
 use EShop\ViewModels\UserProductsViewModel;
@@ -29,21 +32,20 @@ class AccountController extends Controller
     private $_eshopData;
     const DEFAULT_USER_CASH = 150.00;   // Initial cash
 
-    public function __construct() {
+    public function __construct()
+    {
         parent::__construct();
         $this->_eshopData = new ElectronicShopData();
     }
 
-    public function index() {
-    }
+    public function index() { }
 
+    // GET account/profile
     /**
      * @Authorize
      */
-    public function profile() {
-        if(!$this->isLogged()) {
-            RouteService::redirect('home', 'login', true);
-        }
+    public function profile()
+    {
         $currentUser = $this->_eshopData->getUsersRepository()->findById($this->getCurrentUserId());
         if($currentUser != null) {
             $viewModel = new ProfileViewModel();
@@ -53,11 +55,13 @@ class AccountController extends Controller
         }
     }
 
+    // POST account/register
     /**
      * @param BindModels\RegisterBindingModel $userModel
      * @Route("register")
      */
-    public function registerUser(BindModels\RegisterBindingModel $userModel) {
+    public function registerUser(BindModels\RegisterBindingModel $userModel)
+    {
         $userModel->setCash(self::DEFAULT_USER_CASH);
         $userModel->setRole(AppUserRolesConfig::DEFAULT_USER_ROLE);
 
@@ -76,12 +80,14 @@ class AccountController extends Controller
         echo 'Register failed';
     }
 
+    // POST account/login
     /**
      * @param BindModels\LoginBindingModel $loginBindingModel
      * @throws \Exception
      * @Route("login")
      */
-    public function loginUser(BindModels\LoginBindingModel $loginBindingModel) {
+    public function loginUser(BindModels\LoginBindingModel $loginBindingModel)
+    {
         $username = $loginBindingModel->getUsername();
         $password = $loginBindingModel->getPassword();
 
@@ -94,6 +100,38 @@ class AccountController extends Controller
         RouteService::redirect('account', 'profile', true);
     }
 
+    // POST account/changePassword
+    /*
+     * @Authorize
+     */
+    public function changePassword(BindModels\ChangePasswordBindingModel $model)
+    {
+        if($model->getNewPassword() != $model->getConfirmPassword()) {
+            throw new InvalidUserInputException("Entered passwords does not match!");
+        }
+        $userId = $this->getCurrentUserId();
+        $isPasswordChanged = $this->_eshopData->getUsersRepository()
+            ->changePassword($userId, $model->getNewPassword());
+        if($isPasswordChanged) {
+            RouteService::redirect('account', 'profile', true);
+        }
+        echo "Error during change password";
+    }
+
+    // GET account/renderChangePasswordMenu
+    /**
+     * @Authorize
+     */
+    public function renderChangePasswordMenu()
+    {
+        $viewModel = new EditUserViewModel();
+        $viewModel->render();
+    }
+
+    // POST account/logout
+    /**
+     * @Authorize
+     */
     public function logout() {
        if($this->isLogged()) {
            session_unset();
@@ -102,10 +140,12 @@ class AccountController extends Controller
        }
     }
 
+    // GET account/viewCart
     /**
      * @Authorize
      */
-    public function viewCart() {
+    public function viewCart()
+    {
         $userId = $this->getCurrentUserId();
         $user = $this->_eshopData->getUsersRepository()->findById($userId);
         if($user == null) {
@@ -119,7 +159,15 @@ class AccountController extends Controller
         }
     }
 
-    public function addToCart($productId) {
+    // POST account/addToCart
+    /**
+     * @param $productId
+     * @throws InvalidUserOperationException
+     * @throws \Exception
+     * @Authorize
+     */
+    public function addToCart($productId)
+    {
         $userId = $this->getCurrentUserId();
         $user = $this->_eshopData->getUsersRepository()->findById($userId);
         if($user == null) {
@@ -144,6 +192,13 @@ class AccountController extends Controller
         echo 'failed to added product to cart';
     }
 
+    // POST account/checkoutCart
+    /**
+     * @param $cartId
+     * @throws InvalidUserOperationException
+     * @throws \Exception
+     * @Authorize
+     */
     public function checkoutCart($cartId)
     {
         $userId = $this->getCurrentUserId();
@@ -151,7 +206,6 @@ class AccountController extends Controller
         if($user == null) {
             throw new \Exception("Invalid user id");
         }
-
         // CART BELONGS TO CURRENT USER
         $userCartId = $this->_eshopData->getCartsRepository()->getCartForCurrentUser($userId);
         if($userCartId != $cartId) {
@@ -209,10 +263,13 @@ class AccountController extends Controller
         RouteService::redirect('account', 'profile', true);
     }
 
+    // POST GET/removeProductFromCart
     /**
      * @Route("removeProduct")
+     * @Authorize
      */
-    public function removeProductFromCart($cartId, $productId) {
+    public function removeProductFromCart($cartId, $productId)
+    {
         $isProductInCart = $this->_eshopData->getCartsRepository()->isProductInCart($cartId, $productId);
         if(!$isProductInCart) {
             throw new InvalidUserOperationException("You are trying to remove a product that is not in your cart");
@@ -223,11 +280,14 @@ class AccountController extends Controller
         }
     }
 
+    // POST GET/viewMyProducts
     /**
      * @throws \Exception
      * @Route("products")
+     * @Authorize
      */
-    public function viewMyProducts() {
+    public function viewMyProducts()
+    {
         $userId = $this->getCurrentUserId();
         $user = $this->_eshopData->getUsersRepository()->findById($userId);
         if($user == null) {
@@ -240,8 +300,15 @@ class AccountController extends Controller
             $viewModel->render();
         }
     }
-
-    public function sellProduct($productId) {
+    // POST account/sellProduct
+    /**
+     * @param $productId
+     * @throws InvalidUserOperationException
+     * @throws \Exception
+     * @Authorize
+     */
+    public function sellProduct($productId)
+    {
         $userId = $this->getCurrentUserId();
         $user = $this->_eshopData->getUsersRepository()->findById($userId);
         if($user == null) {
@@ -273,7 +340,8 @@ class AccountController extends Controller
         }
     }
     
-    private function getProductsTotalSum($cartProducts) {
+    private function getProductsTotalSum($cartProducts)
+    {
         $totalPrice = 0.0;
         foreach ($cartProducts as $product) {
             $totalPrice += $product['price'];

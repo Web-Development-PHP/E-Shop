@@ -1,12 +1,17 @@
 <?php /** * @var \EShop\ViewModels\HomeViewModel */  ?>
 
-<h1>Welcome to our site</h1>
+<div class="jumbotron">
+    <h1>Welcome to E-shop</h1>
 
-<div>
-    <a href="<?= \EShop\Config\RouteConfig::getBasePath(); ?>home/login">Login</a>
+<?php if(!isset($_SESSION['id'])) : ?>
+    <div>
+        <a class="btn btn-primary btn-lg" href="<?= \EShop\Config\RouteConfig::getBasePath(); ?>home/login">Login</a>
+        <a class="btn btn-default  btn-lg" href="<?= \EShop\Config\RouteConfig::getBasePath(); ?>home/register">Register</a>
+    </div>
+    <div>
+
+    </div>
 </div>
-<div>
-    <a href="<?= \EShop\Config\RouteConfig::getBasePath(); ?>home/register">Register</a>
-</div>
+<?php endif; ?>
 <?php
 //$this->renderSampleAjax();

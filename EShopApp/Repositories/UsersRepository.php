@@ -36,19 +36,15 @@ class UsersRepository implements IRepository
             return null;
         }
         $user = new UserViewModel($data);
-
         return $user;
     }
 
     public function findByUsername($username) {
         $data = $this->db->getEntityByColumnName(self::USERS_TABLENAME, 'username', $username);
-        var_dump($username);
         if($data == null) {
             return null;
         }
-        ;
         $user = new User($data);
-
         return $user;
     }
 
@@ -96,6 +92,14 @@ class UsersRepository implements IRepository
             'cash' => $userCurrentCash
         ), $userId);
         return $isUpdated;
+    }
+
+    public function changePassword($userId, $newPassword)
+    {
+        $isChanged = $this->db->updateEntityById(self::USERS_TABLENAME, array(
+            "password" => password_hash($newPassword, AppConfig::PASSWORD_CRYPT_METHOD),
+        ), $userId);
+        return $isChanged;
     }
 
     public function remove($id)

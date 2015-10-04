@@ -17,20 +17,24 @@ class HomeController extends Controller
         parent::__construct();
     }
 
-    public function index() {
+    // GET home/index
+    public function index()
+    {
         $view = new HomeViewModel();
         $view->render();
     }
-
-    public function login() {
+    // GET home/login
+    public function login()
+    {
         if($this->isLogged()) {
             RouteService::redirect('account', 'profile', true);
         }
         $v = new LoginViewModel();
         $v->render();
     }
-
-    public function register() {
+    // GET home/register
+    public function register()
+    {
         if($this->isLogged()) {
             RouteService::redirect('account', 'profile', true);
         }

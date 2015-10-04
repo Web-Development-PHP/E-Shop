@@ -2,6 +2,8 @@
 
 namespace EShop\Helpers;
 
+use EShop\Exceptions\InvalidUserInputException;
+use EShop\Exceptions\UnauthorizedException;
 use EShop\Models\IBindingModel;
 
 class ReflectionService
@@ -21,7 +23,7 @@ class ReflectionService
         $authorizations = $this->getControllerAuthorization($controller);
         if(!empty($authorizations[0])) {
             if(!isset($_SESSION['id'])) {
-                throw new \Exception("You are not authorized!");
+                throw new UnauthorizedException("You are not authorized!");
             }
         }
     }
@@ -49,7 +51,7 @@ class ReflectionService
         }
         if(!in_array($actionName, $assoc) && !empty($authorizationAnnotation[0])) {
             if(!isset($_SESSION['id'])) {
-                throw new \Exception('You are not authorized');
+                throw new UnauthorizedException('You are not authorized');
             }
         }
         $arr = array_values($assoc);
@@ -63,7 +65,7 @@ class ReflectionService
                 if($auth == "@Authorize" &&
                     (strtolower($actionName) == $arrKeys[$index] || $actionName == $value)) {
                     if(!isset($_SESSION['id'])) {
-                        throw new \Exception('You are not authorized');
+                        throw new UnauthorizedException('You are not authorized');
                     }
                 }
             }
@@ -73,10 +75,10 @@ class ReflectionService
 
     public static function validateBindingModel($model) {
         if($_POST['formToken'] != TokenHelper::getCSRFToken()) {
-            throw new \Exception("Invalid BindingModel ");
+            throw new UnauthorizedException("Invalid BindingModel ");
         }
         if(!$model instanceof IBindingModel) {
-            throw new \Exception("Invalid BindingModel [Required parameters are empty/missing]");
+            throw new InvalidUserInputException("Invalid BindingModel [Your BindingModel does not implemented IBindingModel]");
         }
 
         $reflection = new \ReflectionClass($model);
@@ -87,7 +89,7 @@ class ReflectionService
                 $property = substr($property->getName(), 1, strlen($property->getName()));
             }
             if(!in_array($property, $postKeys) || empty($_POST[$property])) {
-                throw new \Exception("Invalid BindingModel [Required parameters are empty/missing]");
+                throw new InvalidUserInputException("Invalid BindingModel [Required parameters are empty/missing]");
             }
         }
     }

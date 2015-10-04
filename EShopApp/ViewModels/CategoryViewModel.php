@@ -24,11 +24,14 @@ class CategoryViewModel extends ViewModel
         if(AppUserRolesConfig::hasAddEditDeletePriviligies()) {
 
             FormViewHelper::init();
+            FormViewHelper::setAttribute('class', 'delete-category-form');
             FormViewHelper::setMethod("post");
             FormViewHelper::setAction(\EShop\Config\RouteConfig::getBasePath(). 'categories/delete');
             FormViewHelper::initSubmitButton()
                 ->setValue('Delete')
+                ->setName('confirm')
                 ->setAttribute('class', 'btn-delete-category')
+                ->setAttribute('class', 'btn btn-danger btn-sm')
                 ->create();
             FormViewHelper::initHiddenField()
                 ->setName('categoryId')
@@ -43,6 +46,7 @@ class CategoryViewModel extends ViewModel
         if(AppUserRolesConfig::hasAddEditDeletePriviligies()) {
 
             \EShop\Helpers\ViewHelpers\FormViewHelper::init();
+            FormViewHelper::setAttribute('class', 'form-horizontal productForm');
             \EShop\Helpers\ViewHelpers\FormViewHelper::initTextField()
                 ->setName("productName")
                 ->setAttribute('placeholder', 'Product name...')
@@ -55,6 +59,7 @@ class CategoryViewModel extends ViewModel
 
             \EShop\Helpers\ViewHelpers\FormViewHelper::initNumberField()
                 ->setName("quantity")
+                ->setAttribute("placeholder", "Quantity")
                 ->setAttribute('min', '1')
                 ->create();
 
@@ -67,6 +72,7 @@ class CategoryViewModel extends ViewModel
 
             \EShop\Helpers\ViewHelpers\FormViewHelper::initSubmitButton()
                 ->setValue('Add Product')
+                ->setAttribute('class', 'btn btn-default')
                 ->create();
 
             \EShop\Helpers\ViewHelpers\FormViewHelper::setAction(\EShop\Config\RouteConfig::getBasePath(). 'products/addProduct');
@@ -88,6 +94,7 @@ class CategoryViewModel extends ViewModel
                 ->create();
             FormViewHelper::initSubmitButton()
                 ->setValue('Add Category')
+                ->setAttribute('class', 'btn btn-default')
                 ->create()
                 ->render();
         }

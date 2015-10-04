@@ -36,7 +36,7 @@ class CategoriesController extends Controller
         $this->_eshopData = new ElectronicShopData();
     }
 
-
+    // GET categories/all
     public function all() {
         $categories = $this->_eshopData->getCategoriesRepository()->all();
         $viewModel = new CategoryViewModel();
@@ -44,6 +44,7 @@ class CategoriesController extends Controller
         $viewModel->render();
     }
 
+    // POST categories/add
     public function add(CreateCategoryBindingModel $model) {
         $isCreated = $this->_eshopData->getCategoriesRepository()->create($model);
         if($isCreated) {
@@ -52,6 +53,7 @@ class CategoriesController extends Controller
         echo 'Error during create category';
     }
 
+    // POST categories/delete
     /**
      * @param DeleteCategoryBindingModel $model
      * @throws \Exception
@@ -80,6 +82,7 @@ class CategoriesController extends Controller
         if($products) {
             $viewModel = new CategoryProductsViewModel();
             $viewModel->productViewModel = $products;
+            $viewModel->currentCategoryId = $categoryId;
             $viewModel->render();
         }
     }

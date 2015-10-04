@@ -11,8 +11,11 @@ namespace EShop\Helpers\ViewHelpers\Elements;
 
 class Option extends Element
 {
-    public function __construct($value, $text = null) {
+    public function __construct($value, $text = null, $isSelected = false) {
         $this->elementName = "option";
+        if($isSelected) {
+            $this->setAttribute('selected', 'selected');
+        }
         $this->setValue($value);
         $this->setAttribute('text', $text);
         return $this;

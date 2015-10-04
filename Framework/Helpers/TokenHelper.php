@@ -10,6 +10,9 @@ class TokenHelper
     }
 
     public static function getCSRFToken() {
+        if(!isset($_SESSION['formToken'])) {
+            self::setCSRFToken();
+        }
         return $_SESSION['formToken'];
     }
 }

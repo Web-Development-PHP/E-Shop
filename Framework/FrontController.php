@@ -48,22 +48,18 @@ class FrontController
             $bindingModelClass = $actionTypeParams[0];
             $bindingModel = new $bindingModelClass($_POST);
             ReflectionService::validateBindingModel($bindingModel);
+
             unset($_SESSION['formToken']);
             call_user_func(array($this->controller, $this->actionName), $bindingModel);
 
         }else {
+            unset($_SESSION['formToken']);
             call_user_func_array([ $this->controller, $this->actionName ], $this->requestParams );
         }
-        if( $_SERVER['REQUEST_METHOD'] == 'POST' ||
-            $_SERVER['REQUEST_METHOD'] == 'PUT'  ||
-            $_SERVER['REQUEST_METHOD'] == 'DELETE') {
-            TokenHelper::setCSRFToken();
-        }
+
         self::$_router->getControllerRolesAnnotation($this->controller);
         self::$_router->isInRole($this->actionName);
     }
-
-
 
     private function loadSpecialRoute() {
         $customRoutes = self::$_router->getAllClassesCustomRoutes();

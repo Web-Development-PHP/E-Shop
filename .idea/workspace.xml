@@ -21,43 +21,7 @@
     <favorites_list name="EShop" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="index.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/EShopApp/index.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-6.3">
-              <caret line="9" column="6" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="6" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="navbar.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/EShopApp/Views/public/navbar.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-7.0">
-              <caret line="10" column="6" selection-start-line="10" selection-start-column="6" selection-end-line="10" selection-end-column="6" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AccountController.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/EShopApp/Controllers/AccountController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.29422066">
-              <caret line="27" column="7" selection-start-line="27" selection-start-column="7" selection-end-line="27" selection-end-column="7" />
-              <folding>
-                <element signature="e#3248#3436#0#PHP" expanded="false" />
-                <element signature="e#3442#3471#0#PHP" expanded="false" />
-                <element signature="e#8815#8878#0#PHP" expanded="false" />
-                <element signature="e#10764#10980#0#PHP" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -70,57 +34,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/EShopApp/Views/account/userCart.php" />
-        <option value="$PROJECT_DIR$/Framework/Helpers/ViewHelpers/Elements/HiddenField.php" />
+        <option value="$PROJECT_DIR$/Framework/Helpers/TokenHelper.php" />
+        <option value="$PROJECT_DIR$/Framework/FrontController.php" />
         <option value="$PROJECT_DIR$/Framework/Helpers/ViewHelpers/Elements/Select.php" />
         <option value="$PROJECT_DIR$/Framework/Helpers/ViewHelpers/Elements/Option.php" />
-        <option value="$PROJECT_DIR$/Framework/Helpers/ViewHelpers/Elements/CSRF.php" />
-        <option value="$PROJECT_DIR$/Framework/Helpers/TokenHelper.php" />
-        <option value="$PROJECT_DIR$/Framework/Exceptions/InvalidCredentialsException.php" />
-        <option value="$PROJECT_DIR$/Framework/Exceptions/InvalidUserInputException.php" />
-        <option value="$PROJECT_DIR$/EShopApp/Repositories/UsersRepository.php" />
-        <option value="$PROJECT_DIR$/Framework/Helpers/ViewHelpers/Elements/Element.php" />
-        <option value="$PROJECT_DIR$/Framework/Helpers/ViewHelpers/Elements/NumberField.php" />
-        <option value="$PROJECT_DIR$/EShopApp/Models/BindModels/AddProductBindingModel.php" />
-        <option value="$PROJECT_DIR$/Framework/FrontController.php" />
-        <option value="$PROJECT_DIR$/Framework/Helpers/ReflectionService.php" />
-        <option value="$PROJECT_DIR$/EShopApp/Controllers/ProductsController.php" />
-        <option value="$PROJECT_DIR$/EShopApp/Repositories/ProductsRepository.php" />
-        <option value="$PROJECT_DIR$/Framework/Router.php" />
-        <option value="$PROJECT_DIR$/Framework/Controllers/Controller.php" />
-        <option value="$PROJECT_DIR$/Framework/Helpers/ViewHelpers/Elements/Anchor.php" />
         <option value="$PROJECT_DIR$/Framework/Helpers/ViewHelpers/FormViewHelper.php" />
-        <option value="$PROJECT_DIR$/EShopApp/Views/category/products/categoryProducts.php" />
-        <option value="$PROJECT_DIR$/EShopApp/Models/BindModels/DeleteCategoryBindingModel.php" />
-        <option value="$PROJECT_DIR$/EShopApp/Views/category/addCategory.php" />
-        <option value="$PROJECT_DIR$/EShopApp/Views/category/category.php" />
-        <option value="$PROJECT_DIR$/Framework/Core/Database.php" />
-        <option value="$PROJECT_DIR$/EShopApp/Controllers/HomeController.php" />
-        <option value="$PROJECT_DIR$/Framework/Config/AppUserRolesConfig.php" />
-        <option value="$PROJECT_DIR$/EShopApp/ViewModels/CategoryProductsViewModel.php" />
-        <option value="$PROJECT_DIR$/EShopApp/Repositories/CategoriesRepository.php" />
-        <option value="$PROJECT_DIR$/Framework/Exceptions/InvalidUserOperationException.php" />
-        <option value="$PROJECT_DIR$/Framework/App.php" />
-        <option value="$PROJECT_DIR$/EShopApp/Controllers/CategoriesController.php" />
-        <option value="$PROJECT_DIR$/EShopApp/ViewModels/CategoryViewModel.php" />
-        <option value="$PROJECT_DIR$/EShopApp/Views/home/login.php" />
-        <option value="$PROJECT_DIR$/EShopApp/Views/home/register.php" />
-        <option value="$PROJECT_DIR$/EShopApp/ViewModels/RegisterViewModel.php" />
-        <option value="$PROJECT_DIR$/EShopApp/ViewModels/LoginViewModel.php" />
-        <option value="$PROJECT_DIR$/Framework/ViewModels/ViewModel.php" />
-        <option value="$PROJECT_DIR$/Framework/.htaccess" />
-        <option value="$PROJECT_DIR$/EShopApp/.htaccess" />
-        <option value="$PROJECT_DIR$/EShopApp/Models/AjaxTest.php" />
-        <option value="$PROJECT_DIR$/EShopApp/Controllers/TestController.php" />
-        <option value="$PROJECT_DIR$/EShopApp/Views/home/test.php" />
-        <option value="$PROJECT_DIR$/EShopApp/ViewModels/TestViewModel.php" />
-        <option value="$PROJECT_DIR$/EShopApp/ViewModels/HomeViewModel.php" />
-        <option value="$PROJECT_DIR$/content/js/app.js" />
-        <option value="$PROJECT_DIR$/EShopApp/Views/home/home.php" />
-        <option value="$PROJECT_DIR$/EShopApp/Views/public/navbar.php" />
-        <option value="$PROJECT_DIR$/EShopApp/index.php" />
+        <option value="$PROJECT_DIR$/Framework/Router.php" />
         <option value="$PROJECT_DIR$/EShopApp/Config/AppUserRolesConfig.php" />
+        <option value="$PROJECT_DIR$/EShopApp/Models/BindModels/AddCategoryPromoBindingModel.php" />
+        <option value="$PROJECT_DIR$/EShopApp/Models/PromoCategory.php" />
+        <option value="$PROJECT_DIR$/Framework/Core/Database.php" />
+        <option value="$PROJECT_DIR$/EShopApp/Models/BindModels/AddAllProductsPromoBindingModel.php" />
+        <option value="$PROJECT_DIR$/EShopApp/Models/ProductsPromo.php" />
+        <option value="$PROJECT_DIR$/EShopApp/Models/ProductPromo.php" />
+        <option value="$PROJECT_DIR$/EShopApp/Models/BindModels/AddProductPromoBindingModel.php" />
+        <option value="$PROJECT_DIR$/EShopApp/Areas/Admin/Controllers/AdminController.php" />
+        <option value="$PROJECT_DIR$/EShopApp/Models/BindModels/DeleteProductBindingModel.php" />
+        <option value="$PROJECT_DIR$/EShopApp/Repositories/ProductsRepository.php" />
+        <option value="$PROJECT_DIR$/EShopApp/ViewModels/ProfileViewModel.php" />
+        <option value="$PROJECT_DIR$/EShopApp/Views/public/footer.php" />
+        <option value="$PROJECT_DIR$/EShopApp/Views/account/userCart.php" />
+        <option value="$PROJECT_DIR$/EShopApp/Views/account/user/products.php" />
+        <option value="$PROJECT_DIR$/EShopApp/Views/account/user/adminPanel.php" />
+        <option value="$PROJECT_DIR$/EShopApp/ViewModels/AdminPanelViewModel.php" />
+        <option value="$PROJECT_DIR$/EShopApp/Views/category/products/editProduct.php" />
+        <option value="$PROJECT_DIR$/EShopApp/ViewModels/EditProductViewModel.php" />
+        <option value="$PROJECT_DIR$/EShopApp/Views/account/user/editProfile.php" />
+        <option value="$PROJECT_DIR$/EShopApp/Models/BindModels/ChangePasswordBindingModel.php" />
+        <option value="$PROJECT_DIR$/EShopApp/Repositories/UsersRepository.php" />
+        <option value="$PROJECT_DIR$/EShopApp/ViewModels/EditUserViewModel.php" />
+        <option value="$PROJECT_DIR$/EShopApp/Views/account/editProfile.php" />
+        <option value="$PROJECT_DIR$/content/css/styles.css" />
+        <option value="$PROJECT_DIR$/EShopApp/Views/account/profile.php" />
+        <option value="$PROJECT_DIR$/Framework/ViewModels/ViewModel.php" />
+        <option value="$PROJECT_DIR$/EShopApp/Views/category/category.php" />
+        <option value="$PROJECT_DIR$/EShopApp/ViewModels/CategoryProductsViewModel.php" />
+        <option value="$PROJECT_DIR$/EShopApp/Controllers/CategoriesController.php" />
         <option value="$PROJECT_DIR$/EShopApp/Controllers/AccountController.php" />
+        <option value="$PROJECT_DIR$/EShopApp/Controllers/HomeController.php" />
+        <option value="$PROJECT_DIR$/EShopApp/Controllers/TestController.php" />
+        <option value="$PROJECT_DIR$/EShopApp/Controllers/ProductsController.php" />
+        <option value="$PROJECT_DIR$/EShopApp/Views/category/products/categoryProducts.php" />
+        <option value="$PROJECT_DIR$/EShopApp/Views/public/navbar.php" />
+        <option value="$PROJECT_DIR$/EShopApp/Repositories/CategoriesRepository.php" />
+        <option value="$PROJECT_DIR$/content/js/app.js" />
+        <option value="$PROJECT_DIR$/EShopApp/ViewModels/CategoryViewModel.php" />
+        <option value="$PROJECT_DIR$/EShopApp/Views/home/home.php" />
+        <option value="$PROJECT_DIR$/Framework/Exceptions/UnauthorizedException.php" />
+        <option value="$PROJECT_DIR$/Framework/Helpers/ReflectionService.php" />
+        <option value="$PROJECT_DIR$/Framework/App.php" />
+        <option value="$PROJECT_DIR$/Framework/index.php" />
+        <option value="$PROJECT_DIR$/EShopApp/index.php" />
       </list>
     </option>
   </component>
@@ -164,6 +128,8 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -181,11 +147,37 @@
               <option name="myItemId" value="EShop" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Framework" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="EShop" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="EShop" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="EShopApp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="EShop" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="EShop" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -204,6 +196,7 @@
       <recent name="E:\xampp\htdocs\WebBasics\EShop\Framework\Views" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\xampp\htdocs\WebBasics\EShop\EShopApp\Views\account" />
       <recent name="E:\xampp\htdocs\WebBasics\EShop" />
       <recent name="E:\xampp\htdocs\WebBasics\EShop\EShopApp\Views\home" />
       <recent name="E:\xampp\htdocs\WebBasics\EShop\EShopApp" />
@@ -259,7 +252,6 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.328594" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.328594" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.328594" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -271,6 +263,7 @@
       <window_info id="Command Line Tools Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.328594" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.328594" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
@@ -288,469 +281,365 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="9" />
+      <option name="time" value="11" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/EShopApp/Views/account/profile.php">
+    <entry file="file://$PROJECT_DIR$/EShopApp/Models/BindModels/AddCategoryPromoBindingModel.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="60" />
+        <state vertical-scroll-proportion="0.441331">
+          <caret line="14" column="50" selection-start-line="14" selection-start-column="50" selection-end-line="14" selection-end-column="50" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Framework/FrontController.php">
+    <entry file="file://$PROJECT_DIR$/EShopApp/Models/BindModels/AddAllProductsPromoBindingModel.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2206655">
-          <caret line="58" column="53" selection-start-line="58" selection-start-column="53" selection-end-line="58" selection-end-column="53" />
-          <folding />
+        <state vertical-scroll-proportion="0.30122593">
+          <caret line="13" column="54" selection-start-line="13" selection-start-column="54" selection-end-line="13" selection-end-column="54" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/EShopApp/Models/BindModels/AddProductBindingModel.php">
+    <entry file="file://$PROJECT_DIR$/EShopApp/Models/PromoCategory.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4045534">
-          <caret line="11" column="23" selection-start-line="11" selection-start-column="23" selection-end-line="11" selection-end-column="23" />
-          <folding />
+        <state vertical-scroll-proportion="0.47810858">
+          <caret line="13" column="46" selection-start-line="13" selection-start-column="46" selection-end-line="13" selection-end-column="46" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Framework/Helpers/ReflectionService.php">
+    <entry file="file://$PROJECT_DIR$/EShopApp/Models/ProductsPromo.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.35726795">
-          <caret line="73" column="57" selection-start-line="73" selection-start-column="57" selection-end-line="73" selection-end-column="57" />
-          <folding>
-            <element signature="e#946#1216#0#PHP" expanded="false" />
-          </folding>
+        <state vertical-scroll-proportion="0.55166376">
+          <caret line="15" column="46" selection-start-line="15" selection-start-column="46" selection-end-line="15" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/EShopApp/Models/ProductPromo.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.36777583">
+          <caret line="19" column="49" selection-start-line="19" selection-start-column="49" selection-end-line="19" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/EShopApp/Models/BindModels/AddProductPromoBindingModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.51488614">
+          <caret line="14" column="49" selection-start-line="14" selection-start-column="49" selection-end-line="14" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/EShopApp/Models/BindModels/DeleteProductBindingModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.47810858">
+          <caret line="13" column="54" selection-start-line="13" selection-start-column="54" selection-end-line="13" selection-end-column="54" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/EShopApp/Repositories/ProductsRepository.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5901926">
-          <caret line="64" column="11" selection-start-line="64" selection-start-column="11" selection-end-line="64" selection-end-column="11" />
-          <folding />
+        <state vertical-scroll-proportion="0.33099824">
+          <caret line="85" column="28" selection-start-line="85" selection-start-column="28" selection-end-line="85" selection-end-column="28" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Framework/Helpers/RouteService.php">
+    <entry file="file://$PROJECT_DIR$/EShopApp/Areas/Admin/Controllers/AdminController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+        <state vertical-scroll-proportion="0.33099824">
+          <caret line="41" column="69" selection-start-line="41" selection-start-column="69" selection-end-line="41" selection-end-column="69" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Framework/Router.php">
+    <entry file="file://$PROJECT_DIR$/EShopApp/Views/public/footer.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.47810858">
-          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-          <folding>
-            <element signature="e#349#386#0#PHP" expanded="false" />
-            <element signature="e#392#570#0#PHP" expanded="false" />
-            <element signature="e#576#1118#0#PHP" expanded="false" />
-            <element signature="e#1124#1941#0#PHP" expanded="false" />
-            <element signature="e#1947#2393#0#PHP" expanded="false" />
-            <element signature="e#2399#3264#0#PHP" expanded="false" />
-            <element signature="e#3270#4399#0#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/EShopApp/Controllers/ProductsController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5218914">
-          <caret line="16" column="30" selection-start-line="16" selection-start-column="30" selection-end-line="16" selection-end-column="30" />
-          <folding>
-            <element signature="e#37#68#0#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Framework/Controllers/Controller.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33800352">
-          <caret line="13" column="19" selection-start-line="13" selection-start-column="19" selection-end-line="13" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Framework/Helpers/ViewHelpers/Elements/TextArea.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.29422066">
-          <caret line="13" column="4" selection-start-line="13" selection-start-column="4" selection-end-line="17" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Framework/Helpers/ViewHelpers/Elements/SubmitButton.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Framework/Helpers/ViewHelpers/FormViewHelper.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7425569">
-          <caret line="156" column="5" selection-start-line="156" selection-start-column="5" selection-end-line="156" selection-end-column="5" />
-          <folding>
-            <element signature="e#45#75#0#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/EShopApp/Views/category/products/categoryProducts.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.73555166">
-          <caret line="20" column="30" selection-start-line="20" selection-start-column="30" selection-end-line="20" selection-end-column="30" />
-          <folding />
+        <state vertical-scroll-proportion="0.36777583">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/EShopApp/ViewModels/ProfileViewModel.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+        <state vertical-scroll-proportion="-4.3333335">
+          <caret line="23" column="47" selection-start-line="23" selection-start-column="47" selection-end-line="23" selection-end-column="47" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/EShopApp/Models/BindModels/DeleteCategoryBindingModel.php">
+    <entry file="file://$PROJECT_DIR$/EShopApp/Views/account/userCart.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.5333333">
+          <caret line="5" column="28" selection-start-line="5" selection-start-column="28" selection-end-line="5" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/EShopApp/ViewModels/AdminPanelViewModel.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.30122593">
-          <caret line="19" column="58" selection-start-line="19" selection-start-column="58" selection-end-line="19" selection-end-column="58" />
-          <folding />
+          <caret line="151" column="58" selection-start-line="151" selection-start-column="58" selection-end-line="151" selection-end-column="58" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/EShopApp/Views/category/addCategory.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/EShopApp/Services/ElectronicShopData.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3905429">
-          <caret line="53" column="20" selection-start-line="53" selection-start-column="20" selection-end-line="53" selection-end-column="20" />
-          <folding>
-            <element signature="e#233#275#0#PHP" expanded="false" />
-            <element signature="e#314#358#0#PHP" expanded="false" />
-            <element signature="e#399#438#0#PHP" expanded="false" />
-            <element signature="e#474#513#0#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Framework/Core/Database.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.40630472">
-          <caret line="122" column="36" selection-start-line="122" selection-start-column="36" selection-end-line="122" selection-end-column="36" />
-          <folding>
-            <marker date="1443775887100" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..." />
-            <marker date="1443775887100" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..." />
-            <marker date="1443775887100" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..." />
-            <marker date="1443775887100" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..." />
-            <marker date="1443775887100" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..." />
-            <marker date="1443775887100" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..." />
-            <marker date="1443775887100" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..." />
-            <marker date="1443775887100" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..." />
-            <marker date="1443775887100" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..." />
-            <marker date="1443775887100" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
-            <marker date="1443775887100" expanded="true" signature="-1:-1" placeholder="DELETE FROM ..." />
-            <marker date="1443775887100" expanded="true" signature="-1:-1" placeholder="SELECT cp.id..users..." />
-            <marker date="1443775887100" expanded="true" signature="-1:-1" placeholder="SELECT p.id,..cart_products..." />
-            <marker date="1443775887100" expanded="true" signature="-1:-1" placeholder="SELECT p.cat..users_products..." />
-            <marker date="1443775887100" expanded="true" signature="-1:-1" placeholder="SELECT p.cat..products..." />
-            <marker date="1443775887100" expanded="true" signature="-1:-1" placeholder="SELECT up.pr..users_products..." />
-            <marker date="1443775887100" expanded="true" signature="-1:-1" placeholder="SELECT cp.pr..cart_products..." />
-            <marker date="1443775887100" expanded="true" signature="-1:-1" placeholder="SELECT id FR..usercart..." />
-            <marker date="1443775887100" expanded="true" signature="-1:-1" placeholder="SELECT id FR..cart_products..." />
-            <marker date="1443775887100" expanded="true" signature="-1:-1" placeholder="DELETE FROM ..." />
-            <marker date="1443775887100" expanded="true" signature="-1:-1" placeholder="DELETE FROM ..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/EShopApp/Controllers/HomeController.php">
+    <entry file="file://$PROJECT_DIR$/EShopApp/Views/account/user/adminPanel.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.9264448">
-          <caret line="34" column="24" selection-start-line="34" selection-start-column="24" selection-end-line="34" selection-end-column="24" />
-          <folding>
-            <element signature="e#39#70#0#PHP" expanded="false" />
-          </folding>
+          <caret line="26" column="14" selection-start-line="26" selection-start-column="14" selection-end-line="26" selection-end-column="14" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/EShopApp/Repositories/CategoriesRepository.php">
+    <entry file="file://$PROJECT_DIR$/EShopApp/ViewModels/EditProductViewModel.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="2.464098">
-          <caret line="77" column="25" selection-start-line="77" selection-start-column="25" selection-end-line="77" selection-end-column="25" />
-          <folding />
+        <state vertical-scroll-proportion="0.66900176">
+          <caret line="60" column="8" selection-start-line="60" selection-start-column="8" selection-end-line="61" selection-end-column="65" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Framework/Exceptions/InvalidUserInputException.php">
+    <entry file="file://$PROJECT_DIR$/EShopApp/Views/account/user/products.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.29422066">
-          <caret line="13" column="4" selection-start-line="13" selection-start-column="4" selection-end-line="29" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Framework/Exceptions/InvalidUserOperationException.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2206655">
-          <caret line="6" column="48" selection-start-line="6" selection-start-column="48" selection-end-line="6" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Framework/App.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.72154117">
-          <caret line="45" column="46" selection-start-line="45" selection-start-column="46" selection-end-line="45" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/EShopApp/Controllers/CategoriesController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3030303">
-          <caret line="17" column="39" selection-start-line="17" selection-start-column="39" selection-end-line="17" selection-end-column="39" />
-          <folding>
-            <element signature="e#6#88#0#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/EShopApp/Views/category/category.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/EShopApp/Views/home/register.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.036777582">
-          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/EShopApp/ViewModels/RegisterViewModel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33099824">
-          <caret line="14" column="1" selection-start-line="14" selection-start-column="1" selection-end-line="14" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Framework/ViewModels/ViewModel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.55166376">
-          <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-          <folding>
-            <element signature="e#1009#2221#0#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/EShopApp/ViewModels/CategoryProductsViewModel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.333333">
-          <caret line="17" column="5" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
-          <folding>
-            <element signature="e#36#72#0#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/EShopApp/ViewModels/CategoryViewModel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-14.433333">
-          <caret line="98" column="61" selection-start-line="98" selection-start-column="61" selection-end-line="98" selection-end-column="61" />
-          <folding>
-            <element signature="e#36#72#0#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/EShopApp/ViewModels/LoginViewModel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.3">
-          <caret line="14" column="1" selection-start-line="14" selection-start-column="1" selection-end-line="14" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/EShopApp/ViewModels/UserCartViewModel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/EShopApp/ViewModels/UserProductsViewModel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.4">
-          <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-          <folding />
+        <state vertical-scroll-proportion="0.36777583">
+          <caret line="10" column="103" selection-start-line="10" selection-start-column="103" selection-end-line="10" selection-end-column="103" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/EShopApp/ViewModels/UserViewModel.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.0963223">
+        <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Framework/.htaccess">
+    <entry file="file://$PROJECT_DIR$/EShopApp/Models/BindModels/ChangePasswordBindingModel.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.034941763">
-          <caret line="1" column="20" selection-start-line="1" selection-start-column="20" selection-end-line="1" selection-end-column="20" />
-          <folding />
+        <state vertical-scroll-proportion="0.6252189">
+          <caret line="22" column="5" selection-start-line="22" selection-start-column="5" selection-end-line="22" selection-end-column="5" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/content/css/styles.css">
+    <entry file="file://$PROJECT_DIR$/EShopApp/Models/BindModels/EditProductBindingModel.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/EShopApp/.htaccess">
+    <entry file="file://$PROJECT_DIR$/EShopApp/Models/BindModels/DeleteCategoryBindingModel.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.20965058">
-          <caret line="6" column="11" selection-start-line="0" selection-start-column="0" selection-end-line="6" selection-end-column="11" />
-          <folding />
+        <state vertical-scroll-proportion="-0.39754817">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/EShopApp/Models/AjaxTest.php">
+    <entry file="file://$PROJECT_DIR$/EShopApp/Repositories/CartsRepository.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.47810858">
-          <caret line="18" column="34" selection-start-line="18" selection-start-column="34" selection-end-line="18" selection-end-column="34" />
-          <folding />
+        <state vertical-scroll-proportion="0.3502627">
+          <caret line="29" column="20" selection-start-line="29" selection-start-column="20" selection-end-line="29" selection-end-column="20" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/EShopApp/Views/home/login.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="55" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/EShopApp/ViewModels/TestViewModel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.1033275">
-          <caret line="30" column="76" selection-start-line="30" selection-start-column="76" selection-end-line="30" selection-end-column="76" />
-          <folding>
-            <element signature="e#36#66#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/EShopApp/ViewModels/HomeViewModel.php">
+    <entry file="file://$PROJECT_DIR$/EShopApp/Models/BindModels/RegisterBindingModel.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.29422066">
-          <caret line="14" column="34" selection-start-line="14" selection-start-column="34" selection-end-line="14" selection-end-column="34" />
-          <folding>
-            <element signature="e#243#877#0#PHP" expanded="false" />
-          </folding>
+          <caret line="13" column="6" selection-start-line="13" selection-start-column="6" selection-end-line="13" selection-end-column="6" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/EShopApp/Views/home/test.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/content/js/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.59401">
-          <caret line="17" column="47" selection-start-line="17" selection-start-column="47" selection-end-line="17" selection-end-column="47" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/EShopApp/Views/home/home.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4045534">
-          <caret line="11" column="28" selection-start-line="11" selection-start-column="28" selection-end-line="11" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/EShopApp/index.php">
+    <entry file="file://$PROJECT_DIR$/EShopApp/ViewModels/EditUserViewModel.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-6.3">
-          <caret line="9" column="6" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="6" />
-          <folding />
+          <caret line="17" column="58" selection-start-line="17" selection-start-column="58" selection-end-line="17" selection-end-column="58" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Framework/Config/AppConfig.php">
+    <entry file="file://$PROJECT_DIR$/EShopApp/Views/category/products/editProduct.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+        <state vertical-scroll-proportion="0.11033275">
+          <caret line="3" column="30" selection-start-line="3" selection-start-column="30" selection-end-line="3" selection-end-column="30" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/EShopApp/Controllers/TestController.php">
+    <entry file="file://$PROJECT_DIR$/EShopApp/Views/account/editProfile.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.41155866">
-          <caret line="14" column="7" selection-start-line="14" selection-start-column="7" selection-end-line="14" selection-end-column="7" />
-          <folding>
-            <element signature="e#362#9015#0#PHP" expanded="false" />
-          </folding>
+        <state vertical-scroll-proportion="0.18388791">
+          <caret line="5" column="35" selection-start-line="5" selection-start-column="35" selection-end-line="5" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/EShopApp/Repositories/UsersRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5218914">
+          <caret line="101" column="26" selection-start-line="101" selection-start-column="26" selection-end-line="101" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/EShopApp/Views/account/profile.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-15.4">
+          <caret line="34" column="36" selection-start-line="34" selection-start-column="36" selection-end-line="34" selection-end-column="36" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/EShopApp/Config/AppUserRolesConfig.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.18388791">
-          <caret line="5" column="1" selection-start-line="5" selection-start-column="1" selection-end-line="5" selection-end-column="1" />
-          <folding />
+        <state vertical-scroll-proportion="0.33099824">
+          <caret line="9" column="10" selection-start-line="9" selection-start-column="10" selection-end-line="9" selection-end-column="10" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/EShopApp/Views/public/navbar.php">
+    <entry file="file://$PROJECT_DIR$/content/css/styles.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.0">
-          <caret line="10" column="6" selection-start-line="10" selection-start-column="6" selection-end-line="10" selection-end-column="6" />
-          <folding />
+        <state vertical-scroll-proportion="0.7903494">
+          <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/EShopApp/Models/BindModels/AddProductBindingModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.2206655">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Framework/ViewModels/ViewModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.2206655">
+          <caret line="8" column="1" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/EShopApp/ViewModels/CategoryProductsViewModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.441331">
+          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/EShopApp/Controllers/CategoriesController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6619965">
+          <caret line="46" column="26" selection-start-line="46" selection-start-column="26" selection-end-line="46" selection-end-column="26" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/EShopApp/Controllers/AccountController.php">
       <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.25744307">
+          <caret line="26" column="42" selection-start-line="26" selection-start-column="42" selection-end-line="26" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/EShopApp/Controllers/HomeController.php">
+      <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.29422066">
-          <caret line="27" column="7" selection-start-line="27" selection-start-column="7" selection-end-line="27" selection-end-column="7" />
-          <folding>
-            <element signature="e#3248#3436#0#PHP" expanded="false" />
-            <element signature="e#3442#3471#0#PHP" expanded="false" />
-            <element signature="e#8815#8878#0#PHP" expanded="false" />
-            <element signature="e#10764#10980#0#PHP" expanded="false" />
-          </folding>
+          <caret line="12" column="39" selection-start-line="12" selection-start-column="39" selection-end-line="12" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/EShopApp/Controllers/TestController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="5.1488614">
+          <caret line="140" column="4" selection-start-line="140" selection-start-column="4" selection-end-line="140" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/EShopApp/Controllers/ProductsController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="2.9789844">
+          <caret line="81" column="14" selection-start-line="81" selection-start-column="14" selection-end-line="81" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/EShopApp/Views/public/navbar.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.18388791">
+          <caret line="5" column="66" selection-start-line="5" selection-start-column="66" selection-end-line="5" selection-end-column="66" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/EShopApp/Views/category/products/categoryProducts.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.42732048">
+          <caret line="20" column="36" selection-start-line="20" selection-start-column="36" selection-end-line="20" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/EShopApp/Repositories/CategoriesRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5744308">
+          <caret line="87" column="0" selection-start-line="87" selection-start-column="0" selection-end-line="87" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Framework/Core/Database.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3502627">
+          <caret line="139" column="20" selection-start-line="139" selection-start-column="20" selection-end-line="139" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/EShopApp/ViewModels/CategoryViewModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.66900176">
+          <caret line="35" column="45" selection-start-line="35" selection-start-column="45" selection-end-line="35" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/content/js/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.75540763">
+          <caret line="35" column="7" selection-start-line="35" selection-start-column="7" selection-end-line="35" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/EShopApp/Views/home/home.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5884413">
+          <caret line="16" column="28" selection-start-line="16" selection-start-column="28" selection-end-line="16" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/EShopApp/Views/category/category.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.2591944">
+          <caret line="9" column="24" selection-start-line="9" selection-start-column="24" selection-end-line="9" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Framework/Exceptions/InvalidUserOperationException.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.8091068">
+          <caret line="22" column="5" selection-start-line="6" selection-start-column="4" selection-end-line="22" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Framework/Exceptions/UnauthorizedException.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.29422066">
+          <caret line="13" column="38" selection-start-line="13" selection-start-column="38" selection-end-line="13" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Framework/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.73555166">
+          <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/EShopApp/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.73555166">
+          <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Framework/Helpers/ReflectionService.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.036777582">
+          <caret line="67" column="55" selection-start-line="67" selection-start-column="55" selection-end-line="67" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Framework/App.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.323993">
+          <caret line="49" column="9" selection-start-line="49" selection-start-column="9" selection-end-line="49" selection-end-column="9" />
         </state>
       </provider>
     </entry>

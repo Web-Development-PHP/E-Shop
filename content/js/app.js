@@ -19,4 +19,19 @@ $(document).ready(function() {
             }
         });
     }
+
+    $('#showProductMenu').click(function(e) {
+        e.preventDefault();
+        $('#productMenu').toggle(500);
+    });
+
+    $('#showProductMenu2').click(function(e) {
+        e.preventDefault();
+        $('#productMenu2').toggle(500);
+    });
+
+    $('#showCategoryMenu').click(function(e) {
+        e.preventDefault();
+        $('#categoryMenu').toggle(500);
+    });
 });

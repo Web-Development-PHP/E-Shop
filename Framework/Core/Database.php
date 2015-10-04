@@ -137,11 +137,26 @@ class Database
         }
     }
 
+    public function getAllEntitiesWithCondition($fromTable, $condition, $orderByColumnName) {
+        try{
+            $stmt = $this->prepare("
+            SELECT *
+            FROM $fromTable
+            WHERE $condition
+            ORDER BY $orderByColumnName ASC");
+            $stmt->execute();
+            return $stmt->fetchAll();
+        }catch (\PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
     /**
      * @param $inTable
-     * @param $entityData
+     * @param array $entityData
+     * @return bool
      */
-    public function insertEntity($inTable, $entityData) {
+    public function insertEntity($inTable, $entityData = []) {
         $valuesCount = $this->getValuesCount($entityData);
         $columnNames = implode(', ', array_keys($entityData));
         $stmt = $this->prepare("
@@ -168,12 +183,17 @@ class Database
      */
     public function updateEntityById($tableName, $entityData, $id)
     {
-        $valuesCount = $this->getValuesCount($entityData);
         $columnNames = implode(', ', array_keys($entityData));
-
-        $stmt = $this->prepare("
-            UPDATE $tableName SET $columnNames = $valuesCount WHERE id = ?
-        ");
+        $columnNamesArr = explode(', ', $columnNames);
+        $sql = "UPDATE $tableName SET ";
+        foreach($columnNamesArr as $k => $v) {
+            $sql .= "$v" . "= ?";
+            if($k < count($columnNamesArr) - 1) {
+                $sql .= ", ";
+            }
+        }
+        $sql .= " WHERE id = ?";
+        $stmt = $this->prepare($sql);
         $params = [];
         array_push($entityData, $id);
         array_push($params, array_values($entityData));
