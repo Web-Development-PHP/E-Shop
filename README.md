@@ -1,6 +1,6 @@
 # E-Shop - Framework
 
-A simple MVC Framework written in PHP 5.5 created by Kristain Lyubenov (Domin1k) kristian.lubenov@gmail.com
+A simple MVC Framework written in PHP 5.6 created by Kristain Lyubenov (Domin1k) kristian.lubenov@gmail.com
 
 The framework has default router which routes actions in the pattern:
 /hostname/controller/action/params
